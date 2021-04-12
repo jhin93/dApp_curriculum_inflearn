@@ -14,6 +14,10 @@ https://programmers.co.kr/pages/blockchain?page=3&tag=%EC%A0%84%EC%B2%B4
 - web3 검색
 
 
+- 공식문서
+https://web3js.readthedocs.io/en/v1.3.4/
+
+
 [Warm-up reference]
 하루에 하나씩 읽는 레퍼런스. 시작하기 전에 읽고 시작하자.
 
