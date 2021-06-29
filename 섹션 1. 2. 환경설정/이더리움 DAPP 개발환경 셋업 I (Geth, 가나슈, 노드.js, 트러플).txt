@@ -1,0 +1,5 @@
+3:52
+오류내용 : geth version 입력시 sudo: apt-get: command not found 발생
+해결 : brew install ethereum 입력, 이더리움 설치로 해결(https://geth.ethereum.org/docs/install-and-build/installing-geth#install-on-macos-via-homebrew)
+
+
