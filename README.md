@@ -1,23 +1,7 @@
 # web3.js
 
-ÀÌ°÷Àº web3.js¸¦ À§ÇÑ °ø°£ÀÔ´Ï´Ù.
-ºí·ÏÃ¼ÀÎ °³¹ßÀÚ¸¦ ÇâÇÏ¿©.
-
-[ web3.js ÇĞ½À ¼ø¼­ ]
-¿Ï·áµÈ °úÁ¤Àº ¿ìÃø¿¡ ¿Ï·áµÈ ³¯Â¥¿Í ÇÔ²² ¿Ï·á¶ó°í ÀÛ¼º.(ex ÇÁ·Î±×·¡¸Ó½º 4/17 ¿Ï·á)
-
-1. À¯Æ©ºê Æ©Åä¸®¾ó ½Ã¸®Áî
-https://www.youtube.com/watch?v=2TV0r94p8OY&list=PLbbtODcOYIoFs0PDlTdxpEsZiyDR2q9aA
-
-2. steemit
-https://programmers.co.kr/pages/blockchain?page=3&tag=%EC%A0%84%EC%B2%B4
-- web3 °Ë»ö
+ì´ê³³ì€ ì´ë”ë¦¬ì›€ dAppê°œë°œì„ ë°°ìš´ í›„ ê¸°ë¡ì„ ë‚¨ê¸°ëŠ” ê³µê°„ì…ë‹ˆë‹¤.
+https://www.inflearn.com/course/blockchain-%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-dapp/dashboard
 
 
-- °ø½Ä¹®¼­
-https://web3js.readthedocs.io/en/v1.3.4/
-
-
-[Warm-up reference]
-ÇÏ·ç¿¡ ÇÏ³ª¾¿ ÀĞ´Â ·¹ÆÛ·±½º. ½ÃÀÛÇÏ±â Àü¿¡ ÀĞ°í ½ÃÀÛÇÏÀÚ.
 
