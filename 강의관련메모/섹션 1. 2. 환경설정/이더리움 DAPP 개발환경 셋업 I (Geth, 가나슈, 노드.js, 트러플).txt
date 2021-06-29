@@ -1,5 +1,67 @@
-3:52
-오류 : geth version 입력 시 sudo: apt-get: command not found 발생
-해결 : brew install ethereum 입력으로 해결(https://geth.ethereum.org/docs/install-and-build/installing-geth#install-on-macos-via-homebrew)
+3:52 오류해결
+    오류 : geth version 입력 시 sudo: apt-get: command not found 발생
+    해결 : brew install ethereum 입력으로 해결(https://geth.ethereum.org/docs/install-and-build/installing-geth#install-on-macos-via-homebrew)
 
 
+5:32
+    가나슈는 스마트 컨트랙을 테스팅하기에 최적의 툴
+
+
+5:48 | 상단바 ACCOUNTS  
+
+    CURRENT BLOCK : 노드에서 채굴한 마지막 블록 넘버.
+    GAS PRICE : 노드가 트랜잭션을 채굴하기 위한 최소한의 가스비용
+    GAS LIMIT : 트랜잭션을 무사히 마치기 위해 필요한 최대한의 가스.
+    HARDFORK : 영상 내에는 없는 바트. 아마 영상 시점의 버전이 낮아서 그런듯. 
+    NETWORK ID : 가나슈 서버의 내부 블록체인 식별 아이디가 '5777'로 초기 설정되어 이더리움 노드를 실행.
+    RPC SERVER : 게스, 메타마스크에서 이 주소로 연결하면 가나슈 환경을 그대로 쓸 수 있음
+    MINING STATUS : 새로운 블록을 채굴하는 속도. 편리한 테스트를 위해 트랜잭션이 생기면 몇초안에 바로 처리하게 세팅됨. 
+    실제론 블록을 바로 채굴하지 않고 정해진 초단위로 채굴. 기능을 끄고 초단위로 채굴하도록 설정 가능.
+
+    MNEMONIC : 연산 기호. 여러 단어들의 조합. 이 단어들의 조합을 사용해서 하단 계정들을 생성. 이 문장으로 메타마스크 등에서 가나슈의 계정들을 쉽게 옮길 수 있게 도와줌.
+    이 님모닉은 가나슈 설치할 때 랜덤으로 생성되는데 수업을 위해 변경.
+    shaft clap gun expire course crouch magnet furnace grant shop used vacant
+
+    TX COUNT : 해당 계정에서 트랜잭션을 몇번 처리했는 지 보여주는 횟수.
+    INDEX : 해당 계정 순서. 말대로 인덱스.
+    열쇠모양 버튼 : 계정의 비밀 키.
+
+
+9:28 | 상단바 BLOCKS 
+
+    현재 노드가 채굴한 블록이 몇개인지 확인 가능. 가나슈 최초 설치시 제네시스 블록만 존재.
+
+
+9:43 | 상단바 TRANSACTIONS 
+
+    노드에서 진행한 트랜잭션 리스트를 볼 수 있음.
+
+
+9:47 | 상단바 LOGS 
+
+    현재 노드의 모든 로그를 보여줌.
+
+
+9:53 | 상단바 검색창 
+
+    블록넘버, 트랜잭션 해시를 검색해서 정보 검색 가능.
+
+
+10:00 | 설정 기능 - SERVER 
+
+    호스트네임, 포트넘버, 네트워크 아이디 입력 가능. 자동채굴 기능을 끄고 킬수 있음. 채굴시간 설정가능.
+
+
+10:28 | 설정 기능 - ACCOUNT & KEYS 
+
+    가나슈 내에서 쓸 수 있는 계정의 숫자, 기본으로 설정된 밸런스를 조정 가능. 님모닉 문장을 바꾸거나 자동변경 설정가능.
+
+
+10:45 | 설정 기능 - CHAIN
+
+    가스 한도와 가격 설정 가능
+
+
+10:52 | 설정 기능 - ADVANCED SETTINGS
+    
+    로킹 관련 설정, 구글 분석을 설정 가능.
