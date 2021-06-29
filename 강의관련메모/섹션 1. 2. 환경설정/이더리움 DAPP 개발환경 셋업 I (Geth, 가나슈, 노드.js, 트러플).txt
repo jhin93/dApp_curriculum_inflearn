@@ -65,3 +65,22 @@
 10:52 | 설정 기능 - ADVANCED SETTINGS
     
     로킹 관련 설정, 구글 분석을 설정 가능.
+
+
+13:06 | TRUFFLE 설치.
+
+    트러플은 스마트 컨트랙을 컴파일하고 테스트, 배포도 할 수 있는 프레임워크. 버전 4 이상 필수.
+    설치 명령어 : npm install -g truffle
+
+    오류발생 : code EACCES
+    npm ERR! The operation was rejected by your operating system.
+    npm ERR! It is likely you do not have the permissions to access this file as the current user
+    npm ERR! 
+    npm ERR! If you believe this might be a permissions issue, please double-check the
+    npm ERR! permissions of the file and its containing directories, or try running
+    npm ERR! the command again as root/Administrator.
+
+    npm ERR! A complete log of this run can be found in:
+    npm ERR!     /Users/kimjinkyung/.npm/_logs/2021-06-29T08_43_22_823Z-debug.log
+
+    오류해결 : https://stackoverflow.com/questions/48910876/error-eacces-permission-denied-access-usr-local-lib-node-modules/55628400#55628400
