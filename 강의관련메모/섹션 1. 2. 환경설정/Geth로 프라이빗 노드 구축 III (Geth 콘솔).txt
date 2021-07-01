@@ -1,0 +1,11 @@
+[ Geth로 프라이빗 노드 구축 III (Geth 콘솔) ]
+
+(채굴 진행중..)
+
+0:10 | 백그라운드로 돌고 있는 노드에 연결시켜서 자바스크립트 콘솔로 보여주는 작업
+
+    geth attach ipc:\\.\pipe\geth.ipc 입력.
+    오류발생 : Fatal: Unable to attach to remote geth: dial unix \.pipegeth.ipc: connect: no such file or directory
+    해결시도 : https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console
+
+
