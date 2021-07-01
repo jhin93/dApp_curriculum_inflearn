@@ -1,0 +1,95 @@
+* Geth로 프라이빗 노드 구축 II (노드 첫 실행, DAG 파일 생성)
+    - 노드를 초기화했으니 노드를 실행하는 강의.
+
+    노드를 실행하기 위해선 어떤 스크립트를 만들고 파라미터들을 지정해야 함.
+
+0:50 | 노드 실행 파라미터
+
+    geth --networkid 4386 --mine --miner.threads 2 --datadir "./" --nodiscover --http --http.port "8545" --http.corsdomain "*" --nat "any" --http.api eth,web3,personal,net --allow-insecure-unlock --password ./password.sec
+
+    geth 명령어로 시작(geth) 
+    -> 네트워크 식별자 명시하는 파라미터(networkid) 
+    -> 이 노드에서 채굴을 시작하게 하는 파라미터(mine) 
+    -> 몇개의 스레드에서 채굴을 할 것인지 수를 정할 수 있는 파라미터(minerthreads). 내 컴퓨터의 코어 숫자에 맞게 설정
+    -> 우리 체인파일을 어디에 저장할건지 지정하는 파라미터(--datadir). 현재 디렉토리에 저장하는 걸로 지정 ("./")
+    -> 탐색 프로토콜을 해제하는 파라미터(--nodiscover). 다른 노드가 우리 체인에 연결하려는 것을 막음. 지금처럼 테스팅하는 목적으로 노드를 쓸 때 사용.
+    -> rpc 엔드포인트 사용(--rpc). rpc 엔드포인트를 사용하면 나중에 메타마스크같은 곳에서 게스로 실행된 노드로 연결할 수 있음.
+        + rpc는 더이상 사용하지 않음. http로 사용(The flag --rpc is deprecated and will be removed June 2021, please use --http)
+    -> 어떤 포트에 접속해야 하는지 명시하는 파라미터(--rpcport)
+        + rpcport는 더 이상 사용하지 않음. http.port를 사용(The flag --rpcport is deprecated and will be removed June 2021, please use --http.port). 
+    -> 아무 도메인("*")에서나 우리 rpc엔드포인트에 접속할 수 있도록 하는 파라미터(--rpccorsdomain)
+        + rpccorsdomain은 더 이상 사용하지 않음. 대신 http.corsdomain을 사용(The flag --rpccorsdomain is deprecated and will be removed June 2021, please use --http.corsdomain )
+    -> 네트워킹에 쓰이는 파라미터(--nat)
+    -> rpc엔드포인트에서 어떤 api를 커맨드로 사용하기 위한 파라미터(--rpcapi). eth,web3,personal,net.. 등등을 명시함으로 나중에 노드에서 이 api들을 라이브러리처럼 사용 가능.
+        + rpcapi는 더 이상 사용하지 않음. 대신 http.api를 사용(The flag --rpcapi is deprecated and will be removed June 2021, please use --http.api ). 
+    -> 채굴보상을 받는 첫번째 계정이 계정을 받기 위해선 계정을 언락시켜야 함(--unlock 0). 첫번째 계정의 인덱스가 0.
+        + 업데이트됨. --unlock value 대신 --allow-insecure-unlock(https://www.inflearn.com/questions/13215)
+    -> 비밀번호를 담고있는 파라미터를 명시(--password). nodestart.cmd 를 실행하기 전에 첫번째 계정의 비밀번호를 담는 ./password.sec 를 만들어서 비밀번호를 저장.
+
+    위 내용들이 무조건 첫번째 라인에 위치해야 함. 다른 라인에 있으면 다 무시됨.
+
+4:53 | 노드 실행
+
+    오류발생
+    1. zsh: permission denied: ./nodestart.cmd 해결시도 : chmod u+x ./nodestart.cmd 로 실행시도했더니 2번 오류발생.
+    2. flag provided but not defined: -minerthreads 해결시도 : https://www.inflearn.com/questions/170407 minerthreads를 miner.threads로 바꿨더니 비슷한 파라미터 오류 속출
+    3. 파라미터 오류 속출 해결 : 파라미터 오류만 고친 후 --unlock을 --allow-insecure-unlock 로 고침.
+    ?  Blockchain git:(master) ? ./nodestart.cmd
+    INFO [07-01|11:03:43.111] Maximum peer count                       ETH=50 LES=0 total=50
+    WARN [07-01|11:03:43.113] The flag --rpc is deprecated and will be removed June 2021, please use --http 
+    WARN [07-01|11:03:43.113] The flag --rpcport is deprecated and will be removed June 2021, please use --http.port 
+    WARN [07-01|11:03:43.113] The flag --rpccorsdomain is deprecated and will be removed June 2021, please use --http.corsdomain 
+    WARN [07-01|11:03:43.113] The flag --rpcapi is deprecated and will be removed June 2021, please use --http.api 
+    INFO [07-01|11:03:43.118] Set global gas cap                       cap=50,000,000
+    INFO [07-01|11:03:43.118] Allocated trie memory caches             clean=154.00MiB dirty=256.00MiB
+    INFO [07-01|11:03:43.120] Allocated cache and file handles         database=/Users/kimjinkyung/Desktop/dApp_curriculum_inflearn/Blockchain/geth/chaindata cache=512.00MiB handles=5120
+    INFO [07-01|11:03:43.412] Opened ancient database                  database=/Users/kimjinkyung/Desktop/dApp_curriculum_inflearn/Blockchain/geth/chaindata/ancient readonly=false
+    INFO [07-01|11:03:43.416] Initialised chain configuration          config="{ChainID: 4386 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: 0 EIP155: 0 EIP158: 0 Byzantium: 0 Constantinople: 0 Petersburg: 0 Istanbul: 0, Muir Glacier: <nil>, Berlin: <nil>, London: <nil>, Engine: ethash}"
+    INFO [07-01|11:03:43.418] Disk storage enabled for ethash caches   dir=/Users/kimjinkyung/Desktop/dApp_curriculum_inflearn/Blockchain/geth/ethash count=3
+    INFO [07-01|11:03:43.418] Disk storage enabled for ethash DAGs     dir=/Users/kimjinkyung/Library/Ethash count=2
+    INFO [07-01|11:03:43.419] Initialising Ethereum protocol           network=4386 dbversion=<nil>
+    INFO [07-01|11:03:43.422] Loaded most recent local header          number=0 hash=87591d..7c1cc0 td=524,288 age=19h1m25s
+    INFO [07-01|11:03:43.422] Loaded most recent local full block      number=0 hash=87591d..7c1cc0 td=524,288 age=19h1m25s
+    INFO [07-01|11:03:43.423] Loaded most recent local fast block      number=0 hash=87591d..7c1cc0 td=524,288 age=19h1m25s
+    WARN [07-01|11:03:43.423] Failed to load snapshot, regenerating    err="missing or corrupted snapshot"
+    INFO [07-01|11:03:43.423] Rebuilding state snapshot 
+    INFO [07-01|11:03:43.424] Resuming state snapshot generation       root=b84523..07823f accounts=0 slots=0 storage=0.00B elapsed="457.293?s"
+    INFO [07-01|11:03:43.426] Regenerated local transaction journal    transactions=0 accounts=0
+    INFO [07-01|11:03:43.430] Gasprice oracle is ignoring threshold set threshold=2
+    WARN [07-01|11:03:43.431] Error reading unclean shutdown markers   error="leveldb: not found"
+    INFO [07-01|11:03:43.431] Starting peer-to-peer node               instance=Geth/v1.10.4-stable/darwin-amd64/go1.16.5
+    INFO [07-01|11:03:43.438] Generated state snapshot                 accounts=256 slots=0 storage=9.50KiB elapsed=13.892ms
+    INFO [07-01|11:03:43.563] New local node record                    seq=1 id=6d17e7ef1ac41975 ip=127.0.0.1 udp=0 tcp=30303
+    INFO [07-01|11:03:43.564] Started P2P networking                   self="enode://1af65fbce1f268214109fa49f8ef69f9a8292b76c091b0b32b5ef4aac5aa572cd3bf263291086c4fa81dc3741b007ddaf1dd79317911a39c205063b9c43b8039@127.0.0.1:30303?discport=0"
+    INFO [07-01|11:03:43.566] IPC endpoint opened                      url=/Users/kimjinkyung/Desktop/dApp_curriculum_inflearn/Blockchain/geth.ipc
+    INFO [07-01|11:03:43.568] HTTP server started                      endpoint=127.0.0.1:8545 prefix= cors=* vhosts=localhost
+    Fatal: Account unlock with HTTP access is forbidden!
+
+
+5:20 | 노드 정상실행
+
+    * DAG : 방향성 비순환 그래프는 DAG(대그)라고도 하며 Directed Acyclic Graph의 약자이다. 직역 그대로 한 방향으로 이어지지만, 순환은 하지 않는 그래프 이다. '방향성 비 사이클' 그래프이며 방향을 가지지만 루프를 생성하지 않는 그래프라는 의미이다. 
+    여기서 루프, 또는 사이클이란 자기 자신에서 출발해 다시 자신에게 돌아오는 경로를 말하며 비 사이클이므로 이러한 경로가 없어야 한다.
+    a라는 최초의 거래내역을 그 뒤의 b, c, d, e가 검증한다. 또한 그 뒤의 g, f가 b, c, d, e를 검증한다. g, f 는 동시에 a 를 비간접적으로 검증했다고 볼 수 있다.   
+    이런식으로 꼬리에 꼬리를 물며 추가되는 트랙젝션들이 앞의 트랜잭션들을 직, 간접적으로 검증하게 되면서 네트워크가 형성된다. 이러한 직, 간접 검증이 누적된 트랜잭션은 검증이 완료되었다고 보고 확정이 된다. 이것은 거래가 완료되었다고 볼 수도 있다.
+
+    DAG는 Ethash 채굴 알고리즘에서 필요로 하는 데이터 구조.
+    노드를 처음 실행했을 때 DAG 파일을 먼저 생성. 노드가 채굴을 하기 위해선 DAG 파일이 먼저 생성되어야 함.
+    매번 3만개의 블록이 생성될 때마다 DAG 파일이 생성됨. 50개 블록을 에폭(epoch)이라고 부름.
+    처음 DAG 파일을 생성할 때 몇분에서 몇십분 사용. 
+    첫번째 epoch이 0으로 시작(epoch=0). 옆의 percentage로 진행 상황 확인 가능.
+    epoch=1 의 percentage가 100이 되면 DAG 생성이 끝남.
+
+    DAG 생성이 끝나면 블록채굴이 시작됨. (Commit new mining work)
+    트랜잭션이 없어도 블록채굴은 진행됨. 블록채굴은 트랜잭션 처리 이외에도 새로운 에더를 생성하는 것에도 목적이 있다.
+    number=292 - 블록넘버
+    
+
+
+
+
+
+
+
+
+

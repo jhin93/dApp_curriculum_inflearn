@@ -1,7 +1,7 @@
-0:50 | Á¦³×½Ã½º ºí·Ï »ý¼º
+0:50 | ì œë„¤ì‹œìŠ¤ ë¸”ë¡ ìƒì„±
 
-    Á¦³×½Ã½º ºí·ÏÀº ³ëµå ÃÊ±âÈ­¿¡ ¹Ýµå½Ã ÇÊ¿äÇÔ.
-    $ puppeth : puppeth ½ÇÇà
+    ì œë„¤ì‹œìŠ¤ ë¸”ë¡ì€ ë…¸ë“œ ì´ˆê¸°í™”ì— ë°˜ë“œì‹œ í•„ìš”í•¨.
+    $ puppeth : puppeth ì‹¤í–‰
 
     What would you like to do? (default = stats)
     1. Show network stats
@@ -13,20 +13,20 @@
     Which consensus engine to use? (default = clique)
     1. Ethash - proof-of-work
     2. Clique - proof-of-authority
-    - 1¹ø ¼±ÅÃ(ÀÌ´õ¸®¿òÀº ÇöÀç ÀÛ¾÷Áõ¸í »ç¿ë)
+    - 1ë²ˆ ì„ íƒ(ì´ë”ë¦¬ì›€ì€ í˜„ìž¬ ìž‘ì—…ì¦ëª… ì‚¬ìš©)
 
     Which accounts should be pre-funded? (advisable at least one)
-    (¾î¶² °èÁ¤¿¡ ¹Ì¸® ¿¡´õ¸¦ ¹Þ¾Æ¾ß ÇÕ´Ï±î?)
-    - ¿£ÅÍ·Î ½ºÅµ
+    (ì–´ë–¤ ê³„ì •ì— ë¯¸ë¦¬ ì—ë”ë¥¼ ë°›ì•„ì•¼ í•©ë‹ˆê¹Œ?)
+    - ì—”í„°ë¡œ ìŠ¤í‚µ
 
     Should the precompile-addresses (0x1 .. 0xff) be pre-funded with 1 wei? (advisable yes)
-    - ¿£ÅÍ·Î ½ºÅµ(³» ÆÇ´Ü)
+    - ì—”í„°ë¡œ ìŠ¤í‚µ(ë‚´ íŒë‹¨)
 
     Specify your chain/network ID if you want an explicit one (default = random)
-    ³×Æ®¿öÅ©¿¡ ¾²ÀÏ Ã¼ÀÎÀÌ³ª ³×Æ®¿öÅ© ¾ÆÀÌµð¸¦ Á¤ÇØ¾ß ÇÔ. ³×Æ®¿öÅ© ¾ÆÀÌµð¸¦ Á¤ÇÒ ¶§ ÆÛºí¸¯ ³×Æ®¿öÅ©¿¡¼­ ¾²´Â ¾ÆÀÌµð´Â ÇÇÇØ¾ß ÇÔ.
-    ¿¹¾à¾î 1¹øÀº main network¸¦ »ç¿ë. 2¹øÀº ¸ð´ø Å×½ºÆ® ³×Æ®¿öÅ©, 3¹øÀº Ropsten Å×½ºÆ® ³×Æ®¿öÅ©, 4¹øÀº Rinkeby Å×½ºÆ® ³×Æ®¿öÅ©, 42¹øÀº Kovan Å×½ºÆ® ³×Æ®¿öÅ©
+    ë„¤íŠ¸ì›Œí¬ì— ì“°ì¼ ì²´ì¸ì´ë‚˜ ë„¤íŠ¸ì›Œí¬ ì•„ì´ë””ë¥¼ ì •í•´ì•¼ í•¨. ë„¤íŠ¸ì›Œí¬ ì•„ì´ë””ë¥¼ ì •í•  ë•Œ í¼ë¸”ë¦­ ë„¤íŠ¸ì›Œí¬ì—ì„œ ì“°ëŠ” ì•„ì´ë””ëŠ” í”¼í•´ì•¼ í•¨.
+    ì˜ˆì•½ì–´ 1ë²ˆì€ main networkë¥¼ ì‚¬ìš©. 2ë²ˆì€ ëª¨ë˜ í…ŒìŠ¤íŠ¸ ë„¤íŠ¸ì›Œí¬, 3ë²ˆì€ Ropsten í…ŒìŠ¤íŠ¸ ë„¤íŠ¸ì›Œí¬, 4ë²ˆì€ Rinkeby í…ŒìŠ¤íŠ¸ ë„¤íŠ¸ì›Œí¬, 42ë²ˆì€ Kovan í…ŒìŠ¤íŠ¸ ë„¤íŠ¸ì›Œí¬
 
-    Á¦³×½Ã½º ºí·ÏÀ» json ÆÄÀÏ·Î ÃßÃâÇØ¾ß ÇÔ.
+    ì œë„¤ì‹œìŠ¤ ë¸”ë¡ì„ json íŒŒì¼ë¡œ ì¶”ì¶œí•´ì•¼ í•¨.
     What would you like to do? (default = stats)
     1. Show network stats
     2. Manage existing genesis
@@ -41,57 +41,57 @@
 
     Which folder to save the genesis specs into? (default = current)
     Will create mynetwork.json, mynetwork-aleth.json, mynetwork-harmony.json, mynetwork-parity.json
-    > (¿£ÅÍ)
+    > (ì—”í„°)
     INFO [06-30|16:17:04.946] Saved native genesis chain spec          path=mynetwork.json
     INFO [06-30|16:17:04.952] Saved genesis chain spec                 client=aleth path=mynetwork-aleth.json
     INFO [06-30|16:17:04.954] Saved genesis chain spec                 client=parity path=mynetwork-parity.json
     INFO [06-30|16:17:04.957] Saved genesis chain spec                 client=harmony path=mynetwork-harmony.json
 
-    Á¦³×½Ã½º ºí·Ï ÃßÃâ.
+    ì œë„¤ì‹œìŠ¤ ë¸”ë¡ ì¶”ì¶œ.
 
-    ¿©±â¼­ Puppeth´Â ÇÒÀÏ ³¡³². ctrl + c ·Î ³ª°¨.
-
-
-    [Á¦³×½Ã½º ºí·Ï ³»ºÎ ¼³¸í]
-    config - config ³»ºÎÀÇ ÇÊµåµéÀº Ã¼ÀÎÀÇ ÆÄ¶ó¹ÌÅÍ¸¦ Á¤ÀÇÇÏ´Âµ¥ »ç¿ëµÊ.
-    ex) ¸¸µé¶§ »ç¿ëÇÑ 4386, ethash µî
-
-    timestamp - ¿¬¼ÓµÇ´Â µÎ°³ÀÇ ºí·ÏÀÇ timestampÀÇ Â÷ÀÌ°¡ ÀÛÀ¸¸é ³­ÀÌµµ°¡ ¿Ã¶ó°¡°í, Å©¸é ³­ÀÌµµ°¡ ³»·Á°£´Ù. 
-    ºí·ÏµéÀÌ ¿Ã¹Ù¸¥ ¼ø¼­·Î ÁøÇàµÇ´Â Áöµµ È®ÀÎÇÑ´Ù. 
-
-    gaslimit - ºí·Ï³»ÀÇ Æ®·£Àè¼ÇÀÌ ¼ÒºñÇÒ ¼ö ÀÖ´Â ÃÖ´ë °¡½ºÇÑµµ. °¢ ºí·Ï¸¶´Ù Æ®·£Àè¼ÇÀ» ¸î°³³ª Ã³¸®ÇÒ °ÍÀÎÁö Á¦ÇÑÇÏ¿© ºí·ÏÀÇ »çÀÌÁî¸¦ Á¶Àý.
-
-    alloc - Áö°© ÁÖ¼Ò¿¡ ÀÚ±ÝÀ» ¹Ì¸® ÇÒ´çÇÏ´Â ³»¿ë.
-
-    number - ºí·Ï ³Ñ¹ö. Á¦³×½Ã½º ºí·ÏÀº 0.
-
-    gasUsed - ºí·Ï ³»¿¡¼­ ¿©·¯°¡Áö Æ®·£Àè¼ÇÀ» »ç¿ëÇÏ¸é¼­ »ç¿ëµÈ ¸ðµç °¡½ºÀÇ ÇÕ. ÇöÀç ¼ö¾÷À» À§ÇÑ Á¦³×½Ã½º ºí·ÏÀº Æ®·£Àè¼ÇÀÌ ¾ø¾î¼­ °ªÀÌ 0.
-
-    parentHash - ºÎ¸ð ºí·ÏÀÇ ÇØ½¬. Á¦³×½Ã½º ºí·ÏÀº ºÎ¸ð°¡ ¾ø¾î¼­ °ªÀÌ 0.
+    ì—¬ê¸°ì„œ PuppethëŠ” í• ì¼ ëë‚¨. ctrl + c ë¡œ ë‚˜ê°.
 
 
-7:46 | Á¦³×½Ã½º ºí·ÏÀ¸·Î ÇÁ¶óÀÌºø ³ëµå¸¦ ÃÊ±âÈ­¿¡
+    [ì œë„¤ì‹œìŠ¤ ë¸”ë¡ ë‚´ë¶€ ì„¤ëª…]
+    config - config ë‚´ë¶€ì˜ í•„ë“œë“¤ì€ ì²´ì¸ì˜ íŒŒë¼ë¯¸í„°ë¥¼ ì •ì˜í•˜ëŠ”ë° ì‚¬ìš©ë¨.
+    ex) ë§Œë“¤ë•Œ ì‚¬ìš©í•œ 4386, ethash ë“±
+
+    timestamp - ì—°ì†ë˜ëŠ” ë‘ê°œì˜ ë¸”ë¡ì˜ timestampì˜ ì°¨ì´ê°€ ìž‘ìœ¼ë©´ ë‚œì´ë„ê°€ ì˜¬ë¼ê°€ê³ , í¬ë©´ ë‚œì´ë„ê°€ ë‚´ë ¤ê°„ë‹¤. 
+    ë¸”ë¡ë“¤ì´ ì˜¬ë°”ë¥¸ ìˆœì„œë¡œ ì§„í–‰ë˜ëŠ” ì§€ë„ í™•ì¸í•œë‹¤. 
+
+    gaslimit - ë¸”ë¡ë‚´ì˜ íŠ¸ëžœìž­ì…˜ì´ ì†Œë¹„í•  ìˆ˜ ìžˆëŠ” ìµœëŒ€ ê°€ìŠ¤í•œë„. ê° ë¸”ë¡ë§ˆë‹¤ íŠ¸ëžœìž­ì…˜ì„ ëª‡ê°œë‚˜ ì²˜ë¦¬í•  ê²ƒì¸ì§€ ì œí•œí•˜ì—¬ ë¸”ë¡ì˜ ì‚¬ì´ì¦ˆë¥¼ ì¡°ì ˆ.
+
+    alloc - ì§€ê°‘ ì£¼ì†Œì— ìžê¸ˆì„ ë¯¸ë¦¬ í• ë‹¹í•˜ëŠ” ë‚´ìš©.
+
+    number - ë¸”ë¡ ë„˜ë²„. ì œë„¤ì‹œìŠ¤ ë¸”ë¡ì€ 0.
+
+    gasUsed - ë¸”ë¡ ë‚´ì—ì„œ ì—¬ëŸ¬ê°€ì§€ íŠ¸ëžœìž­ì…˜ì„ ì‚¬ìš©í•˜ë©´ì„œ ì‚¬ìš©ëœ ëª¨ë“  ê°€ìŠ¤ì˜ í•©. í˜„ìž¬ ìˆ˜ì—…ì„ ìœ„í•œ ì œë„¤ì‹œìŠ¤ ë¸”ë¡ì€ íŠ¸ëžœìž­ì…˜ì´ ì—†ì–´ì„œ ê°’ì´ 0.
+
+    parentHash - ë¶€ëª¨ ë¸”ë¡ì˜ í•´ì‰¬. ì œë„¤ì‹œìŠ¤ ë¸”ë¡ì€ ë¶€ëª¨ê°€ ì—†ì–´ì„œ ê°’ì´ 0.
+
+
+7:46 | ì œë„¤ì‹œìŠ¤ ë¸”ë¡ìœ¼ë¡œ í”„ë¼ì´ë¹— ë…¸ë“œë¥¼ ì´ˆê¸°í™”ì—
 
     $ geth --datadir . init mynetwork.json
-    geth ¸í·É¾î¸¦ »ç¿ëÇÏ¿© ÇöÀç µð·ºÅä¸®¿¡ ÇÁ¶óÀÌºø ³ëµå µ¥ÀÌÅÍ¸¦ ÀúÀå(--datadir). 
-    'init'Àº ÇÁ¶óÀÌºø ³ëµå¸¦ ÃÊ±âÈ­ÇÏ±â À§ÇÑ Á¦³×½Ã½º ºí·ÏÀÇ ÆÄÀÏ ÀÌ¸§À» ¸í½ÃÇÏ±â À§ÇØ ¾²ÀÓ. mynetwork.jsonÀÌ Á¦³×½Ã½º ºí·ÏÀÌ¶ó°í ¸í½Ã.
+    geth ëª…ë ¹ì–´ë¥¼ ì‚¬ìš©í•˜ì—¬ í˜„ìž¬ ë””ë ‰í† ë¦¬ì— í”„ë¼ì´ë¹— ë…¸ë“œ ë°ì´í„°ë¥¼ ì €ìž¥(--datadir). 
+    'init'ì€ í”„ë¼ì´ë¹— ë…¸ë“œë¥¼ ì´ˆê¸°í™”í•˜ê¸° ìœ„í•œ ì œë„¤ì‹œìŠ¤ ë¸”ë¡ì˜ íŒŒì¼ ì´ë¦„ì„ ëª…ì‹œí•˜ê¸° ìœ„í•´ ì“°ìž„. mynetwork.jsonì´ ì œë„¤ì‹œìŠ¤ ë¸”ë¡ì´ë¼ê³  ëª…ì‹œ.
 
-    À§¿Í °°ÀÌ Á¦³×½Ã½º ºí·ÏÀ» »ç¿ëÇØ ³ëµå ÃÊ±âÈ­¸¦ ÇÒ ¼ö ÀÖ´Ù.
-    »õ·Î »ý¼ºµÈ 'geth' Æú´õ¿¡´Â ¸ðµç Ã¼ÀÎ¿¡ ´ëÇÑ µ¥ÀÌÅÍ°¡ ÀúÀåµÇ¾îÀÖÀ½.
-    'keystore' Æú´õ¿¡´Â »õ·Î »ý¼ºµÉ °èÁ¤¿¡ ´ëÇÑ Á¤º¸°¡ ´ã±è.
+    ìœ„ì™€ ê°™ì´ ì œë„¤ì‹œìŠ¤ ë¸”ë¡ì„ ì‚¬ìš©í•´ ë…¸ë“œ ì´ˆê¸°í™”ë¥¼ í•  ìˆ˜ ìžˆë‹¤.
+    ìƒˆë¡œ ìƒì„±ëœ 'geth' í´ë”ì—ëŠ” ëª¨ë“  ì²´ì¸ì— ëŒ€í•œ ë°ì´í„°ê°€ ì €ìž¥ë˜ì–´ìžˆìŒ.
+    'keystore' í´ë”ì—ëŠ” ìƒˆë¡œ ìƒì„±ë  ê³„ì •ì— ëŒ€í•œ ì •ë³´ê°€ ë‹´ê¹€.
 
 
     $ geth --datadir . account new
-    'keystore' Æú´õ¿¡ »õ·Î¿î ÀÌ´õ¸®¿ò °èÁ¤À» ¹«ÀÛÀ§·Î »ý¼º.
-    °èÁ¤ »ý¼º½Ã ºñ¹Ð¹øÈ£ ÀÔ·Â ÇÊ¿ä. ºñ¹Ð¹øÈ£·Î private key¸¦ º¸È£.
-    ºñ¹Ð¹øÈ£ : bimilbunho
+    'keystore' í´ë”ì— ìƒˆë¡œìš´ ì´ë”ë¦¬ì›€ ê³„ì •ì„ ë¬´ìž‘ìœ„ë¡œ ìƒì„±.
+    ê³„ì • ìƒì„±ì‹œ ë¹„ë°€ë²ˆí˜¸ ìž…ë ¥ í•„ìš”. ë¹„ë°€ë²ˆí˜¸ë¡œ private keyë¥¼ ë³´í˜¸.
+    ë¹„ë°€ë²ˆí˜¸ : bimilbunho
 
-    À§ ºñ¹Ð¹øÈ£·Î °èÁ¤ 3°³ »ý¼º. 'keystore' Æú´õ¿¡¼­ È®ÀÎ °¡´É.
+    ìœ„ ë¹„ë°€ë²ˆí˜¸ë¡œ ê³„ì • 3ê°œ ìƒì„±. 'keystore' í´ë”ì—ì„œ í™•ì¸ ê°€ëŠ¥.
 
 
     $ geth --datadir . account list
-    °èÁ¤µéÀ» ¸®½ºÆ®·Î º¸¿©ÁÖ´Â ¸í·É¾î. ¾î´À ¼ø¼­·Î »ý¼ºµÇ¾ú´ÂÁö º¸¿©ÁØ´Ù.
-    ¡Ø Âü°í : ¸ðµç Ã¤±¼ º¸»ó±ÝÀÌ Ã¹¹øÂ° °èÁ¤À¸·Î µé¾î°¨.
+    ê³„ì •ë“¤ì„ ë¦¬ìŠ¤íŠ¸ë¡œ ë³´ì—¬ì£¼ëŠ” ëª…ë ¹ì–´. ì–´ëŠ ìˆœì„œë¡œ ìƒì„±ë˜ì—ˆëŠ”ì§€ ë³´ì—¬ì¤€ë‹¤.
+    â€» ì°¸ê³  : ëª¨ë“  ì±„êµ´ ë³´ìƒê¸ˆì´ ì²«ë²ˆì§¸ ê³„ì •ìœ¼ë¡œ ë“¤ì–´ê°.
 
 
 
