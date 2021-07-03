@@ -10,3 +10,18 @@
 
     module은 해당 창에서 쓸 수 있는 api를 나열한 것.
     (modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0)
+
+1:15 | eth.coinbase  오류해결
+
+    오류 : eth.coinbase 입력시 Error: etherbase must be explicitly specified 라고 얼럿뜸.
+    해결 : https://github.com/Musicoin/go-musicoin/issues/18 새로운 계정을 생성해서 해결. 비밀번호(passphrase)는 bimilbunho
+
+    eth.coinbase - 코인베이스계정. 제일 첫번째로 만들었던 계정 "0x7ab47cf9a61641c4b0152a29fbb443ada5a28cff" 
+    - keystore에 들어있는 3개의 계정과 다르다. 나중에 문제될 소지 있음.
+
+------------------------------------------------------------------------------------
+eth.coinbase에 아무것도 안나와서 노드실행부터 영상 복습. 원래 keystore의 3개 계정이 나와야 함.
+
+
+
+
