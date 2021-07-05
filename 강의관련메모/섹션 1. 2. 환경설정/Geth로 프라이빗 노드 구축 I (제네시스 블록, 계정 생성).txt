@@ -50,6 +50,9 @@
     INFO [06-30|16:17:04.957] Saved genesis chain spec                 client=harmony path=mynetwork-harmony.json
 
     제네시스 블록 추출.
+    puppeth가 업그레이드 된건지, 맥과 윈도우의 차이인건지 모르겠지만 강의와 두가지가 다름
+    1. .puppeth 폴더가 없음
+    2. mynetwork.json 파일에 3개 파일이 추가로 생성됨.
 
     여기서 Puppeth는 할일 끝남. ctrl + c 로 나감.
 
@@ -62,6 +65,8 @@
     블록들이 올바른 순서로 진행되는 지도 확인한다. 
 
     gaslimit - 블록내의 트랜잭션이 소비할 수 있는 최대 가스한도. 각 블록마다 트랜잭션을 몇개나 처리할 것인지 제한하여 블록의 사이즈를 조절.
+
+    difficulty - 블록의 유효성을 검사할 때 사용되는 난이도를 말함. difficulty가 높으면 블록 채굴하는 시간도 높아짐.
 
     alloc - 지갑 주소에 자금을 미리 할당하는 내용.
 
@@ -80,7 +85,7 @@
 
     위와 같이 제네시스 블록을 사용해 노드 초기화를 할 수 있다.
     새로 생성된 'geth' 폴더에는 모든 체인에 대한 데이터가 저장되어있음.
-    'keystore' 폴더에는 새로 생성될 계정에 대한 정보가 담김.
+    'keystore' 폴더에는 새로 생성될 계정에 대한 정보가 담김. keystore 폴더를 처음 생성하면 비어있음.
 
 
     $ geth --datadir . account new
