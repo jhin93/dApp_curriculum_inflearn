@@ -23,6 +23,8 @@
     > eth.getBalance(eth.accounts[0])
     674000000000000000000 - 강의처럼 wei로 변환해서 보여주지는 않네..
     * wei : 에더를 나타내는 가장 작은 단위
+    ? eth.mining - 현재 채굴중인지 확인하는 명령어
+    ? eth.hashrate - 채굴속도를 보여주는 명령어 https://dejavuqa.tistory.com/234
 
     wei를 에더로 변환해서 값을 보는 방법 - web3 api의 fromWei함수를 사용할 수 있음.
     [ web3 api 명령어 ]
@@ -32,26 +34,12 @@
 
     [miner api 명령어]
     ? miner.stop() - 채굴을 멈추는 명령어.
-    오류 발생 - 'miner.stop()' 입력시 'null'
-    해결시도 - 어느 순간 채굴이 멈춤. miner.stop()은 계속 'null' 값만 나옴
-INFO [07-05|16:12:32.614] ? mined potential block                  number=405 hash=e641b4..7c9ebe
-INFO [07-05|16:12:32.614] Commit new mining work                   number=406 sealhash=3be0fa..d50507 uncles=0 txs=0 gas=0 fees=0 elapsed="321.208?s"
-INFO [07-05|16:25:29.369] Writing clean trie cache to disk         path=/Users/kimjinkyung/Desktop/dApp_curriculum_inflearn/Blockchain/geth/triecache threads=1
-INFO [07-05|16:25:29.373] Regenerated local transaction journal    transactions=0 accounts=0
-INFO [07-05|16:25:29.404] Persisted the clean trie cache           path=/Users/kimjinkyung/Desktop/dApp_curriculum_inflearn/Blockchain/geth/triecache elapsed=35.002ms
-    그래서 eth.mining으로 현재 채굴중인지 확인해보니 false 뜸. 이건 왜 false..?
-    > eth.mining 
-    false
+    ? miner.start(n) - n개의 스레드에서 채굴을 시작하게 하는 명령어. 채굴 도중 입력하면 'Updated mining threads' 라는 메시지가 뜸.
+    스레드 수를 늘리면 채굴을 빨라지지만 에너지는 많이 먹음.
 
-    왜 miner.stop()이 null이 뜨는지를 못찾겠음.. 이 링크에서만 같은 현상을 기록해놓음. http://jobtest.digital2u.co.kr/board/form/view/blockchain/865/1/0
-
-    ? miner.start(n) - n개의 스레드에서 채굴을 시작하게 하는 명령어.
-    ex) miner.start(2)
-    오류 발생 - 'miner.stop()' 입력시 'null'
-    해결시도 - 위에서 어떤 연유로 잠시 중지됐던 채굴이 다시 시작됨. 그리고 채굴을 멈춘 적이 없으니 miner.start()가 null이 뜨는 건 당연한 듯.
-
-
-
+    오류발생 : 
+    1. miner.stop() 입력시 null 리턴함. 근데 제대로 작동은 했는지 eth.mining 은 false 값 나옴.
+    2. minert.start(2) 해도 null 리턴함. 근데 제대로 작동은 하는지 eth.mining 은 true 값 나옴. 근데 강의도 null 나오는거 보면 그냥 버그인듯.
 
 
 
