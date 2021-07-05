@@ -17,6 +17,9 @@ http://wiki.hash.kr/index.php/%EB%B0%A9%ED%96%A5%EC%84%B1_%EB%B9%84%EC%88%9C%ED%
 에폭(epoch)이란? 블록 50개
 http://wiki.hash.kr/index.php/%EC%97%90%ED%8F%AD
 
+web3.fromWei(we3.js의 공식문서)
+https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html
+
 ※ 오류해결
 - geth 파라미터 오류해결
     * 'Geth로 프라이빗 노드 구축 II (노드 첫 실행, DAG 파일 생성)' 강의 메모 확인
