@@ -6,7 +6,7 @@
 
     geth attach ipc:\\.\pipe\geth.ipc 입력.
     오류발생 : Fatal: Unable to attach to remote geth: dial unix \.pipegeth.ipc: connect: no such file or directory
-    오류해결 : 그냥 채굴을 멈추고 geth console 입력하니까 됨.
+    오류해결 : geth attach ipc:geth.ipc  이렇게 입력하니까 됨. 입력방식이 다른 듯(업그레이드가 된건지, 맥과 윈도우의 차인지..). 
 
     module은 해당 창에서 쓸 수 있는 api를 나열한 것.
     (modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0)
