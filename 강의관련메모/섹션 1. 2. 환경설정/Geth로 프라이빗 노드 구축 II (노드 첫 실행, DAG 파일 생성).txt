@@ -80,9 +80,13 @@
     첫번째 epoch이 0으로 시작(epoch=0). 옆의 percentage로 진행 상황 확인 가능.
     epoch=1 의 percentage가 100이 되면 DAG 생성이 끝남.
 
+    DAG 파일들은 Ethash 폴더에 생성됨.
+
     DAG 생성이 끝나면 블록채굴이 시작됨. (Commit new mining work)
     트랜잭션이 없어도 블록채굴은 진행됨. 블록채굴은 트랜잭션 처리 이외에도 새로운 에더를 생성하는 것에도 목적이 있다.
-    number=292 - 블록넘버
+
+
+    
     
 
 
