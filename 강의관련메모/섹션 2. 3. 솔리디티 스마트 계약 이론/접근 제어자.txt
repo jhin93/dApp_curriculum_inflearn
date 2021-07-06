@@ -1,0 +1,134 @@
+- 접근 제어자
+
+external 
+    1. 외부 컨트랙만 호출 가능
+    2. 상태변수는 external 사용 불가
+
+        [코드 예시]
+        contract MyContract {
+            uint external count; // 에러발생. 상태변수에는 external 제어자를 사용할 수 없음.
+
+            constructor() public { // 생성자
+
+            }
+
+            function numOfStudents(address _teacher) public view returns(uint) {
+                test(); // 에러발생. 이유는 하단의 test 함수는 external인데 같은 컨트랙 내부에서 호출했기 때문.
+            }
+
+            function test() external {
+                // ...
+            }
+        }
+
+        contract YourContract {
+            Mycontract myContract; // Mycontract를 mycontract라는 변수로 선언.
+
+            function callTest() public {
+                myContract.test(); // test함수 호출 가능. external이니까.
+            }
+        }
+
+
+
+
+internal
+    1. 컨트랙 내부 호출 가능
+    2. 상속받은 컨트랙도 호출 가능
+    3. 상태변수는 디폴트로 internal 선언
+
+        [코드 예시]
+        contract MyContract {
+            uint count; // 상태변수는 default로 internal을 선언.
+
+            constructor() public { // 생성자
+
+            }
+
+            function numOfStudents(address _teacher) public view returns(uint) {
+                test(); // 에러 발생 안함. test 함수가 internal 이기에.
+            }
+
+            function test() internal { // 가시성을 internal로 바꿈.
+                // ...
+            }
+        }
+
+        contract YourContract is MyContract{ // MyContract를 상속받음.
+            function callTest() public {
+                test(); // 상속받은 컨트랙의 internal 함수 호출 가능.
+            }
+        }
+
+
+
+public
+    1. 컨트랙 내부 호출 가능
+    2. 상속받은 컨트랙도 호출 가능
+    3. 외부 컨트랙도 호출 가능
+
+        [코드 예시]
+        contract MyContract {
+            uint public count; // 상태변수에 public 접근 제어자를 선언하면 컴파일러에서 자동으로 getter 함수를 만들어줌.
+
+            constructor() public { // 생성자
+
+            }
+
+            function numOfStudents(address _teacher) public view returns(uint) {
+                test(); // 에러 없음.
+            }
+
+            function test() public { // 함수는 가시성을 명시하지 않을 시 public으로 인식함. 근데 명시 안하면 컴파일러에서 경고 메시지 보냄. 
+                // ...
+            }
+        }
+
+        contract YourContract is MyContract {
+            function callTest() public {
+                test(); // 상속받은 컨트랙에서 test 함수 호출 시 에러 없음.
+            }
+        }
+
+        contract HisContract{ 
+            MyContract myContract;
+
+            function callTest() public {
+                myContract.test(); // 외부 컨트랙에서 test 함수 호출 시 에러 없음.
+            }
+        }
+
+
+private 
+    1. 컨트랙 내부만 호출 가능
+
+        [코드 예시]
+        contract MyContract {
+            uint public count; // 상태 변수
+
+            constructor() public { // 생성자
+
+            }
+
+            function numOfStudents(address _teacher) public view returns(uint) {
+                test(); // 에러 없음. test 함수의 접근 제어자는 private이고 같은 컨트랙 내부만 호출 가능.
+            }
+
+            function test() private { 
+                // ...
+            }
+        }
+
+        contract YourContract is MyContract {
+            function callTest() public {
+                test(); // 에러 발생. test의 가시성은 private.
+            }
+        }
+
+        contract HisContract{ 
+            MyContract myContract;
+
+            function callTest() public {
+                myContract.test(); // 에러 발생. test의 가시성은 private.
+            }
+        }
