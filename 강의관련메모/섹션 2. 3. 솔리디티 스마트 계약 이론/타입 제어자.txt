@@ -1,0 +1,48 @@
+함수 타입 제어자
+접근 제어자 뒤에 타입 제어자를 명시.
+
+view 
+
+1. 데이터 read-only. 데이터 수정 불가.
+2. 가스 비용 없음
+
+    [코드 예시]
+
+    uint numOfStudents;
+
+    function getNumOfStudents() public view returns (uint) { // view는 함수를 읽기 전용으로 만듬.
+        return numOfStudents; // 블록체인에 저장된 numOfStudents 값만 불러옴. 
+        // view 타입이 붙게 되면 함수 안에서 numOfStudents 값을 수정하거나 지울 수 없음.
+    }
+
+
+pure
+
+1. 데이터 읽지 않음
+2. 인자 값만 활용해서 반환 값 정함
+3. 가스 비용 없음
+
+    [코드 예시]
+
+    function multiply(uint x, uint y) public pure returns () { // pure 타입은 블록체인에 저장된 데이터를 불러올 수 없음.
+        return x * y;
+    }
+
+
+
+constant
+
+1. 0.4.17 버전 이전에는 view/pure 대신 쓰임
+
+payable
+
+1. 함수가 에더(ETH)를 받을 수 있게 함
+2. 가스 비용 있음
+
+    [코드 예시]
+
+    function buy() public payable {
+        require(10000 = msg.value);
+        transferEther(msg.sender);
+    }
+
