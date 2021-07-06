@@ -1,0 +1,32 @@
+참조 타입(구조체)
+
+struct : 필요한 자료형들을 가지고 새롭게 정의하는 사용자 정의 타입.
+
+contract MyContract {
+    struct Student {
+        string studentName;
+        string gender;
+        uint age;
+    }
+
+    Student[] students; // 상태변수 Student 타입의 배열을 선언.
+
+    function addStudent(string _name, string _gender, uint _age) public {
+        students.push(Student(_name, _gender, _age)); // 인자들을 활용해서 새로운 Student를 만들고, student 상태변수 배열에 새로운 Student 입력
+
+        Student storage updateStudent = students[0]; // storage에 저장하는 새로운 지역변수 Student 선언
+                                                     // 값으로 상태변수 students  배열의 첫번째 값을 대입.
+                                                     // storage로 선언됐기에 students배열의 첫번째 인덱스를 복사하지 않고 students 배열의 첫번째를 가리키는 포인터 역할을 함.
+        updateStudent.age = 55; // updateStudent의 age 필드를 55로 변경
+                                // 결과적으로는 상태변수 students 배열의 첫번째 인덱스의 age 필드를 55로 변경한다.
+
+
+        Student memory updateStudent2 = students[0]; // memory에 저장하는 새로운 Student 선언
+                                                     // 상태변수 students 배열의 첫번째 인덱스 값을 대입
+                                                     // memory로 선언됐기 때문에 포인터 역할이 아닌 복사를 해옴
+        updateStudent2.age = 20; // updateStudent2의 age 필드를 20으로 변경
+        students[0] = updateStudent2; // memory 배열의 값을 상태변수에 직접 대입해주면 students 값 영구히 변경.
+
+        // 결론 : updateStudent에 의해 students[0].age는 55가 되었다가, updateStudent2에 의해 20으로 변경된다.                                       
+    }
+}
