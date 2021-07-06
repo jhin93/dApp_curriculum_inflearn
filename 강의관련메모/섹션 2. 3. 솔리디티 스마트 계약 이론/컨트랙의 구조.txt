@@ -1,0 +1,13 @@
+pragma solidity ^0.4.23;
+
+contract MyContract{
+    uint count; // 상태변수. 컨트랙에 영구 저장됨. 클래스의 멤버 변수
+    
+    constructor() public { //생성자
+
+    }
+
+    function numOfStudents(address _teacher) public view returns(uint) {
+        
+    }
+}
