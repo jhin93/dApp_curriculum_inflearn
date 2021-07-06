@@ -1,0 +1,43 @@
+참조타입(데이터 위치)
+
+
+종류                                설명
+storage                            1. 변수를 블록체인에 영구히 저장(ex:하드디스크)
+                                   2. 상태변수는 디폴트로 storage
+
+memory                             1. 임시 저장 변수(ex:RAM)
+                                   2. 매개변수와 리턴 값은 디폴트로 memory
+
+
+* 참고 : 값 타입(ex uint, int, bool...)이 함수 안에 변수로 선언되었을 때 저장 위치가 디폴트로 memory이다.
+ex)
+contract MyContract {
+    uint[] ages; // 저장위치가 storage이다.
+                 // [11,22,33]
+
+    function learnDataLocation(uint[] newAges) public returns(uint a) {
+        ages = newAges; // newAges 배열을 ages 배열에 복사. ages 값 : [11,22,33]
+        uint16 myAge = 44; // 값 타입. 저장위치가 memory 이다. 함수가 끝나면 myAge 값은 휘발함.
+        uint[] studentAges = ages; // 배열은 값 타입과 다르게 함수 안에서 정의되어도 저장위치가 storage이다. 
+                                   // studentAges는 ages를 가리키는 포인터. studentAges 배열의 값을 변경시키면 상태변수 ages 배열의 값도 변함.
+                                   // 지역변수 studentAges 배열의 값이 변경될 때 상태변수 ages 배열의 값도 영원히 변경.
+        studentAges[0] = myAge; // myAge는 44라고 위에서 정의
+                                // studentAges 값 : [44, 22, 33]
+                                // ages 값 : [44, 22, 33]
+        a = studentAges[0]; // 44를 리턴변수에 대입. a는 메모리.
+
+        return a;
+
+
+
+
+
+
+
+    }
+
+}
+
+
+
+
