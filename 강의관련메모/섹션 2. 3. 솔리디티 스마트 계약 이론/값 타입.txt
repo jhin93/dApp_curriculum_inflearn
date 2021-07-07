@@ -16,7 +16,7 @@ enum            이름{value, value2}         값을 정수형으로 리턴          enum D
 
                                                                     function getDirection() public returns(uint) {
                                                                         direction = Direction(newDirection);
-                                                                    } // getDirection(Left) == 1 - Left의 인덱스가 1 이기에.
+                                                                    } // getDirection(Left)의 값은 1이다. Left의 인덱스가 1 이기에.
 
                                                                     function setDirection(uint newDirection) public {
                                                                         direction = Direction(newDirection);
