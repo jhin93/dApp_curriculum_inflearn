@@ -27,15 +27,7 @@ contract MyContract {
         a = studentAges[0]; // 44를 리턴변수에 대입. a는 메모리.
 
         return a;
-
-
-
-
-
-
-
     }
-
 }
 
 
