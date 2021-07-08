@@ -28,7 +28,7 @@ contract Mycontract {
                                                 양수값을 키값으로 넣으면 매핑된 밸류값으로 Student 구조체 정보가 불러와짐.
                                                 저장 위치가 storage이기 때문에 student 변수가 studentInfo 상태변수를 포인팅하게 됨.
 
-    function setStudent(uint _studentId, string _name, string _gender, uint _age) public {
+    function setStudent(uint _studentId, string memory _name, string memory _gender, uint _age) public {
         Student storage student = studentInfo[_studentId]; // _studentId를 1234라고 가정. 1234 키값에 매핑된 밸류값을 가져옴. 그것을 Student 구조체 변수(student)에 대입.
         // 각각 필드에 매개변수로 받은 자료형들 대입.
         student.studentName = _name;
@@ -37,7 +37,7 @@ contract Mycontract {
         // 결과적으론 1234 키값에 매핑된 밸류값에 수정된 Student 정보가 새롭게 세팅됨
     }
 
-    function getStudentInfo(uint256 _studentId) view public returns(string, string, uint) { // studentInfo 상태변수의 밸류값을 불러오는 함수.
+    function getStudentInfo(uint256 _studentId) view public returns(string memory, string memory, uint) { // studentInfo 상태변수의 밸류값을 불러오는 함수.
         // 매개변수로 받은 _studentId (ex 1234)를 키값으로 활용하여 키값에 매핑된 밸류값인 Student를 불러온다.
         return (studentInfo[_studentId].studentName, studentInfo[_studentId].gender, studentInfo[_studentId].age) // 아직 솔리디티에서 구조체 자체를 리턴하는 것은 지원하지 않음.
     }

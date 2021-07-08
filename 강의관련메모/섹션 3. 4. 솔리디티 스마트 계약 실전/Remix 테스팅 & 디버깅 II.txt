@@ -1,0 +1,52 @@
+좌측 맨 아래 플러그 아이콘에서 DEBUGGER를 찾을 수 있음
+
+DEBUGGER
+트랜잭션 해쉬를 디버거 창에서 입력해 디버깅을 할 수 있다.
+그 외에도 배포를 하고 터미널에 트랜잭션이 생기면 우측에 DEBUG 버튼이 생성됨.
+클릭시 해당 트랜잭션에 대한 디버깅 세션을 시작할 수 있음.
+
+step over : 한줄씩 내려가며 디버깅.
+step into : 해당 줄에 다른 함수 호출도 포함되어있으면 그 함수까지 건너가서 디버깅
+jump out : 디버깅 세션의 맨 마지막으로 이동.
+breakpoint : 전후 브레이크 포인트로 이동.
+
+solidity local : 솔리디티 컨트랙의 지역변수
+solidity state : 솔리디티 컨트랙의 상태변수
+아래쪽 low-level 패널들은 참고 x.
+
+
+배포 후, 배포된 컨트랙을 클릭하면 내부의 함수들을 확인할 수 있다.
+함수들에 매개변수를 넘겨 transact 할 수 있다.
+
+인자를 넘길 때 string 타입은 ""를 작성하고 그 안에 밸류를 넣을 것.
+
+
+
+ex) 테스트 예시
+
+contract Mycontract {
+    struct Student {
+        string studentName;
+        string gender;
+        uint age;
+    }
+
+    mapping(uint256 => Student) studentInfo; 
+
+    function setStudent(uint _studentId, string memory _name, string memory _gender, uint _age) public {
+        Student storage student = studentInfo[_studentId];
+        student.studentName = _name;
+        student.gender = _gender;
+        student.age = _age;
+    }
+
+    function getStudentInfo(uint256 _studentId) view public returns(string memory, string memory, uint) { 
+        return (studentInfo[_studentId].studentName, studentInfo[_studentId].gender, studentInfo[_studentId].age); 
+    }
+}
+
+
+위 컨트랙을 배포하면 setStudent, getStudentInfo 두 함수를 테스트 할 수 있음.
+
+setStudent에 인자를 넣고 transact -> getStudentInfo에 setStudent에 넣은 학생 아이디 넣고 call 하면 setStudent에 넣은 결과를 확인할 수 있음.
+
