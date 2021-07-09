@@ -1,78 +1,78 @@
-[ Geth·Î ÇÁ¶óÀÌºø ³ëµå ±¸Ãà III (Geth ÄÜ¼Ö) ]
+[ Gethë¡œ í”„ë¼ì´ë¹— ë…¸ë“œ êµ¬ì¶• III (Geth ì½˜ì†”) ]
 
-(Ã¤±¼ ÁøÇàÁß..)
+(ì±„êµ´ ì§„í–‰ì¤‘..)
 
-0:10 | ¹é±×¶ó¿îµå·Î µ¹°í ÀÖ´Â ³ëµå¿¡ ¿¬°á½ÃÄÑ¼­ ÀÚ¹Ù½ºÅ©¸³Æ® ÄÜ¼Ö·Î º¸¿©ÁÖ´Â ÀÛ¾÷
+0:10 | ë°±ê·¸ë¼ìš´ë“œë¡œ ëŒê³  ìžˆëŠ” ë…¸ë“œì— ì—°ê²°ì‹œì¼œì„œ ìžë°”ìŠ¤í¬ë¦½íŠ¸ ì½˜ì†”ë¡œ ë³´ì—¬ì£¼ëŠ” ìž‘ì—…
 
-    geth attach ipc:\\.\pipe\geth.ipc ÀÔ·Â.
-    ¿À·ù¹ß»ý : Fatal: Unable to attach to remote geth: dial unix \.pipegeth.ipc: connect: no such file or directory
-    ¿À·ùÇØ°á : geth attach ipc:geth.ipc  ÀÌ·¸°Ô ÀÔ·ÂÇÏ´Ï±î µÊ. ÀÔ·Â¹æ½ÄÀÌ ´Ù¸¥ µí(¾÷±×·¹ÀÌµå°¡ µÈ°ÇÁö, ¸Æ°ú À©µµ¿ìÀÇ Â÷ÀÎÁö..). 
+    geth attach ipc:\\.\pipe\geth.ipc ìž…ë ¥.
+    ì˜¤ë¥˜ë°œìƒ : Fatal: Unable to attach to remote geth: dial unix \.pipegeth.ipc: connect: no such file or directory
+    ì˜¤ë¥˜í•´ê²° : geth attach ipc:geth.ipc  ì´ë ‡ê²Œ ìž…ë ¥í•˜ë‹ˆê¹Œ ë¨. ìž…ë ¥ë°©ì‹ì´ ë‹¤ë¥¸ ë“¯(ì—…ê·¸ë ˆì´ë“œê°€ ëœê±´ì§€, ë§¥ê³¼ ìœˆë„ìš°ì˜ ì°¨ì¸ì§€..). 
 
-1:15 | ÄÜ¼ÖÁ¤º¸È®ÀÎ
+1:15 | ì½˜ì†”ì •ë³´í™•ì¸
 
-    eth.coinbase - ÄÚÀÎº£ÀÌ½º°èÁ¤. Á¦ÀÏ Ã¹¹øÂ°·Î ¸¸µé¾ú´ø °èÁ¤. 0x0906ad8642cfcc68ecd1bd394acb64d3ddac8dd2
+    eth.coinbase - ì½”ì¸ë² ì´ìŠ¤ê³„ì •. ì œì¼ ì²«ë²ˆì§¸ë¡œ ë§Œë“¤ì—ˆë˜ ê³„ì •. 0x0906ad8642cfcc68ecd1bd394acb64d3ddac8dd2
     (ex coinbase: 0x0906ad8642cfcc68ecd1bd394acb64d3ddac8dd2)
-    modules - ÇØ´ç Ã¢¿¡¼­ ¾µ ¼ö ÀÖ´Â api¸¦ ³ª¿­ÇÑ °Í. nodestart.cmd ÆÄÀÏÀ» ¸¸µé¾úÀ» ¶§ ÆÄ¶ó¹ÌÅÍ·Î http.api¸¦, °ªÀ¸·Î eth,web3,personal,net¸¦ ÁÖ¾úÀ½. ÇØ´ç apiµéÀ» ÄÜ¼Ö¿¡¼­ »ç¿ë°¡´É.
+    modules - í•´ë‹¹ ì°½ì—ì„œ ì“¸ ìˆ˜ ìžˆëŠ” apië¥¼ ë‚˜ì—´í•œ ê²ƒ. nodestart.cmd íŒŒì¼ì„ ë§Œë“¤ì—ˆì„ ë•Œ íŒŒë¼ë¯¸í„°ë¡œ http.apië¥¼, ê°’ìœ¼ë¡œ eth,web3,personal,netë¥¼ ì£¼ì—ˆìŒ. í•´ë‹¹ apië“¤ì„ ì½˜ì†”ì—ì„œ ì‚¬ìš©ê°€ëŠ¥.
     (ex modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0)
     
-    [ ether api ¸í·É¾î ]
-    ? eth.coinbase - ÄÚÀÎº£ÀÌ½º °èÁ¤(Ã¹¹øÂ°·Î ¸¸µé¾ú´ø °èÁ¤).
-    ? eth.accounts - ÇöÀç ÀÌ ³ëµå¿¡ µî·ÏµÈ ¸ðµç °èÁ¤µéÀÌ ³ª¿È.
-    ? eth.getBalance(°èÁ¤)- °èÁ¤¿¡ ¿¡´õ°¡ ¾ó¸¶³ª µé¾î°¡ÀÖ´ÂÁö ¾Ë·ÁÁÜ. 
-    ex) eth.getBalance(eth.accounts[1]) = µÎ¹øÂ° °èÁ¤ÀÇ ¿¡´õ
+    [ ether api ëª…ë ¹ì–´ ]
+    ? eth.coinbase - ì½”ì¸ë² ì´ìŠ¤ ê³„ì •(ì²«ë²ˆì§¸ë¡œ ë§Œë“¤ì—ˆë˜ ê³„ì •).
+    ? eth.accounts - í˜„ìž¬ ì´ ë…¸ë“œì— ë“±ë¡ëœ ëª¨ë“  ê³„ì •ë“¤ì´ ë‚˜ì˜´.
+    ? eth.getBalance(ê³„ì •)- ê³„ì •ì— ì—ë”ê°€ ì–¼ë§ˆë‚˜ ë“¤ì–´ê°€ìžˆëŠ”ì§€ ì•Œë ¤ì¤Œ. 
+    ex) eth.getBalance(eth.accounts[1]) = ë‘ë²ˆì§¸ ê³„ì •ì˜ ì—ë”
     > eth.getBalance(eth.accounts[0])
-    674000000000000000000 - °­ÀÇÃ³·³ wei·Î º¯È¯ÇØ¼­ º¸¿©ÁÖÁö´Â ¾Ê³×..
-    * wei : ¿¡´õ¸¦ ³ªÅ¸³»´Â °¡Àå ÀÛÀº ´ÜÀ§
-    ? eth.mining - ÇöÀç Ã¤±¼ÁßÀÎÁö È®ÀÎÇÏ´Â ¸í·É¾î
-    ? eth.hashrate - Ã¤±¼¼Óµµ¸¦ º¸¿©ÁÖ´Â ¸í·É¾î https://dejavuqa.tistory.com/234
+    674000000000000000000 - ê°•ì˜ì²˜ëŸ¼ weië¡œ ë³€í™˜í•´ì„œ ë³´ì—¬ì£¼ì§€ëŠ” ì•Šë„¤..
+    * wei : ì—ë”ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ê°€ìž¥ ìž‘ì€ ë‹¨ìœ„
+    ? eth.mining - í˜„ìž¬ ì±„êµ´ì¤‘ì¸ì§€ í™•ì¸í•˜ëŠ” ëª…ë ¹ì–´
+    ? eth.hashrate - ì±„êµ´ì†ë„ë¥¼ ë³´ì—¬ì£¼ëŠ” ëª…ë ¹ì–´ https://dejavuqa.tistory.com/234
 
-    wei¸¦ ¿¡´õ·Î º¯È¯ÇØ¼­ °ªÀ» º¸´Â ¹æ¹ý - web3 apiÀÇ fromWeiÇÔ¼ö¸¦ »ç¿ëÇÒ ¼ö ÀÖÀ½.
-    [ web3 api ¸í·É¾î ]
-    ? web3.fromWei() - ¾î¶² wei °ªµµ ether·Î º¯È¯ÇØ º¸¿©ÁØ´Ù. https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html
+    weië¥¼ ì—ë”ë¡œ ë³€í™˜í•´ì„œ ê°’ì„ ë³´ëŠ” ë°©ë²• - web3 apiì˜ fromWeií•¨ìˆ˜ë¥¼ ì‚¬ìš©í•  ìˆ˜ ìžˆìŒ.
+    [ web3 api ëª…ë ¹ì–´ ]
+    ? web3.fromWei() - ì–´ë–¤ wei ê°’ë„ etherë¡œ ë³€í™˜í•´ ë³´ì—¬ì¤€ë‹¤. https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html
     ex) > web3.fromWei(eth.getBalance(eth.coinbase), "ether")
         744
 
-    [miner api ¸í·É¾î]
-    ? miner.stop() - Ã¤±¼À» ¸ØÃß´Â ¸í·É¾î.
-    ? miner.start(n) - n°³ÀÇ ½º·¹µå¿¡¼­ Ã¤±¼À» ½ÃÀÛÇÏ°Ô ÇÏ´Â ¸í·É¾î. Ã¤±¼ µµÁß ÀÔ·ÂÇÏ¸é 'Updated mining threads' ¶ó´Â ¸Þ½ÃÁö°¡ ¶ä.
-    ½º·¹µå ¼ö¸¦ ´Ã¸®¸é Ã¤±¼À» »¡¶óÁöÁö¸¸ ¿¡³ÊÁö´Â ¸¹ÀÌ ¸ÔÀ½.
+    [miner api ëª…ë ¹ì–´]
+    ? miner.stop() - ì±„êµ´ì„ ë©ˆì¶”ëŠ” ëª…ë ¹ì–´.
+    ? miner.start(n) - nê°œì˜ ìŠ¤ë ˆë“œì—ì„œ ì±„êµ´ì„ ì‹œìž‘í•˜ê²Œ í•˜ëŠ” ëª…ë ¹ì–´. ì±„êµ´ ë„ì¤‘ ìž…ë ¥í•˜ë©´ 'Updated mining threads' ë¼ëŠ” ë©”ì‹œì§€ê°€ ëœ¸.
+    ìŠ¤ë ˆë“œ ìˆ˜ë¥¼ ëŠ˜ë¦¬ë©´ ì±„êµ´ì„ ë¹¨ë¼ì§€ì§€ë§Œ ì—ë„ˆì§€ëŠ” ë§Žì´ ë¨¹ìŒ.
 
-    ¿À·ù¹ß»ý : 
-    1. miner.stop() ÀÔ·Â½Ã null ¸®ÅÏÇÔ. ±Ùµ¥ Á¦´ë·Î ÀÛµ¿Àº Çß´ÂÁö eth.mining Àº false °ª ³ª¿È.
-    2. minert.start(2) ÇØµµ null ¸®ÅÏÇÔ. ±Ùµ¥ Á¦´ë·Î ÀÛµ¿Àº ÇÏ´ÂÁö eth.mining Àº true °ª ³ª¿È. ±Ùµ¥ °­ÀÇµµ null ³ª¿À´Â°Å º¸¸é ±×³É ¹ö±×ÀÎµí.
+    ì˜¤ë¥˜ë°œìƒ : 
+    1. miner.stop() ìž…ë ¥ì‹œ null ë¦¬í„´í•¨. ê·¼ë° ì œëŒ€ë¡œ ìž‘ë™ì€ í–ˆëŠ”ì§€ eth.mining ì€ false ê°’ ë‚˜ì˜´.
+    2. minert.start(2) í•´ë„ null ë¦¬í„´í•¨. ê·¼ë° ì œëŒ€ë¡œ ìž‘ë™ì€ í•˜ëŠ”ì§€ eth.mining ì€ true ê°’ ë‚˜ì˜´. ê·¼ë° ê°•ì˜ë„ null ë‚˜ì˜¤ëŠ”ê±° ë³´ë©´ ê·¸ëƒ¥ ë²„ê·¸ì¸ë“¯.
 
-3:25 | °èÁ¤À» unlockÇÏ±â
+3:25 | ê³„ì •ì„ unlockí•˜ê¸°
 
-    °èÁ¤À» unlockÇÏ´Â °Ç ÇØ´ç °èÁ¤ÀÇ private key¸¦ ¿­¾î¼­ Æ®·£Àè¼Ç¿¡ ¼­¸íÇÒ ¼ö ÀÖ°Ô ÇÏ´Â °Í.
-    default·Î private Å°´Â Ç×»ó Àá°ÜÀÖÀ½. °èÁ¤ÀÇ ºñ¹Ð¹øÈ£¸¦ ¾Ë¾Æ¾ß unlock°¡´É. ±×¸®°í ¼³Á¤ÇÑ ½Ã°£ µ¿¾È¸¸ unlock ÇÒ ¼öµµ ÀÖ´Ù.
+    ê³„ì •ì„ unlockí•˜ëŠ” ê±´ í•´ë‹¹ ê³„ì •ì˜ private keyë¥¼ ì—´ì–´ì„œ íŠ¸ëžœìž­ì…˜ì— ì„œëª…í•  ìˆ˜ ìžˆê²Œ í•˜ëŠ” ê²ƒ.
+    defaultë¡œ private í‚¤ëŠ” í•­ìƒ ìž ê²¨ìžˆìŒ. ê³„ì •ì˜ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì•Œì•„ì•¼ unlockê°€ëŠ¥. ê·¸ë¦¬ê³  ì„¤ì •í•œ ì‹œê°„ ë™ì•ˆë§Œ unlock í•  ìˆ˜ë„ ìžˆë‹¤.
 
-    Ã¹¹øÂ° °èÁ¤Àº Ã¤±¼º¸»ó±ÝÀ» ¹Þ±â À§ÇØ unlockÀ» ÇßÀ¸´Ï µÎ¹øÂ° °èÁ¤À» unlock ½Ãµµ.
+    ì²«ë²ˆì§¸ ê³„ì •ì€ ì±„êµ´ë³´ìƒê¸ˆì„ ë°›ê¸° ìœ„í•´ unlockì„ í–ˆìœ¼ë‹ˆ ë‘ë²ˆì§¸ ê³„ì •ì„ unlock ì‹œë„.
 
     > personal.unlockAccount(eth.accounts[1], "bimilbunho", 200)
-    personal api »ç¿ë
-    -> ¾î´À °èÁ¤À» unlockÇÒ °Í ÀÎÁö(eth.accounts[1])
-    -> ÇØ´ç °èÁ¤ÀÇ ºñ¹Ð¹øÈ£("bimilbunho")
-    -> ¾ó¸¶ µ¿¾È unlock ÇÒ °Í ÀÎÁö(200 : 200ÃÊ)
+    personal api ì‚¬ìš©
+    -> ì–´ëŠ ê³„ì •ì„ unlockí•  ê²ƒ ì¸ì§€(eth.accounts[1])
+    -> í•´ë‹¹ ê³„ì •ì˜ ë¹„ë°€ë²ˆí˜¸("bimilbunho")
+    -> ì–¼ë§ˆ ë™ì•ˆ unlock í•  ê²ƒ ì¸ì§€(200 : 200ì´ˆ)
     
-4:40 | °èÁ¤°£ ¼Û±Ý
+4:40 | ê³„ì •ê°„ ì†¡ê¸ˆ
 
-    ÄÚÀÎº£ÀÌ½º °èÁ¤¿¡¼­ 2¹øÂ° °èÁ¤À¸·Î 20 ¿¡´õ¸¦ ¼Û±Ý.
+    ì½”ì¸ë² ì´ìŠ¤ ê³„ì •ì—ì„œ 2ë²ˆì§¸ ê³„ì •ìœ¼ë¡œ 20 ì—ë”ë¥¼ ì†¡ê¸ˆ.
     eth.sendTransaction({from:eth.coinbase, to:eth.accounts[1], value:web3.toWei(20, "ether")})
-    ¿À·ù¹ß»ý : Error: authentication needed: password or unlock
-    ÇØ°á : personal.unlockAccount(eth.accounts[0]) À¸·Î Æ®·£Àè¼ÇÀ» ¹ß»ý½ÃÅ°´Â °èÁÂ¸¦ ¾ð¶ô½ÃÅ²´Ù. https://good-coding.tistory.com/34 
-    ±Ùµ¥ ±× ¸»Àº nodestart.cmd¸¦ ¸¸µé ¶§ Ã¹¹øÂ° °èÁ¤ÀÌ ¾ð¶ôÀÌ ¾ÈµÇ¾ú´Ù´Â ¸» ¾Æ´Ñ°¡? È®½ÇÈ÷ '--unlock 0' ¸¦ '--allow-insecure-unlock'·Î ¹Ù²Ü ¶§ ¾î¶² °èÁ¤À» ¾ð¶ôÇÒÁö ÆÄ¶ó¹ÌÅÍ°¡ ¾ø±â´Â ÇÏ´Ù.
+    ì˜¤ë¥˜ë°œìƒ : Error: authentication needed: password or unlock
+    í•´ê²° : personal.unlockAccount(eth.accounts[0]) ìœ¼ë¡œ íŠ¸ëžœìž­ì…˜ì„ ë°œìƒì‹œí‚¤ëŠ” ê³„ì¢Œë¥¼ ì–¸ë½ì‹œí‚¨ë‹¤. https://good-coding.tistory.com/34 
+    ê·¼ë° ê·¸ ë§ì€ nodestart.cmdë¥¼ ë§Œë“¤ ë•Œ ì²«ë²ˆì§¸ ê³„ì •ì´ ì–¸ë½ì´ ì•ˆë˜ì—ˆë‹¤ëŠ” ë§ ì•„ë‹Œê°€? í™•ì‹¤ížˆ '--unlock 0' ë¥¼ '--allow-insecure-unlock'ë¡œ ë°”ê¿€ ë•Œ ì–´ë–¤ ê³„ì •ì„ ì–¸ë½í• ì§€ íŒŒë¼ë¯¸í„°ê°€ ì—†ê¸°ëŠ” í•˜ë‹¤.
     
-    Æ®·£Àè¼Ç ÇØ½¬("0xe01f9976d363992b5249327cc3fc279fe6...")°¡ ¸®ÅÏµÊ. »õ·Î¿î Æ®·£Àè¼ÇÀÌ ¸¸µé¾îÁü. ³ëµå·Î º¸³»Áü. 
-    Ã¤±¼ÇÏ´Â Ã¢¿¡¼­ 'Submitted transaction' ÀÌ¶ó°í È®ÀÎÇÒ ¼ö ÀÖÀ½. ÇØ½¬ Á¤º¸(hash=0xe01f9976d363...Æ®·£Àè¼Ç ÇØ½¬¸¦ ¸»ÇÏ´Â µí)¿Í ¼ö·ÉÀÎÀÇ address(from=0x0906ad8642)À» È®ÀÎ °¡´É.
-    ÀÌ Æ®·£Àè¼ÇÀÌ ´ÙÀ½ Ã¤±¼µÇ´Â ºí·Ï¿¡ Ãß°¡µÊ.
+    íŠ¸ëžœìž­ì…˜ í•´ì‰¬("0xe01f9976d363992b5249327cc3fc279fe6...")ê°€ ë¦¬í„´ë¨. ìƒˆë¡œìš´ íŠ¸ëžœìž­ì…˜ì´ ë§Œë“¤ì–´ì§. ë…¸ë“œë¡œ ë³´ë‚´ì§. 
+    ì±„êµ´í•˜ëŠ” ì°½ì—ì„œ 'Submitted transaction' ì´ë¼ê³  í™•ì¸í•  ìˆ˜ ìžˆìŒ. í•´ì‰¬ ì •ë³´(hash=0xe01f9976d363...íŠ¸ëžœìž­ì…˜ í•´ì‰¬ë¥¼ ë§í•˜ëŠ” ë“¯)ì™€ ìˆ˜ë ¹ì¸ì˜ address(from=0x0906ad8642)ì„ í™•ì¸ ê°€ëŠ¥.
+    ì´ íŠ¸ëžœìž­ì…˜ì´ ë‹¤ìŒ ì±„êµ´ë˜ëŠ” ë¸”ë¡ì— ì¶”ê°€ë¨.
     
-    µÎ¹øÂ° °èÁ¤ÀÇ ÀÜ¾×À¸·Î È®ÀÎ °¡´É
+    ë‘ë²ˆì§¸ ê³„ì •ì˜ ìž”ì•¡ìœ¼ë¡œ í™•ì¸ ê°€ëŠ¥
     > eth.getBalance(eth.accounts[1])
-    20000000000000000000 - ¼Û±Ý¹ÞÀº 20¿¡´õ¸¦ wei·Î Ç¥ÇöÇÑ °Í. ¿¡´õ·Î º¸°í ½Í´Ù¸é web3.fromWei(eth.accounts[1], "ether")·Î È®ÀÎ °¡´É.
+    20000000000000000000 - ì†¡ê¸ˆë°›ì€ 20ì—ë”ë¥¼ weië¡œ í‘œí˜„í•œ ê²ƒ. ì—ë”ë¡œ ë³´ê³  ì‹¶ë‹¤ë©´ web3.fromWei(eth.accounts[1], "ether")ë¡œ í™•ì¸ ê°€ëŠ¥.
 
-    ÀÌ·¸°Ô ÄÜ¼ÖÀ» ÅëÇØ ³ëµå¿Í ¼ÒÅë °¡´É.
+    ì´ë ‡ê²Œ ì½˜ì†”ì„ í†µí•´ ë…¸ë“œì™€ ì†Œí†µ ê°€ëŠ¥.
 
-    exit - ÄÜ¼Ö¿¡¼­ ³ª°¥ ¼ö ÀÖÀ½
+    exit - ì½˜ì†”ì—ì„œ ë‚˜ê°ˆ ìˆ˜ ìžˆìŒ
 
 
 

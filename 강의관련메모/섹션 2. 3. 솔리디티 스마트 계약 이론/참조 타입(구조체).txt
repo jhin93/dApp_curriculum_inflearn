@@ -1,6 +1,6 @@
-ÂüÁ¶ Å¸ÀÔ(±¸Á¶Ã¼)
+ì°¸ì¡° íƒ€ì…(êµ¬ì¡°ì²´)
 
-struct : ÇÊ¿äÇÑ ÀÚ·áÇüµéÀ» °¡Áö°í »õ·Ó°Ô Á¤ÀÇÇÏ´Â »ç¿ëÀÚ Á¤ÀÇ Å¸ÀÔ.
+struct : í•„ìš”í•œ ìë£Œí˜•ë“¤ì„ ê°€ì§€ê³  ìƒˆë¡­ê²Œ ì •ì˜í•˜ëŠ” ì‚¬ìš©ì ì •ì˜ íƒ€ì….
 
 contract MyContract {
     struct Student {
@@ -9,24 +9,24 @@ contract MyContract {
         uint age;
     }
 
-    Student[] students; // »óÅÂº¯¼ö Student Å¸ÀÔÀÇ ¹è¿­À» ¼±¾ğ.
+    Student[] students; // ìƒíƒœë³€ìˆ˜ Student íƒ€ì…ì˜ ë°°ì—´ì„ ì„ ì–¸.
 
     function addStudent(string _name, string _gender, uint _age) public {
-        students.push(Student(_name, _gender, _age)); // ÀÎÀÚµéÀ» È°¿ëÇØ¼­ »õ·Î¿î Student¸¦ ¸¸µé°í, student »óÅÂº¯¼ö ¹è¿­¿¡ »õ·Î¿î Student ÀÔ·Â
+        students.push(Student(_name, _gender, _age)); // ì¸ìë“¤ì„ í™œìš©í•´ì„œ ìƒˆë¡œìš´ Studentë¥¼ ë§Œë“¤ê³ , student ìƒíƒœë³€ìˆ˜ ë°°ì—´ì— ìƒˆë¡œìš´ Student ì…ë ¥
 
-        Student storage updateStudent = students[0]; // storage¿¡ ÀúÀåÇÏ´Â »õ·Î¿î Áö¿ªº¯¼ö Student ¼±¾ğ
-                                                     // °ªÀ¸·Î »óÅÂº¯¼ö students  ¹è¿­ÀÇ Ã¹¹øÂ° °ªÀ» ´ëÀÔ.
-                                                     // storage·Î ¼±¾ğµÆ±â¿¡ students¹è¿­ÀÇ Ã¹¹øÂ° ÀÎµ¦½º¸¦ º¹»çÇÏÁö ¾Ê°í students ¹è¿­ÀÇ Ã¹¹øÂ°¸¦ °¡¸®Å°´Â Æ÷ÀÎÅÍ ¿ªÇÒÀ» ÇÔ.
-        updateStudent.age = 55; // updateStudentÀÇ age ÇÊµå¸¦ 55·Î º¯°æ
-                                // °á°úÀûÀ¸·Î´Â »óÅÂº¯¼ö students ¹è¿­ÀÇ Ã¹¹øÂ° ÀÎµ¦½ºÀÇ age ÇÊµå¸¦ 55·Î º¯°æÇÑ´Ù.
+        Student storage updateStudent = students[0]; // storageì— ì €ì¥í•˜ëŠ” ìƒˆë¡œìš´ ì§€ì—­ë³€ìˆ˜ Student ì„ ì–¸
+                                                     // ê°’ìœ¼ë¡œ ìƒíƒœë³€ìˆ˜ students  ë°°ì—´ì˜ ì²«ë²ˆì§¸ ê°’ì„ ëŒ€ì….
+                                                     // storageë¡œ ì„ ì–¸ëê¸°ì— studentsë°°ì—´ì˜ ì²«ë²ˆì§¸ ì¸ë±ìŠ¤ë¥¼ ë³µì‚¬í•˜ì§€ ì•Šê³  students ë°°ì—´ì˜ ì²«ë²ˆì§¸ë¥¼ ê°€ë¦¬í‚¤ëŠ” í¬ì¸í„° ì—­í• ì„ í•¨.
+        updateStudent.age = 55; // updateStudentì˜ age í•„ë“œë¥¼ 55ë¡œ ë³€ê²½
+                                // ê²°ê³¼ì ìœ¼ë¡œëŠ” ìƒíƒœë³€ìˆ˜ students ë°°ì—´ì˜ ì²«ë²ˆì§¸ ì¸ë±ìŠ¤ì˜ age í•„ë“œë¥¼ 55ë¡œ ë³€ê²½í•œë‹¤.
 
 
-        Student memory updateStudent2 = students[0]; // memory¿¡ ÀúÀåÇÏ´Â »õ·Î¿î Student ¼±¾ğ
-                                                     // »óÅÂº¯¼ö students ¹è¿­ÀÇ Ã¹¹øÂ° ÀÎµ¦½º °ªÀ» ´ëÀÔ
-                                                     // memory·Î ¼±¾ğµÆ±â ¶§¹®¿¡ Æ÷ÀÎÅÍ ¿ªÇÒÀÌ ¾Æ´Ñ º¹»ç¸¦ ÇØ¿È
-        updateStudent2.age = 20; // updateStudent2ÀÇ age ÇÊµå¸¦ 20À¸·Î º¯°æ
-        students[0] = updateStudent2; // memory ¹è¿­ÀÇ °ªÀ» »óÅÂº¯¼ö¿¡ Á÷Á¢ ´ëÀÔÇØÁÖ¸é students °ª ¿µ±¸È÷ º¯°æ.
+        Student memory updateStudent2 = students[0]; // memoryì— ì €ì¥í•˜ëŠ” ìƒˆë¡œìš´ Student ì„ ì–¸
+                                                     // ìƒíƒœë³€ìˆ˜ students ë°°ì—´ì˜ ì²«ë²ˆì§¸ ì¸ë±ìŠ¤ ê°’ì„ ëŒ€ì…
+                                                     // memoryë¡œ ì„ ì–¸ëê¸° ë•Œë¬¸ì— í¬ì¸í„° ì—­í• ì´ ì•„ë‹Œ ë³µì‚¬ë¥¼ í•´ì˜´
+        updateStudent2.age = 20; // updateStudent2ì˜ age í•„ë“œë¥¼ 20ìœ¼ë¡œ ë³€ê²½
+        students[0] = updateStudent2; // memory ë°°ì—´ì˜ ê°’ì„ ìƒíƒœë³€ìˆ˜ì— ì§ì ‘ ëŒ€ì…í•´ì£¼ë©´ students ê°’ ì˜êµ¬íˆ ë³€ê²½.
 
-        // °á·Ğ : updateStudent¿¡ ÀÇÇØ students[0].age´Â 55°¡ µÇ¾ú´Ù°¡, updateStudent2¿¡ ÀÇÇØ 20À¸·Î º¯°æµÈ´Ù.                                       
+        // ê²°ë¡  : updateStudentì— ì˜í•´ students[0].ageëŠ” 55ê°€ ë˜ì—ˆë‹¤ê°€, updateStudent2ì— ì˜í•´ 20ìœ¼ë¡œ ë³€ê²½ëœë‹¤.                                       
     }
 }

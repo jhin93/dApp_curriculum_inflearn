@@ -1,36 +1,36 @@
 Remix
-ÄÁÆ®·¢Æ®¸¦ ºê¶ó¿ìÀú¿¡¼­ ¹Ù·Î ÀÛ¼º, ¹èÆ÷, µð¹ö±ëÀ» ÇÒ ¼ö ÀÖ´Â IDE.
-ÄÁÆ®·¢ °³¹ß ½Ã, »ý°¢ÇÑ ·ÎÁ÷°ú ´Ù¸£°Ô ¿òÁ÷ÀÏ ¶§ µð¹ö±ëÇÒ ¼ö ÀÖ´Â È¯°æ.
+ì»¨íŠ¸ëž™íŠ¸ë¥¼ ë¸Œë¼ìš°ì €ì—ì„œ ë°”ë¡œ ìž‘ì„±, ë°°í¬, ë””ë²„ê¹…ì„ í•  ìˆ˜ ìžˆëŠ” IDE.
+ì»¨íŠ¸ëž™ ê°œë°œ ì‹œ, ìƒê°í•œ ë¡œì§ê³¼ ë‹¤ë¥´ê²Œ ì›€ì§ì¼ ë•Œ ë””ë²„ê¹…í•  ìˆ˜ ìžˆëŠ” í™˜ê²½.
 
 
-DEPLOY & RUN TRANSACTIONS (ÁÂÃø ¾Æ·¡¼­ 4¹øÂ° ¾ÆÀÌÄÜ )
+DEPLOY & RUN TRANSACTIONS (ì¢Œì¸¡ ì•„ëž˜ì„œ 4ë²ˆì§¸ ì•„ì´ì½˜ )
 
-Environment Javascript VM - ¹öÃß¾ó ¸Ó½Å 
-            Injected Web3 - ¸ÞÅ¸¸¶½ºÅ©
-            Web3 Provider - °Ô½º³ª °¡³ª½´ÀÇ ¿£µåÆ÷ÀÎÆ® ÁÖ¼Ò¸¦ ÀÔ·ÂÇØ¼­ »ç¿ë. °¡³ª½´¿¡¼­ ¼³Á¤ÇÑ È£½ºÆ®¿Í Æ÷Æ®¸¦ ¿¬°áÇØ¼­ »ç¿ë.
-
-
-°£´ÜÇÑ Å×½ºÆ®¿¡´Â JVM »ç¿ëÇÏ´Â °ÍÀÌ Æí¸®.
-- 15°³ÀÇ °èÁ¤ ÁÖ¾îÁü.
-- °¡½º ÇÑµµ ÁÖ¾îÁü. ¹«ÇÑ´ë·Î ¼³Á¤µµ °¡´É.
-- °¡Àå ºü¸¥ µð¹ö±ë °¡´É.
+Environment Javascript VM - ë²„ì¶”ì–¼ ë¨¸ì‹  
+            Injected Web3 - ë©”íƒ€ë§ˆìŠ¤í¬
+            Web3 Provider - ê²ŒìŠ¤ë‚˜ ê°€ë‚˜ìŠˆì˜ ì—”ë“œí¬ì¸íŠ¸ ì£¼ì†Œë¥¼ ìž…ë ¥í•´ì„œ ì‚¬ìš©. ê°€ë‚˜ìŠˆì—ì„œ ì„¤ì •í•œ í˜¸ìŠ¤íŠ¸ì™€ í¬íŠ¸ë¥¼ ì—°ê²°í•´ì„œ ì‚¬ìš©.
 
 
+ê°„ë‹¨í•œ í…ŒìŠ¤íŠ¸ì—ëŠ” JVM ì‚¬ìš©í•˜ëŠ” ê²ƒì´ íŽ¸ë¦¬.
+- 15ê°œì˜ ê³„ì • ì£¼ì–´ì§.
+- ê°€ìŠ¤ í•œë„ ì£¼ì–´ì§. ë¬´í•œëŒ€ë¡œ ì„¤ì •ë„ ê°€ëŠ¥.
+- ê°€ìž¥ ë¹ ë¥¸ ë””ë²„ê¹… ê°€ëŠ¥.
 
 
-* DEPLOY ¹öÆ°
-¼±ÅÃµÈ °èÁ¤À¸·Î JVM È¯°æ¿¡ ÄÁÆ®·¢À» ¹èÆ÷ÇÑ °Í. °¡½º ºñ¿ëÀÌ ¼Ò¸ðµÇ¾î 100eth°¡ 99.999...°¡ µÈ °ÍÀ» È®ÀÎ.
-¹èÆ÷ÇÏ°í ³ª¸é ÅÍ¹Ì³Î¿¡ »õ·Î¿î Æ®·£Àè¼Ç Á¤º¸°¡ ¶ä. ÁÂÃø Ã¼Å©¹öÆ° Å¬¸¯ÇÏ¸é ³»¿ë È®ÀÎ °¡´É.
+
+
+* DEPLOY ë²„íŠ¼
+ì„ íƒëœ ê³„ì •ìœ¼ë¡œ JVM í™˜ê²½ì— ì»¨íŠ¸ëž™ì„ ë°°í¬í•œ ê²ƒ. ê°€ìŠ¤ ë¹„ìš©ì´ ì†Œëª¨ë˜ì–´ 100ethê°€ 99.999...ê°€ ëœ ê²ƒì„ í™•ì¸.
+ë°°í¬í•˜ê³  ë‚˜ë©´ í„°ë¯¸ë„ì— ìƒˆë¡œìš´ íŠ¸ëžœìž­ì…˜ ì •ë³´ê°€ ëœ¸. ì¢Œì¸¡ ì²´í¬ë²„íŠ¼ í´ë¦­í•˜ë©´ ë‚´ìš© í™•ì¸ ê°€ëŠ¥.
 
 ex)
  [vm] from: 0x5B3...eddC4to: MyContract.(constructor)value: 0 weidata: 0x608...40033logs: 0hash: 0xa5a...952cf
  status	true Transaction mined and execution succeed
  transaction hash	0xa5ab21daf74ae9e84527740ed5c3e1e4ac2ccc3437e5a1d7ac96fded613952cf 
- from	0x5B38Da6a701c568545dCfcB03FcB875f56beddC4 // ÇØ´ç °èÁ¤À¸·Î ¹èÆ÷¸¦ ÁøÇà.
+ from	0x5B38Da6a701c568545dCfcB03FcB875f56beddC4 // í•´ë‹¹ ê³„ì •ìœ¼ë¡œ ë°°í¬ë¥¼ ì§„í–‰.
  to	MyContract.(constructor) 
  gas	80000000 gas 
  transaction cost	80000000 gas 
- execution cost	257024 gas // ¹èÆ÷¸¦ ÇÏ¸é¼­ ¼Ò¸ðµÈ °¡½ºÀÇ Á¤º¸
+ execution cost	257024 gas // ë°°í¬ë¥¼ í•˜ë©´ì„œ ì†Œëª¨ëœ ê°€ìŠ¤ì˜ ì •ë³´
  hash	0xa5ab21daf74ae9e84527740ed5c3e1e4ac2ccc3437e5a1d7ac96fded613952cf 
  input	0x608...40033 
  decoded input	{} 
@@ -41,10 +41,10 @@ ex)
 
 
 * learnDataLocation
-DEPLOY ¹öÆ° ¾Æ·¡¿¡ À§Ä¡. ÄÁÆ®·¢ ÀÛ¼ºÀÚ°¡ ¸¸µç ÇÔ¼ö¿Í ¸Å°³º¯¼ö°¡ Ç¥½ÃµÊ.
-ÄÁÆ®·¢ ¹èÆ÷ÇÏ¸é¼­ ÇÔ¼ö¸¦ Å×½ºÆ® ÇÒ ¼ö ÀÖ°Ô Á¦°øÇÔ. ¸Å°³º¯¼ö¸¦ ÀÔ·ÂÇØ¼­ Å×½ºÆ® °¡´É.
+DEPLOY ë²„íŠ¼ ì•„ëž˜ì— ìœ„ì¹˜. ì»¨íŠ¸ëž™ ìž‘ì„±ìžê°€ ë§Œë“  í•¨ìˆ˜ì™€ ë§¤ê°œë³€ìˆ˜ê°€ í‘œì‹œë¨.
+ì»¨íŠ¸ëž™ ë°°í¬í•˜ë©´ì„œ í•¨ìˆ˜ë¥¼ í…ŒìŠ¤íŠ¸ í•  ìˆ˜ ìžˆê²Œ ì œê³µí•¨. ë§¤ê°œë³€ìˆ˜ë¥¼ ìž…ë ¥í•´ì„œ í…ŒìŠ¤íŠ¸ ê°€ëŠ¥.
 
-ex) newAges ¿¡ [11, 22, 33] ÀÔ·ÂÇØ¼­ Å×½ºÆ®ÇÑ °á°ú.
+ex) newAges ì— [11, 22, 33] ìž…ë ¥í•´ì„œ í…ŒìŠ¤íŠ¸í•œ ê²°ê³¼.
 
  [vm] from: 0x5B3...eddC4to: MyContract.learnDataLocation(uint256[]) 0xd91...39138value: 0 weidata: 0xea5...00021logs: 0hash: 0x5d7...3acba
  status	true Transaction mined and execution succeed
@@ -56,7 +56,7 @@ ex) newAges ¿¡ [11, 22, 33] ÀÔ·ÂÇØ¼­ Å×½ºÆ®ÇÑ °á°ú.
  execution cost	113016 gas 
  hash	0x5d72b939e6e2bad2f998a31f558ffb9eafb90caf4e51f2d801d80b084653acba 
  input	0xea5...00021 
- decoded input	{ "uint256[] newAges": [ "11", "22", "33" ] } // ¸Å°³º¯¼ö·Î [11, 22, 33] ³Ñ±ä°ÍÀ» È®ÀÎ °¡´É.
- decoded output	{ "0": "uint256: a 44" } // ÇÔ¼ö°¡ ¸®ÅÏÇÑ °ª(44) È®ÀÎ °¡´É.
+ decoded input	{ "uint256[] newAges": [ "11", "22", "33" ] } // ë§¤ê°œë³€ìˆ˜ë¡œ [11, 22, 33] ë„˜ê¸´ê²ƒì„ í™•ì¸ ê°€ëŠ¥.
+ decoded output	{ "0": "uint256: a 44" } // í•¨ìˆ˜ê°€ ë¦¬í„´í•œ ê°’(44) í™•ì¸ ê°€ëŠ¥.
  logs	[]  
  value	0 wei 

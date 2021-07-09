@@ -1,18 +1,18 @@
-__¿ÉÄÚµå
+__ì˜µì½”ë“œ
 
-? ¿¬»ê¿¡ ¼Ò¸ðµÇ´Â ºñ¿ë == ¿ÉÄÚµå(opcode) 
-operation code. ¿¬»êÄÚµå¶ó°íµµ ÇÔ.
-    1. »ê¼ú ¿¬»ê
-    2. ·ÎÁ÷ ¿¬»ê
-    3. memory or storage ¿¬»ê
-    4. µîµî ¿©·¯°¡Áö ¿¬»ê
+â€¢ ì—°ì‚°ì— ì†Œëª¨ë˜ëŠ” ë¹„ìš© == ì˜µì½”ë“œ(opcode) 
+operation code. ì—°ì‚°ì½”ë“œë¼ê³ ë„ í•¨.
+    1. ì‚°ìˆ  ì—°ì‚°
+    2. ë¡œì§ ì—°ì‚°
+    3. memory or storage ì—°ì‚°
+    4. ë“±ë“± ì—¬ëŸ¬ê°€ì§€ ì—°ì‚°
 
-ex) ¸®¹Í½º¿¡¼­ ÄÄÆÄÀÏÇÏ°í ³ª¿À´Â ¿ÉÄÚµå
+ex) ë¦¬ë¯¹ìŠ¤ì—ì„œ ì»´íŒŒì¼í•˜ê³  ë‚˜ì˜¤ëŠ” ì˜µì½”ë“œ
 
-(¸®¹Í½º¿¡¼­ ÄÄÆÄÀÏÇÑ ÈÄ Compilation Details Å¬¸¯)
-BYTECODE(3¹øÂ° ÆÐ³Î)
-ÄÁÆ®·¢ÀÌ ÄÄÆÄÀÏµÇ¸é¼­ ¸ÕÀú BYTECODE·Î º¯È¯. ÀÌÈÄ opcodes·Î ºÐÇØµÇ¼­ ÀÌ´õ¸®¿ò °¡»ó¸Ó½Å¿¡ ÀÇÇØ ½ÇÇà.
-¾Æ·¡ Ç×¸ñ Áß "object"°¡ ¹ÙÀÌÆ®ÄÚµå.
+(ë¦¬ë¯¹ìŠ¤ì—ì„œ ì»´íŒŒì¼í•œ í›„ Compilation Details í´ë¦­)
+BYTECODE(3ë²ˆì§¸ íŒ¨ë„)
+ì»¨íŠ¸ëž™ì´ ì»´íŒŒì¼ë˜ë©´ì„œ ë¨¼ì € BYTECODEë¡œ ë³€í™˜. ì´í›„ opcodesë¡œ ë¶„í•´ë˜ì„œ ì´ë”ë¦¬ì›€ ê°€ìƒë¨¸ì‹ ì— ì˜í•´ ì‹¤í–‰.
+ì•„ëž˜ í•­ëª© ì¤‘ "object"ê°€ ë°”ì´íŠ¸ì½”ë“œ.
 
 {
 	"generatedSources": [],
@@ -22,15 +22,15 @@ BYTECODE(3¹øÂ° ÆÐ³Î)
 	"sourceMap": "148:666:0:-:0;;;;;;;;;;;;;;;;;;;"
 }
 
-https://etherscan.io/opcode-tool - ¿©±â¼­ ¹ÙÀÌÆ®ÄÚµå¸¦ ¿ÉÄÚµå·Î ÇØµ¶ÇÒ ¼ö ÀÖÀ½. À§ ¹ÙÀÌÆ®ÄÚµå¸¦ º¹»çÇØ¼­ ºÙ¿©³Ö°í '0x'¸¦ ¸Ç ¾Õ¿¡ ºÙÀÎ ÈÄ, decode¸¦ ÇÏ¸é ¿ÉÄÚµå¿Í µ¿ÀÏÇÑ °á°ú Ãâ·ÂµÊ.
+https://etherscan.io/opcode-tool - ì—¬ê¸°ì„œ ë°”ì´íŠ¸ì½”ë“œë¥¼ ì˜µì½”ë“œë¡œ í•´ë…í•  ìˆ˜ ìžˆìŒ. ìœ„ ë°”ì´íŠ¸ì½”ë“œë¥¼ ë³µì‚¬í•´ì„œ ë¶™ì—¬ë„£ê³  '0x'ë¥¼ ë§¨ ì•žì— ë¶™ì¸ í›„, decodeë¥¼ í•˜ë©´ ì˜µì½”ë“œì™€ ë™ì¼í•œ ê²°ê³¼ ì¶œë ¥ë¨.
 
-https://ethereum.stackexchange.com/questions/119/what-opcodes-are-available-for-the-ethereum-evm - ¿©±â¼­ ¿ÉÄÚµå Á¾·ùº° ¼³¸íÀ» ¾Ë ¼ö ÀÖÀ½.
+https://ethereum.stackexchange.com/questions/119/what-opcodes-are-available-for-the-ethereum-evm - ì—¬ê¸°ì„œ ì˜µì½”ë“œ ì¢…ë¥˜ë³„ ì„¤ëª…ì„ ì•Œ ìˆ˜ ìžˆìŒ.
 
-ÄÁÆ®·¢ ¹èÆ÷ ÈÄ Æ®·£Àè¼Ç ¹ß»ý½ÃÅ°°í(Ex setStudent ÇÔ¼ö¿¡ 1234 ÀÌ¼ø½Å ³²ÀÚ 44 ´ëÀÔ) ÈÄ DEBUG.
-±×¶§ ¿ÉÄÚµåµéÀ» È®ÀÎÇÒ ¼ö ÀÖÀ½. ÇöÀç ÄÁÆ®·¢¿¡¼­ ¾î¶² ¿ÉÆ®·¢ÀÌ ½ÇÇàµÇ´ÂÁö ¾Ë ¼ö ÀÖÀ½.
+ì»¨íŠ¸ëž™ ë°°í¬ í›„ íŠ¸ëžœìž­ì…˜ ë°œìƒì‹œí‚¤ê³ (Ex setStudent í•¨ìˆ˜ì— 1234 ì´ìˆœì‹  ë‚¨ìž 44 ëŒ€ìž…) í›„ DEBUG.
+ê·¸ë•Œ ì˜µì½”ë“œë“¤ì„ í™•ì¸í•  ìˆ˜ ìžˆìŒ. í˜„ìž¬ ì»¨íŠ¸ëž™ì—ì„œ ì–´ë–¤ ì˜µíŠ¸ëž™ì´ ì‹¤í–‰ë˜ëŠ”ì§€ ì•Œ ìˆ˜ ìžˆìŒ.
 
-°á·Ð:
-ÀÌ´õ¸®¿ò °¡»ó¸Ó½Å¿¡¼­ ÄÁÆ®·¢ÀÌ ¹èÆ÷µÆÀ» ¶§, ¿ÉÄÚµå¸¦ ½ºÅÃ¿¡ ¸ÕÀú ½×°í ÇØ´ç Æ®·£Àè¼ÇÀÌ ÀÖÀ» ¶§¸¶´Ù ÇÊ¿äÇÑ ¿ÉÄÚµå¸¦ ÀÐÀ¸¸é¼­ ½ÇÇà.
+ê²°ë¡ :
+ì´ë”ë¦¬ì›€ ê°€ìƒë¨¸ì‹ ì—ì„œ ì»¨íŠ¸ëž™ì´ ë°°í¬ëì„ ë•Œ, ì˜µì½”ë“œë¥¼ ìŠ¤íƒì— ë¨¼ì € ìŒ“ê³  í•´ë‹¹ íŠ¸ëžœìž­ì…˜ì´ ìžˆì„ ë•Œë§ˆë‹¤ í•„ìš”í•œ ì˜µì½”ë“œë¥¼ ì½ìœ¼ë©´ì„œ ì‹¤í–‰.
 
 
 

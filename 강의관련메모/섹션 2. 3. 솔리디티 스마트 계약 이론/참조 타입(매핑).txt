@@ -1,19 +1,19 @@
-ÂüÁ¶ Å¸ÀÔ(¸ÅÇÎ)
+ì°¸ì¡° íƒ€ì…(ë§¤í•‘)
 
-mapping(_KeyType => _ValueType)         Key & Value¸¦ ½ÖÀ¸·Î ÀúÀåÇÏ´Â ÀÚ¹ÙÀÇ map°ú ºñ½Á.
-                                        KeyType : µ¿Àû¹è¿­, ¿­°ÅÇü, ±¸Á¶Ã¼, ¸ÅÇÎÀ» Á¦¿ÜÇÑ Å¸ÀÔ °¡´É
-                                        ValueType : ¸ÅÇÎ Æ÷ÇÔ ¸ğµç Å¸ÀÔ °¡´É
+mapping(_KeyType => _ValueType)         Key & Valueë¥¼ ìŒìœ¼ë¡œ ì €ì¥í•˜ëŠ” ìë°”ì˜ mapê³¼ ë¹„ìŠ·.
+                                        KeyType : ë™ì ë°°ì—´, ì—´ê±°í˜•, êµ¬ì¡°ì²´, ë§¤í•‘ì„ ì œì™¸í•œ íƒ€ì… ê°€ëŠ¥
+                                        ValueType : ë§¤í•‘ í¬í•¨ ëª¨ë“  íƒ€ì… ê°€ëŠ¥
 
 
 contract MyContract {
-    mapping(address => uint256) balance; // ÀÌ ¸ÅÇÎÀÌ ÀÇ¹ÌÇÏ´Â °ÍÀº ¾î¶² ÀÌ´õ¸®¿ò °èÁ¤ ÁÖ¼Ò¸¸ÀÇ ¾ç¼ö°ªÀÌ ºí·ÏÃ¼ÀÎ ¾È¿¡ Á¸Àç.
+    mapping(address => uint256) balance; // ì´ ë§¤í•‘ì´ ì˜ë¯¸í•˜ëŠ” ê²ƒì€ ì–´ë–¤ ì´ë”ë¦¬ì›€ ê³„ì • ì£¼ì†Œë§Œì˜ ì–‘ìˆ˜ê°’ì´ ë¸”ë¡ì²´ì¸ ì•ˆì— ì¡´ì¬.
 
     function learnMapping() public {
-        balance[msg.sender] = 100; // msg.sender´Â ÇöÀç ÀÌ ÇÔ¼ö¸¦ ºÒ·¯¿À´Â °èÁ¤ ÁÖ¼ÒÀÌ´Ù. msg.sender¿¡ 100ÀÌ ¸ÅÇÎµÈ °Í.
+        balance[msg.sender] = 100; // msg.senderëŠ” í˜„ì¬ ì´ í•¨ìˆ˜ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ê³„ì • ì£¼ì†Œì´ë‹¤. msg.senderì— 100ì´ ë§¤í•‘ëœ ê²ƒ.
         balance[msg.sender] += 100;
 
-        uint256 currentBalance = balance[msg.sender]; // balance º¯¼öÀÇ value Å¸ÀÔÀÌ uint256ÀÓ. ÀÌ ¹ë·ù°ªÀ» ¹Ş±â À§ÇØ currentBalance¸¦ uint256À¸·Î ¼³Á¤.
-    }                                                 // currentBalance¿¡´Â 200ÀÌ ÀúÀåµÊ.
+        uint256 currentBalance = balance[msg.sender]; // balance ë³€ìˆ˜ì˜ value íƒ€ì…ì´ uint256ì„. ì´ ë°¸ë¥˜ê°’ì„ ë°›ê¸° ìœ„í•´ currentBalanceë¥¼ uint256ìœ¼ë¡œ ì„¤ì •.
+    }                                                 // currentBalanceì—ëŠ” 200ì´ ì €ì¥ë¨.
 
 }
 
@@ -24,22 +24,22 @@ contract Mycontract {
         uint age;
     }
 
-    mapping(uint256 => Student) studentInfo; // Å° Å¸ÀÔ¿¡ uint256, ¹ë·ùÅ¸ÀÔ¿¡ Student ±¸Á¶Ã¼. 
-                                                ¾ç¼ö°ªÀ» Å°°ªÀ¸·Î ³ÖÀ¸¸é ¸ÅÇÎµÈ ¹ë·ù°ªÀ¸·Î Student ±¸Á¶Ã¼ Á¤º¸°¡ ºÒ·¯¿ÍÁü.
-                                                ÀúÀå À§Ä¡°¡ storageÀÌ±â ¶§¹®¿¡ student º¯¼ö°¡ studentInfo »óÅÂº¯¼ö¸¦ Æ÷ÀÎÆÃÇÏ°Ô µÊ.
+    mapping(uint256 => Student) studentInfo; // í‚¤ íƒ€ì…ì— uint256, ë°¸ë¥˜íƒ€ì…ì— Student êµ¬ì¡°ì²´. 
+                                                ì–‘ìˆ˜ê°’ì„ í‚¤ê°’ìœ¼ë¡œ ë„£ìœ¼ë©´ ë§¤í•‘ëœ ë°¸ë¥˜ê°’ìœ¼ë¡œ Student êµ¬ì¡°ì²´ ì •ë³´ê°€ ë¶ˆëŸ¬ì™€ì§.
+                                                ì €ì¥ ìœ„ì¹˜ê°€ storageì´ê¸° ë•Œë¬¸ì— student ë³€ìˆ˜ê°€ studentInfo ìƒíƒœë³€ìˆ˜ë¥¼ í¬ì¸íŒ…í•˜ê²Œ ë¨.
 
     function setStudent(uint _studentId, string memory _name, string memory _gender, uint _age) public {
-        Student storage student = studentInfo[_studentId]; // _studentId¸¦ 1234¶ó°í °¡Á¤. 1234 Å°°ª¿¡ ¸ÅÇÎµÈ ¹ë·ù°ªÀ» °¡Á®¿È. ±×°ÍÀ» Student ±¸Á¶Ã¼ º¯¼ö(student)¿¡ ´ëÀÔ.
-        // °¢°¢ ÇÊµå¿¡ ¸Å°³º¯¼ö·Î ¹ŞÀº ÀÚ·áÇüµé ´ëÀÔ.
+        Student storage student = studentInfo[_studentId]; // _studentIdë¥¼ 1234ë¼ê³  ê°€ì •. 1234 í‚¤ê°’ì— ë§¤í•‘ëœ ë°¸ë¥˜ê°’ì„ ê°€ì ¸ì˜´. ê·¸ê²ƒì„ Student êµ¬ì¡°ì²´ ë³€ìˆ˜(student)ì— ëŒ€ì….
+        // ê°ê° í•„ë“œì— ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ì€ ìë£Œí˜•ë“¤ ëŒ€ì….
         student.studentName = _name;
         student.gender = _gender;
         student.age = _age;
-        // °á°úÀûÀ¸·Ğ 1234 Å°°ª¿¡ ¸ÅÇÎµÈ ¹ë·ù°ª¿¡ ¼öÁ¤µÈ Student Á¤º¸°¡ »õ·Ó°Ô ¼¼ÆÃµÊ
+        // ê²°ê³¼ì ìœ¼ë¡  1234 í‚¤ê°’ì— ë§¤í•‘ëœ ë°¸ë¥˜ê°’ì— ìˆ˜ì •ëœ Student ì •ë³´ê°€ ìƒˆë¡­ê²Œ ì„¸íŒ…ë¨
     }
 
-    function getStudentInfo(uint256 _studentId) view public returns(string memory, string memory, uint) { // studentInfo »óÅÂº¯¼öÀÇ ¹ë·ù°ªÀ» ºÒ·¯¿À´Â ÇÔ¼ö.
-        // ¸Å°³º¯¼ö·Î ¹ŞÀº _studentId (ex 1234)¸¦ Å°°ªÀ¸·Î È°¿ëÇÏ¿© Å°°ª¿¡ ¸ÅÇÎµÈ ¹ë·ù°ªÀÎ Student¸¦ ºÒ·¯¿Â´Ù.
-        return (studentInfo[_studentId].studentName, studentInfo[_studentId].gender, studentInfo[_studentId].age) // ¾ÆÁ÷ ¼Ö¸®µğÆ¼¿¡¼­ ±¸Á¶Ã¼ ÀÚÃ¼¸¦ ¸®ÅÏÇÏ´Â °ÍÀº Áö¿øÇÏÁö ¾ÊÀ½.
+    function getStudentInfo(uint256 _studentId) view public returns(string memory, string memory, uint) { // studentInfo ìƒíƒœë³€ìˆ˜ì˜ ë°¸ë¥˜ê°’ì„ ë¶ˆëŸ¬ì˜¤ëŠ” í•¨ìˆ˜.
+        // ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ì€ _studentId (ex 1234)ë¥¼ í‚¤ê°’ìœ¼ë¡œ í™œìš©í•˜ì—¬ í‚¤ê°’ì— ë§¤í•‘ëœ ë°¸ë¥˜ê°’ì¸ Studentë¥¼ ë¶ˆëŸ¬ì˜¨ë‹¤.
+        return (studentInfo[_studentId].studentName, studentInfo[_studentId].gender, studentInfo[_studentId].age) // ì•„ì§ ì†”ë¦¬ë””í‹°ì—ì„œ êµ¬ì¡°ì²´ ìì²´ë¥¼ ë¦¬í„´í•˜ëŠ” ê²ƒì€ ì§€ì›í•˜ì§€ ì•ŠìŒ.
     }
 }
 

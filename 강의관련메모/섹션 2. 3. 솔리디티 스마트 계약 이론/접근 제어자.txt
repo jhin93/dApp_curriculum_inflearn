@@ -1,19 +1,19 @@
-- Á¢±Ù Á¦¾îÀÚ
+- ì ‘ê·¼ ì œì–´ì
 
 external 
-    1. ¿ÜºÎ ÄÁÆ®·¢¸¸ È£Ãâ °¡´É
-    2. »óÅÂº¯¼ö´Â external »ç¿ë ºÒ°¡
+    1. ì™¸ë¶€ ì»¨íŠ¸ë™ë§Œ í˜¸ì¶œ ê°€ëŠ¥
+    2. ìƒíƒœë³€ìˆ˜ëŠ” external ì‚¬ìš© ë¶ˆê°€
 
-        [ÄÚµå ¿¹½Ã]
+        [ì½”ë“œ ì˜ˆì‹œ]
         contract MyContract {
-            uint external count; // ¿¡·¯¹ß»ı. »óÅÂº¯¼ö¿¡´Â external Á¦¾îÀÚ¸¦ »ç¿ëÇÒ ¼ö ¾øÀ½.
+            uint external count; // ì—ëŸ¬ë°œìƒ. ìƒíƒœë³€ìˆ˜ì—ëŠ” external ì œì–´ìë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŒ.
 
-            constructor() public { // »ı¼ºÀÚ
+            constructor() public { // ìƒì„±ì
 
             }
 
             function numOfStudents(address _teacher) public view returns(uint) {
-                test(); // ¿¡·¯¹ß»ı. ÀÌÀ¯´Â ÇÏ´ÜÀÇ test ÇÔ¼ö´Â externalÀÎµ¥ °°Àº ÄÁÆ®·¢ ³»ºÎ¿¡¼­ È£ÃâÇß±â ¶§¹®.
+                test(); // ì—ëŸ¬ë°œìƒ. ì´ìœ ëŠ” í•˜ë‹¨ì˜ test í•¨ìˆ˜ëŠ” externalì¸ë° ê°™ì€ ì»¨íŠ¸ë™ ë‚´ë¶€ì—ì„œ í˜¸ì¶œí–ˆê¸° ë•Œë¬¸.
             }
 
             function test() external {
@@ -22,10 +22,10 @@ external
         }
 
         contract YourContract {
-            Mycontract myContract; // Mycontract¸¦ mycontract¶ó´Â º¯¼ö·Î ¼±¾ğ.
+            Mycontract myContract; // Mycontractë¥¼ mycontractë¼ëŠ” ë³€ìˆ˜ë¡œ ì„ ì–¸.
 
             function callTest() public {
-                myContract.test(); // testÇÔ¼ö È£Ãâ °¡´É. externalÀÌ´Ï±î.
+                myContract.test(); // testí•¨ìˆ˜ í˜¸ì¶œ ê°€ëŠ¥. externalì´ë‹ˆê¹Œ.
             }
         }
 
@@ -33,60 +33,60 @@ external
 
 
 internal
-    1. ÄÁÆ®·¢ ³»ºÎ È£Ãâ °¡´É
-    2. »ó¼Ó¹ŞÀº ÄÁÆ®·¢µµ È£Ãâ °¡´É
-    3. »óÅÂº¯¼ö´Â µğÆúÆ®·Î internal ¼±¾ğ
+    1. ì»¨íŠ¸ë™ ë‚´ë¶€ í˜¸ì¶œ ê°€ëŠ¥
+    2. ìƒì†ë°›ì€ ì»¨íŠ¸ë™ë„ í˜¸ì¶œ ê°€ëŠ¥
+    3. ìƒíƒœë³€ìˆ˜ëŠ” ë””í´íŠ¸ë¡œ internal ì„ ì–¸
 
-        [ÄÚµå ¿¹½Ã]
+        [ì½”ë“œ ì˜ˆì‹œ]
         contract MyContract {
-            uint count; // »óÅÂº¯¼ö´Â default·Î internalÀ» ¼±¾ğ.
+            uint count; // ìƒíƒœë³€ìˆ˜ëŠ” defaultë¡œ internalì„ ì„ ì–¸.
 
-            constructor() public { // »ı¼ºÀÚ
+            constructor() public { // ìƒì„±ì
 
             }
 
             function numOfStudents(address _teacher) public view returns(uint) {
-                test(); // ¿¡·¯ ¹ß»ı ¾ÈÇÔ. test ÇÔ¼ö°¡ internal ÀÌ±â¿¡.
+                test(); // ì—ëŸ¬ ë°œìƒ ì•ˆí•¨. test í•¨ìˆ˜ê°€ internal ì´ê¸°ì—.
             }
 
-            function test() internal { // °¡½Ã¼ºÀ» internal·Î ¹Ù²Ş.
+            function test() internal { // ê°€ì‹œì„±ì„ internalë¡œ ë°”ê¿ˆ.
                 // ...
             }
         }
 
-        contract YourContract is MyContract{ // MyContract¸¦ »ó¼Ó¹ŞÀ½.
+        contract YourContract is MyContract{ // MyContractë¥¼ ìƒì†ë°›ìŒ.
             function callTest() public {
-                test(); // »ó¼Ó¹ŞÀº ÄÁÆ®·¢ÀÇ internal ÇÔ¼ö È£Ãâ °¡´É.
+                test(); // ìƒì†ë°›ì€ ì»¨íŠ¸ë™ì˜ internal í•¨ìˆ˜ í˜¸ì¶œ ê°€ëŠ¥.
             }
         }
 
 
 
 public
-    1. ÄÁÆ®·¢ ³»ºÎ È£Ãâ °¡´É
-    2. »ó¼Ó¹ŞÀº ÄÁÆ®·¢µµ È£Ãâ °¡´É
-    3. ¿ÜºÎ ÄÁÆ®·¢µµ È£Ãâ °¡´É
+    1. ì»¨íŠ¸ë™ ë‚´ë¶€ í˜¸ì¶œ ê°€ëŠ¥
+    2. ìƒì†ë°›ì€ ì»¨íŠ¸ë™ë„ í˜¸ì¶œ ê°€ëŠ¥
+    3. ì™¸ë¶€ ì»¨íŠ¸ë™ë„ í˜¸ì¶œ ê°€ëŠ¥
 
-        [ÄÚµå ¿¹½Ã]
+        [ì½”ë“œ ì˜ˆì‹œ]
         contract MyContract {
-            uint public count; // »óÅÂº¯¼ö¿¡ public Á¢±Ù Á¦¾îÀÚ¸¦ ¼±¾ğÇÏ¸é ÄÄÆÄÀÏ·¯¿¡¼­ ÀÚµ¿À¸·Î getter ÇÔ¼ö¸¦ ¸¸µé¾îÁÜ.
+            uint public count; // ìƒíƒœë³€ìˆ˜ì— public ì ‘ê·¼ ì œì–´ìë¥¼ ì„ ì–¸í•˜ë©´ ì»´íŒŒì¼ëŸ¬ì—ì„œ ìë™ìœ¼ë¡œ getter í•¨ìˆ˜ë¥¼ ë§Œë“¤ì–´ì¤Œ.
 
-            constructor() public { // »ı¼ºÀÚ
+            constructor() public { // ìƒì„±ì
 
             }
 
             function numOfStudents(address _teacher) public view returns(uint) {
-                test(); // ¿¡·¯ ¾øÀ½.
+                test(); // ì—ëŸ¬ ì—†ìŒ.
             }
 
-            function test() public { // ÇÔ¼ö´Â °¡½Ã¼ºÀ» ¸í½ÃÇÏÁö ¾ÊÀ» ½Ã publicÀ¸·Î ÀÎ½ÄÇÔ. ±Ùµ¥ ¸í½Ã ¾ÈÇÏ¸é ÄÄÆÄÀÏ·¯¿¡¼­ °æ°í ¸Ş½ÃÁö º¸³¿. 
+            function test() public { // í•¨ìˆ˜ëŠ” ê°€ì‹œì„±ì„ ëª…ì‹œí•˜ì§€ ì•Šì„ ì‹œ publicìœ¼ë¡œ ì¸ì‹í•¨. ê·¼ë° ëª…ì‹œ ì•ˆí•˜ë©´ ì»´íŒŒì¼ëŸ¬ì—ì„œ ê²½ê³  ë©”ì‹œì§€ ë³´ëƒ„. 
                 // ...
             }
         }
 
         contract YourContract is MyContract {
             function callTest() public {
-                test(); // »ó¼Ó¹ŞÀº ÄÁÆ®·¢¿¡¼­ test ÇÔ¼ö È£Ãâ ½Ã ¿¡·¯ ¾øÀ½.
+                test(); // ìƒì†ë°›ì€ ì»¨íŠ¸ë™ì—ì„œ test í•¨ìˆ˜ í˜¸ì¶œ ì‹œ ì—ëŸ¬ ì—†ìŒ.
             }
         }
 
@@ -94,24 +94,24 @@ public
             MyContract myContract;
 
             function callTest() public {
-                myContract.test(); // ¿ÜºÎ ÄÁÆ®·¢¿¡¼­ test ÇÔ¼ö È£Ãâ ½Ã ¿¡·¯ ¾øÀ½.
+                myContract.test(); // ì™¸ë¶€ ì»¨íŠ¸ë™ì—ì„œ test í•¨ìˆ˜ í˜¸ì¶œ ì‹œ ì—ëŸ¬ ì—†ìŒ.
             }
         }
 
 
 private 
-    1. ÄÁÆ®·¢ ³»ºÎ¸¸ È£Ãâ °¡´É
+    1. ì»¨íŠ¸ë™ ë‚´ë¶€ë§Œ í˜¸ì¶œ ê°€ëŠ¥
 
-        [ÄÚµå ¿¹½Ã]
+        [ì½”ë“œ ì˜ˆì‹œ]
         contract MyContract {
-            uint public count; // »óÅÂ º¯¼ö
+            uint public count; // ìƒíƒœ ë³€ìˆ˜
 
-            constructor() public { // »ı¼ºÀÚ
+            constructor() public { // ìƒì„±ì
 
             }
 
             function numOfStudents(address _teacher) public view returns(uint) {
-                test(); // ¿¡·¯ ¾øÀ½. test ÇÔ¼öÀÇ Á¢±Ù Á¦¾îÀÚ´Â privateÀÌ°í °°Àº ÄÁÆ®·¢ ³»ºÎ¸¸ È£Ãâ °¡´É.
+                test(); // ì—ëŸ¬ ì—†ìŒ. test í•¨ìˆ˜ì˜ ì ‘ê·¼ ì œì–´ìëŠ” privateì´ê³  ê°™ì€ ì»¨íŠ¸ë™ ë‚´ë¶€ë§Œ í˜¸ì¶œ ê°€ëŠ¥.
             }
 
             function test() private { 
@@ -121,7 +121,7 @@ private
 
         contract YourContract is MyContract {
             function callTest() public {
-                test(); // ¿¡·¯ ¹ß»ı. testÀÇ °¡½Ã¼ºÀº private.
+                test(); // ì—ëŸ¬ ë°œìƒ. testì˜ ê°€ì‹œì„±ì€ private.
             }
         }
 
@@ -129,6 +129,6 @@ private
             MyContract myContract;
 
             function callTest() public {
-                myContract.test(); // ¿¡·¯ ¹ß»ı. testÀÇ °¡½Ã¼ºÀº private.
+                myContract.test(); // ì—ëŸ¬ ë°œìƒ. testì˜ ê°€ì‹œì„±ì€ private.
             }
         }

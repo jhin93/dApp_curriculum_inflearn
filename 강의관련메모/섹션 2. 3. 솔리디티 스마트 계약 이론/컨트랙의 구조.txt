@@ -1,9 +1,9 @@
 pragma solidity ^0.4.23;
 
 contract MyContract{
-    uint count; // »óÅÂº¯¼ö. ÄÁÆ®·¢¿¡ ¿µ±¸ ÀúÀåµÊ. Å¬·¡½ºÀÇ ¸â¹ö º¯¼ö
+    uint count; // ìƒíƒœë³€ìˆ˜. ì»¨íŠ¸ë™ì— ì˜êµ¬ ì €ì¥ë¨. í´ë˜ìŠ¤ì˜ ë©¤ë²„ ë³€ìˆ˜
     
-    constructor() public { //»ı¼ºÀÚ
+    constructor() public { //ìƒì„±ì
 
     }
 
