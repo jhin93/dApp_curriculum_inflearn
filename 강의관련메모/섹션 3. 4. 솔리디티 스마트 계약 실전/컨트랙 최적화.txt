@@ -1,0 +1,108 @@
+이더리움의 모든 트랜잭션은 옵코드에 따라 가스 소모가 좌지우지됨.
+
+- 많이 쓰이는 옵코드
+https://ethereum.stackexchange.com/questions/28813/how-to-write-an-optimized-gas-cost-smart-contract
+
+Operation         Gas           Description
+
+ADD/SUB           3             Arithmetic operation
+MUL/DIV           5             Arithmetic operation
+ADDMOD/MULMOD     8             Arithmetic operation
+AND/OR/XOR        3             Bitwise logic operation
+LT/GT/SLT/SGT/EQ  3             Comparison operation
+POP               2             Stack operation 
+PUSH/DUP/SWAP     3             Stack operation
+MLOAD/MSTORE      3             Memory operation
+JUMP              8             Unconditional jump
+JUMPI             10            Conditional jump
+SLOAD             200           Storage operation
+SSTORE            5,000/20,000  Storage operation
+BALANCE           400           Get balance of an account
+CREATE            32,000        Create a new account using CREATE
+CALL              25,000        Create a new account using CALL
+
+스마트 컨트랙을 설계할 때 어떻게 가스 소모를 줄일 수 있을지 고민해야 함.
+- 납득이 갈 만큼의 수수료가 나가야 유저가 계속 이용.
+
+
+
+[ 가스 소모를 줄여야 하는 상황 ]
+
+1. 컨트랙 배포할 때의 비용
+    - 가스를 소모하지 않는 요소 : 주석, 변수 이름, 타입 이름
+    - 불필요한 코드 정리
+
+        코드 예시) 리턴은 안되면서 가스만 소모하는 코드
+        function useless(uint a) public {
+            if ( a > 10)
+                if ( a+a < 10 ) {
+                    b = 20;
+                }
+        }
+
+2. 컨트랙 내의 함수를 불러올 때의 비용
+    - 가스를 소모하지 않는 요소 : pure, view 제어자가 붙은 함수
+    - 비싼 연산을 최대한 줄이기 : 상태변수를 연산에 자주 이용하는 것을 피하기. 예를 들어 위의 옵코드 중 SSTORE. 스토리지를 쓰는 변수의 상태를 변화시킬 때 쓰이는 옵코드.
+
+        코드 예시)
+        uint total = 0;
+        function expensive () public {
+            for (uint i = 0; i < 10; i ++)
+                total += 2;
+        } // for문을 열번 돌면서 상태변수 total(데이터 저장위치 storage)을 2씩 증가시킨다. 
+          // 업데이트 할 때마다 SSTORE가 쓰이면서 가스비가 소모됨.
+
+        해결 예시) 로컬변수 사용.
+        uint tootal = 0;
+        function optimized () public {
+            uint temp = 0;
+            for(uint i = 0; i < 10; i ++)
+                temp += 2; // 2씩 증가하는 것을 로컬변수 temp가 담당.
+            total += temp; // 마지막에 total 상태변수에 temp를 더해서 한번에 끝냄.
+        } // SSTORE를 열번 쓸 코드를 한번으로 끝냄.
+
+    - 반복문 관련된 패턴 : 반복문 가능한 한 줄이기
+
+        코드 예시)
+        function expensive () public {
+            uint a = 0;
+            uint b = 0;
+            for (uint i = 0; i < 10; i++)
+                a += 2;
+            for (uint j = 0; j < 10; j++)
+                b += 4;
+        }
+
+        해결 예시) for 문을 한번만 써서 끝냄.
+        function optimized () public {
+            uint a = 0;
+            uint b = 0;
+            for (uint i = 0; i < 10; i++){
+                a += 2;
+                b += 4;
+            }
+        }
+
+    - 고정된 크기 bytes 배열 쓰기 : string 대신 bytes32 쓰기
+
+        코드 예시)
+        string stringText = "hello world"; // string은 동적인 크기의 타입
+        bytes32 bytes32Text = "hello world"; // bytes32는 고정된 크기의 배열. 고정된 크기의 타입이 가스비를 아낌. 
+        function bytes32overstring() public {
+            stringText = "my world";
+            bytes32Text = "my world";
+        }
+
+        이더리움 가상머신은 32바이트 문자에 최적화 되어있음. 문자열을 처리할 때 기본적으로 256비트(32바이트)에 맞춰져 있음.
+        string은 32바이트를 넘어갈 때 사용하면 좋음. 32바이트보다 작으면 bytes32를 쓰는게 가스비용 절약.
+        그래서 문자열을 저장할 때 string보다 bytes32를 쓰는게 가스절약 가능.
+
+    
+
+
+
+
+
+
+
+
