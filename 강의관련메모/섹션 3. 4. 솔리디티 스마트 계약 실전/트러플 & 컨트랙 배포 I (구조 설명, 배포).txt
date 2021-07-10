@@ -1,0 +1,41 @@
+트러플(Truffle) 프레임워크
+: 이더리움 스마트 컨트랙을 사용한 분산 어플리케이션 개발에 사용되는 프레임워크
+
+0:20 | 트러플 폴더 생성
+
+    mkdir -p truffle : 폴더 생성
+    truffle init : 해당 루트에서 프로젝트 초기화. 
+
+
+1:00 | 생성된 요소 설명
+
+    contracts 폴더 - 솔리디티 컨트랙을 보관하는 곳.
+            L Migrations.sol - 이 컨트랙은 컨트랙을 배포할 때 'migrations' 폴더의 스크립트들을 실행. 배포할 때 굉장히 중요.
+
+    migrations 폴더
+            L 스크립트 파일 - 배포하는 과정에 쓰이는 로직이 담겨있음. 1이라는 접두사는 순서를 말함. 다른 스크립트를 생성해도 파일명에 순서대로 번호를 접두사로 붙여야 함.
+                           배포 시 접두사로 붙여진 숫자를 보면서 순차적으로 실행. 
+                           스크립트 파일은 Migration.sol 을 노드에 배포하는 역할을 수행.
+
+    test 폴더 - test 폴더의 파일들은 컨트랙을 테스트하는데 사용됨. 초기엔 비어있음.
+
+    truffle.js(운영체제 차이인지 강의에만 나옴) - 환경설정을 담당. 어느 네트워크에 배포할 지 정의.
+
+    truffle-config.js - truffle.js 파일과 똑같은 파일. 생성된 이유는 윈도우의 cmd에서 truffle.js 를 제대로 인식하지 못해서 충돌을 일으킬 수 있음. 
+                        이 cmd의 인식문제로 truffle.js의 이름을 재변경해서 truffle-config.js로 만듬. cmd에서만 문제가 있고 파워쉘에서는 문제 없음.
+
+
+3:30 | 새로운 컨트랙 파일 생성
+
+    constracts 폴더에 파일 생성(MyContract.sol)
+    파일에 내용 작성.
+
+4:00 | migration 폴더 내부에 새로운 script 파일 추가
+
+    2_deploy_contracts.js -> 이 파일 내부에 MyContract 파일을 불러오고, 노드에 배포하는 로직 작성.
+    1_initial_migration.js 파일과 거의 내용 동일. 복붙 후 일부만 변경.
+
+
+
+    
+
