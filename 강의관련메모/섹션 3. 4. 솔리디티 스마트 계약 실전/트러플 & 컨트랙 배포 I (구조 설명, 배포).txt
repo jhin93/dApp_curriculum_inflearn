@@ -32,10 +32,114 @@
 
 4:00 | migration 폴더 내부에 새로운 script 파일 추가
 
-    2_deploy_contracts.js -> 이 파일 내부에 MyContract 파일을 불러오고, 노드에 배포하는 로직 작성.
-    1_initial_migration.js 파일과 거의 내용 동일. 복붙 후 일부만 변경.
+    2_deploy_contracts.js -> 이 파일 내부에 MyContract 파일을 불러오고, 노드에 배포하는 로직 작성. 1_initial_migration.js 파일과 거의 내용 동일. 복붙 후 일부만 변경.
+    deployer -> 트러플에서 제공. MyContract을 넘겨서 이더리움 가상머신에 배포하는 것.
 
+5:35 | MyContract 배포. 'truffle develop'
 
+    터미널 상에서 truffle을 초기화한 폴더에서 'truffle develop' 입력.
 
+    truffle develop : 트러플 내부에서 이더리움 노드를 실행. 테스트 계정 10개를 생성.
+    위쪽에 노드의 http 엔드포인트(http://127.0.0.1:9545/)가 출력.
+
+    아래쪽에 트러플 자바스크립트 콘솔 생성.
+
+6:25 | 현재 트러플에서 돌고 있는 노드의 로그 상태를 보는 커맨드 실행. 'truffle develop --log'
+
+    터미널 상에서 truffle을 초기화한 폴더에서 'truffle develop --log' 입력.
+
+    truffle develop --log : 현재 실행중인 트러플 내부의 노드에 연결.
+    연결된 상태 ex) Connected to existing Truffle Develop session at http://127.0.0.1:9545/
+
+    아까 전 트러플 자바스크립트 콘솔창에서 'migrate' 실행.
+
+        오류발생 : 
+        truffle(develop)> migrate
+
+        Compiling your contracts...
+        ===========================
+        > Compiling ./contracts/Migrations.sol
+        > Compiling ./contracts/MyContract.sol
+
+        /Users/kimjinkyung/Desktop/dApp_curriculum_inflearn/Blockchain/truffle/contracts/MyContract.sol:2:1: ParserError: Source file requires different compiler version (current compiler is 0.5.16+commit.9c3226ce.Emscripten.clang - note that nightly builds are considered to be strictly less than the released version
+        pragma solidity ^0.7.0;
+        ^---------------------^
+
+        Error: Truffle is currently using solc 0.5.16, but one or more of your contracts specify "pragma solidity ^0.7.0".
+        Please update your truffle config or pragma statement(s).
+        (See https://trufflesuite.com/docs/truffle/reference/configuration#compiler-configuration for information on
+        configuring Truffle to use a specific solc compiler version.)
+
+        Compilation failed. See above.
+        
+        원인 : 컴파일러 버전과 컨트랙트 버전이 달라서 생긴 오류로 추정.
+        해결 : MyContract.sol의 버전을 Migration.sol의 버전과 동일하게 맞춤. 
+        // SPDX-License-Identifier: MIT
+        pragma solidity >=0.4.22 <0.9.0;
+
+    migrate가 제대로 실행되면, 트러플 이더리움 노드에 2개의 컨트랙을 배포한 것.
+
+    내용 : 
+    1_initial_migration.js 이 스크립트 파일을 실행해서 Mirgration 컨트랙을 배포.
+    2_deploy_contracts.js 이 스크립트 파일을 실행해서 MyContract를 노드에 배포.
+
+    contract address : 네트워크의 어느 주소로 배포되었는 지 알려주는 주소.
+
+8:45 | 'migrate' 실행 후 노드의 로그 상태
+
+    총 4개의 트랜잭션이 로그에 나타남.
+    그 중 1,3번째 트랜잭션의 'Transaction:...'에 찍힌 값은 첫번째, 두번째 트랜잭션 해시값과 동일하다.
+
+    그럼 2,4번째 트랜잭션은 어디서 온 것일까? 
+    바로 트러플 내부에서 Migration.sol 파일의 'uint public last_completed_migration;' 변수를 업데이트하기 위해 쓰인 트랜잭션이다.
+    콘솔에 migrate 커맨드를 실행하면서 2개의 스크립트를 실행. 그 결과, last_completed_migration 변수의 값이 2로 업데이트 됨.
     
+    이 필드가 2로 업데이트됐기 때문에 나중에 migrate 커맨드 실행시켜도 기존의 컨트랙을 재배포하지 않음. 가스비용 절감, 기존의 컨트랙을 다른 주소에 다시 배포하는 것을 방지한다.
+    재실행하면 다음과 같이 뜬다.
+        truffle(develop)>  migrate
+
+        Compiling your contracts...
+        ===========================
+        > Everything is up to date, there is nothing to compile.
+
+        Network up to date.
+
+    last_completed_migration 의 현재값이 2라서 앞의 두 스크립트 파일을 스킵.
+
+    만약 이후 다른 컨트랙을 추가하고 배포하면, 앞서 배포한 컨트랙들은 스킵하고 새로 추가한 컨트랙만 노드에 배포.
+    만약 어떤 사유로 기존의 컨트랙 파일을 수정한다면, 다시 배포해야 함. 
+    ※ 참고 : 기존에 배포된 컨트랙 주소로는 다시 배포할 수 없음. 블록체인은 수정이 불가능함. 한번 그 주소에 배포된 스마트 컨트랙은 수정이 불가능. 아예 새로운 주소로 배포해야 함.
+            이런 이유로 메인넷에 배포하기 전에는 되도록 완벽한 테스팅을 통해 재배포하지 않도록 해야 함.
+
+    개발 과정에서 컨트랙을 수정하게 될텐데, 그럴 때 사용하는 커맨드가 'migrate --compile-all --reset'
+
+12:00 | 'migrate --compile-all --reset'
+
+    -all : 모든 컨트랙을 재 컴파일시킴.
+    --reset : migrations 폴더 안의 스크립트들을 강제적으로 다시 실행.
+
+    이 커맨드를 실행했을 때, 결과적으로는 새로운 주소에 재 컴파일된 컨트랙이 네트워크에 배포됨.
+    migrate 커맨드를 쓰면 컴파일되면서 'bulid'라는 폴더가 새로 생성됨.
+    build 폴더 내부에 contracts라는 폴더가 생성되고, 새로운 json 파일들이 생성됨.
+
+    이 파일들을 'artifact'라고 함.
+    각각의 artifact 파일은 해당 컨트랙의 abi 정보와 컨트랙과 관련된 모든 정보들을 담고 있다.
+    abi(application binary interface) : 컨트랙에서 쓰는 함수들과 변수들이 json 형식으로 나타나있음.
+
+    블록체인에 컨트랙을 배포했을 때 그 컨트랙에 있는 함수들을 호출하고, 데이터가 예상했던 형식으로 리턴될 수 있도록 보장.
+    컨트랙과 상호작용할 수 있는 방법을 정의한 곳임.
+
+    맨 아래쪽에 'networks'라는 필드가 있음. 
+    "5777"(로컬 5557) : 트러플 develop에서 생성한 네트워크 아이디.
+    "address" : 해당 컨트랙이 현재 트러플 노드 내부에서 배포된 주소.
+    
+
+
+
+
+
+
+
+
+
 
