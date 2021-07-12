@@ -23,10 +23,16 @@ https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html
 트랜잭션 해시란? 해당 트랜잭션의 고유 ID
 https://brunch.co.kr/@nujabes403/15
 
+Dapp과 Solidity 개발 환경 개요(geth는 가나슈가 대체, solc, EVM)
+https://noooop.tistory.com/entry/Solidity-%EA%B0%9C%EB%B0%9C-Dapp%EA%B3%BC-Solidity-%EA%B0%9C%EC%9A%94
+
 ※ 오류해결
 - geth 파라미터 오류해결
     * 'Geth로 프라이빗 노드 구축 II (노드 첫 실행, DAG 파일 생성)' 강의 메모 확인
     * --unlock -> --allow-insecure-unlock
     업데이트됨. --unlock 'value' 대신 --allow-insecure-unlock
-    https://www.inflearn.com/questions/13215 , https://github.com/ethereum/go-ethereum/pull/17037              
+    https://www.inflearn.com/questions/13215 , https://github.com/ethereum/go-ethereum/pull/17037         
+
+- 트러플 5.0.0 에서의 web3 사용 
+https://medium.com/rayonprotocol/web3-js-%EB%B2%84%EC%A0%84-1-0-0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-98b427d3d819
     

@@ -1,0 +1,31 @@
+0:10 | web3 api 사용 (강의 내용은 트러플 버전은 4이고 현재 트러플 버전은 5라서 명령어에 차이가 있음. 커뮤니티에서 '트러플' 검색)
+
+    web3.eth.getAccounts() : 테스팅 계정들을 확인할 수 있음. 강의 화면과 다름. https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#getaccounts
+    web3.eth.getCoinbase() : 보상받는 첫번째 계정 호출. ex) '0xed1e548f5b9a7ce5323ef3ef260c727626c773fd'
+    web3.eth.getBalance() : 해당 계정의 잔액확인. ex) web3.eth.getBalance('0xed1e548f5b9a7ce5323ef3ef260c727626c773fd') - '99998766606000000000'
+    web3.utils.fromWei('수', 단위) : 바꾸려는 수를 넣고 뒤에 목표단위를 넣으면 목표단위로 수를 환산해준다. ex) web3.utils.fromWei('1', 'ether'); -> "0.000000000000000001"
+
+    커뮤니티에서 질문에 달린 답글로는 web3.utils.fromWei(await web3.eth.getBalance(await web3.eth.getCoinbase()), 'ether') // https://www.inflearn.com/course/blockchain-%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-dapp/lecture/13329?tab=community&mm=close&q=11873
+    -> 이렇게 입력하여 해결하라는데 다음과 같은 에러만 나옴. 에러 : Uncaught SyntaxError: missing ) after argument list
+
+    그래서 위 메소드들을 각자 따로 써서 환산값을 구하면 나오기는 함.
+
+    2번째 계정 얻는 법 
+    web3.eth.getAccounts().then(function(acc){accounts=acc;}); 입력 후 accounts[1]; 입력.
+
+2:25 | 트러플 노드에 배포했던 MyContract 불러오기, 내부 함수 사용.
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
