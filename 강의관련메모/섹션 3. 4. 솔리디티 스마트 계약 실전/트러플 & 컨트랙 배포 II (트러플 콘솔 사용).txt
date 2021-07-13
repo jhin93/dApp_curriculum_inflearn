@@ -11,12 +11,18 @@
     그래서 위 메소드들을 각자 따로 써서 환산값을 구하면 나오기는 함.
 
     2번째 계정 얻는 법 
-    web3.eth.getAccounts().then(function(acc){accounts=acc;}); 입력 후 accounts[1]; 입력.
+    1. web3.eth.getAccounts().then(function(acc){accounts=acc;}); // 함수 실행 후(web3.eth.getAccounts()) 그 결과(배열 형태의 계정 10개)를 accounts 변수에 담는다.
+    2. accounts[1];
 
 2:25 | 트러플 노드에 배포했던 MyContract 불러오기, 내부 함수 사용.
 
-    
+    1. 전역변수에 MyContract의 인스턴스를 저장
+        MyContract.deployed().then(function(instance){ app = instance; })
+        MyContract을 배포(deployed())하고 나서 .then 함수 실행.
+        트러플로부터 MyContract의 인스턴스를 콜백으로 받게 됨. 이 인스턴스를 전역변수 app에 저장.
 
+    오류발생 : Uncaught ReferenceError: MyContract is not defined
+    해결시도 : https://ethereum.stackexchange.com/questions/45305/truffle-develop-get-new-contract-instance-from-contract-address/45405
 
 
 
