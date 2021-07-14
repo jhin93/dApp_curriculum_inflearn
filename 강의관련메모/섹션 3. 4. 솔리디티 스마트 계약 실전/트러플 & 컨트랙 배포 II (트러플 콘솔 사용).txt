@@ -24,6 +24,11 @@
     오류발생 : Uncaught ReferenceError: MyContract is not defined
     해결시도 : https://ethereum.stackexchange.com/questions/45305/truffle-develop-get-new-contract-instance-from-contract-address/45405
 
+-------------------------------------------- 
+
+버전 차이로 시간을 너무 많이 소모(오류 많이 발생). 
+트러플 콘솔 강의는 넘어가고 여기서 트러플 튜토리얼 따라감. https://www.youtube.com/watch?v=ZaqAwOzEiQ8&list=LL&index=2 
+
 
 
 
