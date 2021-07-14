@@ -86,7 +86,7 @@ truffle migrate : truffle develop 실행 후 입력. 로컬 인스턴스에 연�
 
 
 
-14:00 | 트러플 콘솔 사용(컨트랙 내 함수 사용)
+14:00 | 트러플 콘솔 사용(컨트랙 내 함수 호출,사용)
 
 먼저, 우리의 컨트랙을 나타내는 자바스크립트 객체인 컨트랙 인스턴스를 가져와야 한다.
 
@@ -94,8 +94,10 @@ truffle migrate : truffle develop 실행 후 입력. 로컬 인스턴스에 연�
 ex)
 let instance = await Helloworld.deployed()
 
-2. instance.함수이름()
-Ex) instance.hello()
+2. instance.함수이름
+Ex) 
+instance.setStudent - 함수호출. 인자가 필요한 경우도 있음
+instance.hello() - 함수사용
 
 
 

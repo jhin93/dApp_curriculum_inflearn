@@ -29,7 +29,56 @@
 버전 차이로 시간을 너무 많이 소모(오류 많이 발생). 
 트러플 콘솔 강의는 넘어가고 여기서 트러플 튜토리얼 따라감. https://www.youtube.com/watch?v=ZaqAwOzEiQ8&list=LL&index=2 
 
+해결 : 
+먼저, 우리의 컨트랙을 나타내는 자바스크립트 객체인 컨트랙 인스턴스를 가져와야 한다.
 
+1. let 변수 = await 컨트랙이름.deployed()
+ex)
+let instance = await Helloworld.deployed()
+
+2. 변수.함수이름
+Ex) 
+instance.setStudent - 함수호출. 인자가 필요한 경우도 있음
+instance.hello() - 함수사용
+
+-------------------------------------------- 
+
+4:15 | setStudentInfo를 통해 노드에 학생 정보를 입력
+    파라미터 4개(아이디, 이름, 성별, 나이) + 추가 파라미터(두번째 계정)
+    추가 파라미터는 트러플 내부에서 인식하는 파라미터. setStudentInfo 함수를 쓸 때, 어느 계정(두번째 계정)으로 불러와서 쓰는 건지 명시해주어야 함.
+    app.setStudentInfo(1111, "sejong", "male", 7, {from: web3.eth.accounts[1]})
+
+    오류발생 : Uncaught Error: The send transactions "from" field must be defined!
+    해결 : https://ethereum.stackexchange.com/questions/62803/the-send-transactions-from-field-must-be-defined
+    web3.eth.accounts[1]를 accounts로만 사용하니까 가능했다.
+    
+    콘솔에 accounts를 치니까 계정 리스트가 나왔다. web3.eth.getAccounts()와 동일한 결과를 출력한 것.
+    accounts 라는 변수를 선언하고 거기에 계정을 담은 기억이 없는데 아마 버전이 업데이트 되면서 사용이 편해진 듯 싶다.
+
+
+5:35 | 두번째 계정으로 노드에 정보를 입력한 뒤(setStudentInfo), 두번째 계정의 잔액이 얼마나 남았는가
+
+    1. web3.eth.getBalance(accounts[1]) // '99999828640000000000'
+    2. web3.utils.fromWei('99999828640000000000', 'ether')
+    
+
+6:06 | setStudentInfo를 통해 입력한 정보 불러오기.
+
+    getStudentInfo 함수 사용.
+    app.getStudentInfo(1111)
+    // 결과
+    Result {
+        '0': 'sejong',
+        '1': 'male',
+        '2': BN {
+                negative: 0,
+                words: [ 7, <1 empty item> ],
+                length: 1,
+                red: null
+            }
+    }
+
+    getStudentInfo 함수는 view 타입이라 트랜잭션을 생성하지도, 가스비를 지불하지도 않는다.
 
 
 

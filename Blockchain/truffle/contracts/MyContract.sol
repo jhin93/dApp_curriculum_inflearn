@@ -10,7 +10,7 @@ contract Mycontract {
 
     mapping(uint256 => Student) studentInfo;
 
-    function setStudent(uint _studentId, string memory _name, string memory _gender, uint _age) public {
+    function setStudentInfo(uint _studentId, string memory _name, string memory _gender, uint _age) public {
         Student storage student = studentInfo[_studentId];
         student.studentName = _name;
         student.gender = _gender;
