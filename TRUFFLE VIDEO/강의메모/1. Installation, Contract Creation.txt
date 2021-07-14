@@ -1,0 +1,106 @@
+
+
+Truffle Tutorial for Beginners - Installation, Contract Creation (1/4)
+
+https://www.youtube.com/watch?v=ZaqAwOzEiQ8&list=LL&index=2
+
+https://www.trufflesuite.com/truffle - truffle 공식 사이트
+
+
+설치 명령어 : npm install truffle -g
+실행 명령어 : truffle init
+
+
+
+
+
+2:30 트러플을 쓰는 이유
+
+1. 스마트 컨트랙을 로컬에서 컴파일할 수 있음.
+2. 우리 컴퓨터의 로컬 네트워크, 테스트넷, 메인넷에 배포할 수 있음.
+3. 스마트 컨트랙을 테스트 하는데 사용. 배포 전에 단위 테스트를 통해 로직이 원하는 방식대로 움직이는 지 알 수 있음. 
+
+
+
+
+
+5:40 Migrations.sol
+
+트러플이 마지막 migration을 추적하기 위해 표준으로 만들어 주는 컨트랙. 
+전체 생태계에서 마지막 migration을 추적하고 계속 추가적으로 배포할 수 있게 돕느다.
+
+
+
+
+
+8:20 | 컨트랙 compile
+
+truffle compile : 컨트랙을 실행하고 모든 코드가 제대로 작동하는 지 확인한다.
+
+오류발생 : 컴파일러 버전과 컨트랙 버전이 달라서 충돌 발생.
+해결시도 : truffle-config.js에서   compilers: -> solc: -> version: 를 찾은 다음, 버전을 바꾼다. 이후 다시 truffle compile을 시도하니 아래와 같은 오류 다시 생성.
+
+Error: Error: Could not find a compiler version matching 0.9.0. Please ensure you are specifying a valid version, constraint or build in the truffle config. Run `truffle compile --list` to see available versions.
+
+truffle compile --list 를 입력해서 현재 입력된 버전이 사용가능한 버전 중 하나인 지 확인한다.
+아니라면 가능한 버전 중 하나를 골라서 컨트랙과 컴파일러 둘다 입력해준다 ex) 컨트랙 - pragma solidity 0.8.4; 컴파일러 - version: "0.8.4",
+
+그리고 다시 truffle compile을 해주면, 자동으로 내가 특정한 버전을 fetch 해온다.
+
+
+
+
+
+9:50 | build
+
+컨트랙을 compile하면 build가 되고 json 파일이 생성됨. 
+이 안에 트러플이 우리의 컨트랙을 이더리움 블록체인에 배포하기 위한 모든 코드가 있음.
+
+
+
+
+
+11:10 | Migrations
+파일 이름 앞에 번호를 매겨야 한다. 그래야 트러플이 순서대로 배포함.
+
+
+
+
+11:40 | artifacts.require("");
+.require("")에 들어가는 것은 '파일이름.sol' 의 '파일이름'이 아니라, 해당 파일 내부에 명명된 컨트랙의 이름이다. ex) contract Helloworld{ 의 "Helloworld"
+
+
+
+
+
+12:15 | truffle develop, truffle migrate
+
+그냥 실행하면 우리의 이더리움 가상머신(그냥 우리 컴퓨터)에 배포한다. 한마디로 로컬에만. 누구나 쓸 수 있는 블록체인이 아니라. 테스트하기에 적합하다.
+
+truffle develop : 우리에게 제공할 로컬 이더리움 노드를 시작한다. 몇개의 계정 주소와 몇개의 개인 키. 개발용이므로 실제 자금은 없음.
+
+truffle migrate : truffle develop 실행 후 입력. 로컬 인스턴스에 연결 후 계약을 배포함.
+배포되고 나면 상호작용하고 테스트할 준비가 된 것.
+
+
+
+
+
+14:00 | 트러플 콘솔 사용(컨트랙 내 함수 사용)
+
+먼저, 우리의 컨트랙을 나타내는 자바스크립트 객체인 컨트랙 인스턴스를 가져와야 한다.
+
+1. let instance = await 컨트랙이름.deployed()
+ex)
+let instance = await Helloworld.deployed()
+
+2. instance.함수이름()
+Ex) instance.hello()
+
+
+
+
+
+
+
+
