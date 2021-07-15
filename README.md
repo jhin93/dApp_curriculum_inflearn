@@ -32,6 +32,9 @@ https://joshua1988.github.io/web-development/javascript/promise-for-beginners/#%
 상태변수 - 개발자가 설정. 어떤 함수의 속한 변수가 아니라 컨트랙트에 속한 변수의 의미. contract의 최상위단에 선언된 변수. https://steemit.com/kr/@etainclub/solidity-3
 전역변수 - msg 같은 개념. https://solidity-kr.readthedocs.io/ko/latest/introduction-to-smart-contracts.html
 
+테스트란?
+https://ui.toast.com/fe-guide/ko_TEST
+
 ※ 오류해결
 - geth 파라미터 오류해결
     * 'Geth로 프라이빗 노드 구축 II (노드 첫 실행, DAG 파일 생성)' 강의 메모 확인
