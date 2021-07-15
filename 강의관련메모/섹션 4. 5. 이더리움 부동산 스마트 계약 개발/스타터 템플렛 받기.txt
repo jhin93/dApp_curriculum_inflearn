@@ -1,0 +1,22 @@
+
+0:28 | 초기 환경설정
+
+    truffle init - dApp개발에 기본적인 환경 구축.
+    bootstrap, jquery 처럼 웹 개발에 쓰이는 것들이 truffle init과 함게 미리 추가되어 있다면?
+
+    dApp개발에 정형화된 표준 템플릿.
+    'TRUFFLE BOXES'.
+
+    명령어 : truffle unbox kkagill/real-estate-starter
+    오류발생 : 강좌 도중 truffle unbox kkagill/real-estate-starter를 실행했을 때 트러플의 유지보수 실패로 인해 다운이 되지 않음.
+    해결 : 아래 링크를 통해 프로젝트를 다운받고 진행하시기 바랍니다. 
+
+    
+
+
+
+
+
+
+
+
