@@ -1,3 +1,4 @@
+스타터 템플렛 받기 
 
 0:28 | 초기 환경설정
 
@@ -11,7 +12,16 @@
     오류발생 : 강좌 도중 truffle unbox kkagill/real-estate-starter를 실행했을 때 트러플의 유지보수 실패로 인해 다운이 되지 않음.
     해결 : 아래 링크를 통해 프로젝트를 다운받고 진행하시기 바랍니다. 
 
-    
+2:30 | 구조
+
+    src 폴더에 dApp의 프론트엔드를 담당하는 구조 설정.
+    truffle-contract.js, web3.min.js : 노드와 소통하기 위한 필수적인 파일.
+    index.html : 보여지는 뷰 담당.
+    real-estate.json : 10개의 매물 추가돼있음. 각각 5개의 필드로 구성. 이 데이터를 통해 유저들에게 리스트로 보여줌.
+
+    bs-config.json : dApp을 돌릴 때 lite-server를 사용해서 돌린다 함. 그때 필요한 파일
+    package.json : lite-server를 설치하고 기타 노드 모듈을 npm을 통해 설치할 때 필요한 파일.
+    truffle.js : 환경설정을 담당하는 스크립트 파일.
 
 
 
