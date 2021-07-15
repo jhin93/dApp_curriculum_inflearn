@@ -1,0 +1,74 @@
+컨트랙 소유자 설정.
+
+0:10 | 생성자 생성
+
+    RealEstate 컨트랙에 생성자 생성.
+    생성자의 역할이 보통 그 클래스의 멤버필드를 초기화 하는데 사용됨.
+    솔리디티의 생성자 역시 마찬가지.
+    하지만 다른 언어와 다르게 배포할 때 단 한번만 실행됨. 그 이후론 호출할 수 없음. 이 이점을 살려 컨트랙의 소유자를 설정할 수 있음.
+
+    배포할 때 사용된 계정이 컨트랙의 소유자가 될 수 있게 설정하는 것.
+
+    address public owner;
+    * 참고 : 상태변수에 public을 붙이면 자동적으로 getter함수가 생성됨.
+
+    생성자 생성
+    constructor() {
+        owner = msg.sender;
+    }
+    컨트랙을 배포할 때 어떤 계정을 통해서 배포. 배포하는 단계에서 생성자가 호출. 
+    msg.sender : 현재 사용하는 계정으로 해당 컨트랙 안의 생성자나 함수를 불러오는 것. 값은 주소형.
+    msg.sender를 owner 상태변수에 대입. 그렇게 함으로써 '이 컨트랙의 주인은 배포하는데 쓰이는 현재 계정이다' 라고 선언.
+
+    가나슈를 실행하고 만든 컨트랙을 배포.
+    그리고 owner 변수에 계정 주소가 잘 저장이 됐는지 확인.
+
+    truffle migrate --network ganache 실행.
+
+    아니 위 명령어가 실행이 안되서 에러를 살펴보니까
+    project:/contracts/Migrations.sol:8:3: SyntaxError: No visibility specified. Did you intend to add "public"?
+    
+    이렇게 써있길래 public 넣고 실행했는데 경고 떠가지고 찾아보니까 
+    https://docs.soliditylang.org/en/v0.7.0/070-breaking-changes.html#functions-and-events
+    
+    더이상 constructor에 public / external 안쓴다 그러고 뭐 어쩌라는 건지..
+
+    암튼 첫번째 계정으로 배포됨.
+
+2:55 | truffle 콘솔로 들어감
+
+    truffle console --network ganache
+
+    RealEstate 인스턴스를 변수에 대입.
+    let app = await RealEstate.deployed
+
+    app 변수로 배포된 컨트랙의 소유자가 누구인지 확인함.
+    app.owner.call()
+    상태변수 owner의 값을 볼 수 있음.
+    '0x20BB5789f444e47a88c366f0bfE41EcB3c75BD4C'
+
+    가나슈의 첫번째 계정(0x20BB5789f444e47a88c366f0bfE41EcB3c75BD4C) 과 동일.
+    배포에 사용된 계정이 컨트랙의 소유자가 됨.
+
+    앞으로 owner 변수를 
+    누군가 매물을 매입했을 때 매입가를 owner의 계정으로 송금.
+
+    가나슈의 첫번째 계정으로 배포 -> 그 계정으로 RealEstate 컨트랙의 생성자로 호출 -> owner를 가나슈의 첫 계정으로 설정.
+
+    * 내가 사용하고자 하는 계정으로 컨트랙의 소유자를 바꿀 수 있다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
