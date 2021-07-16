@@ -8,7 +8,7 @@ contract('RealEstate', function(accounts) {
             realEstateInstance = instance;
             return realEstateInstance.owner.call();
         }).then(function(owner){
-            assert.equal(owner.toUpperCase(), accounts[1].toUpperCase(), "owner가 가나슈 첫번째 계정과 동일하지 않습니다.");
+            assert.equal(owner.toUpperCase(), accounts[0].toUpperCase(), "owner가 가나슈 첫번째 계정과 동일하지 않습니다.");
         });
     });
 });

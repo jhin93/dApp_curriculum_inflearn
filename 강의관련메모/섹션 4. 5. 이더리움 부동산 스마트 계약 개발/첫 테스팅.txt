@@ -21,7 +21,7 @@
     3.RealEstate를 저장할 변수 선언.
     var realEstateInstance;
 
-    4. It을 통해 무슨 내용의 테스팅을 진행할 건지 정의.
+    4. it을 통해 무슨 내용의 테스팅을 진행할 건지 정의.
     it("컨트랙의 소유자 초기화 테스팅", function() {
         
     });

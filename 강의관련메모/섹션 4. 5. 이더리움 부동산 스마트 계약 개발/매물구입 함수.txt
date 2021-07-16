@@ -1,0 +1,75 @@
+
+0:00 | 매물구입 함수 작성
+
+    RealEstate.sol 에서 생성자(constructor) 아래쪽에 함수 생성. 매개변수는 3개.
+    매물의 아이디 (uint _id), 매입자의 아이디(byte32 _name), 매입자의 나이(uint _age)
+    가시성은 public, 타입 제어자는 payable.
+    payable - 함수가 이더를 받아야 할 때 사용. 매입자가 매입을 했을 때, 메타마스크가 뜨고 매입가, 즉 이더를 이 함수로 보내는 것.
+
+    _함수 내용 구성.
+
+    1. 유효성 체크
+    require(_id >= 0 && _id <= 9);
+
+    매물이 총 10개이고 아이디가 0부터 시작. 따라서 매물의 아이디는 0부터 9 사이여야 함.
+
+
+    2. address 타입의 고정 배열을 상태변수로 선언.
+    buyers[_id] = msg.sender;
+
+    매물이 10개니까 10명만 살 수 있는 걸로 해서 10으로 고정. 매입자의 계정 주소를 저장함.
+    지금 매물을 구입하고 있는 현재 계정(msg.sender)을 배열에 저장. 
+    msg.sender가 현재 이 함수를 사용하는 계정.
+    msg.sender를 buyers의 어느 인덱스에 저장. 인덱스는 바로 인자로 받은 매물의 아이디를 사용. 배열은 0부터 시작.
+    ex) 매물 아이디 2를 매입하면 buyers 배열 3번째 위치에 매입자의 계정 주소가 저장됨. 
+    나중에 이 정보를 활용해서 팔린 매물은 매입을 못하게 막을 것.
+
+
+    3. 매입자의 정보를 저장.
+
+    매개변수로 받은 매입자의 계정주소, 이름, 나이를 struct에 저장. 나중에 프론트엔드에서 매입자 정보를 볼 때 데이터를 불러올 것.
+    struct Buyer {
+        address buyerAddress;
+        bytes32 name;
+        uint age;
+    }
+
+    상태변수로 매핑을 하나 선언. 매물의 아이디를 키값으로 하면 밸류값으로 매입자의 정보(struct Buyer)를 불러오는 구조.
+    mapping (uint => Buyer) public buyerInfo;
+
+    매개변수로 받은 매물의 아이디 매핑의 키값으로 하고, 밸류값으로 Buyer 타입 대입.
+    buyerInfo[_id] = Buyer(msg.sender, _name, _age);
+
+    4. 매입가를 owner 주소로 송금.
+    owner.transfer(msg.value);
+
+    이더를 계정에서 계정으로 이동할 때 transfer 함수를 씀. msg.value는 이 함수로 넘어온 이더를 말함.
+    * 참고 : msg.value는 wei만 허용. 프론트엔드에서 이더를 미리 wei로 변환시켜야 함.
+
+6:20 | 트러플 콘솔에서 만든 함수를 실행.
+
+    명령어 : truffle migrate --compile-all --reset --network ganache
+    실행해서 컨트랙을 재컴파일시키고, 가나슈에 재배포함.
+
+    트러플 콘솔 염
+    명령어 : truffle console --network ganache
+
+    인스턴스를 변수에 저장.
+    let app = await RealEstate.deployed()
+
+    방금 만든 buyRealEstate 함수에 데이터 전송.
+    app.buyRealEstate(0, "sejong", 13, {from: accounts[1], value: web3.eth.toWei('1.50', 'ether')})
+    매물 아이디, 이름, 나이,
+    마지막 파라미터는 2가지를 정의 : from - 어느 계정을 통해서 이 함수를 불러오는 건지 정의. 가나슈 두번째 계정을 사용. 
+                              value - 이 함수로 보내는 이더값. 이더값을 보낼 땐 항상 Wei로 변환해서 보내면 됨. 매입가 1.5 ether를 Wei로 바꿔서 보냄.
+
+    오류발생 : web3.toWei is not a function
+    해결시도 : https://www.inflearn.com/questions/7319 실패.
+    이유 : reason: 'invalid arrayify value',
+
+
+
+
+
+
+

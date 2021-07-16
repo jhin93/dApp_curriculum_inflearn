@@ -35,6 +35,13 @@ https://joshua1988.github.io/web-development/javascript/promise-for-beginners/#%
 테스트란?
 https://ui.toast.com/fe-guide/ko_TEST
 
+Mocha란?
+https://heropy.blog/2018/03/16/mocha/
+
+Chai란? (it문에 대한 약간의 설명)
+https://medium.com/sjk5766/mocha-%EC%82%AC%EC%9A%A9%EA%B8%B0-2046b1ec1abd
+
+
 ※ 오류해결
 - geth 파라미터 오류해결
     * 'Geth로 프라이빗 노드 구축 II (노드 첫 실행, DAG 파일 생성)' 강의 메모 확인
@@ -49,5 +56,11 @@ https://medium.com/rayonprotocol/web3-js-%EB%B2%84%EC%A0%84-1-0-0-%EB%B3%80%EA%B
 https://docs.soliditylang.org/en/v0.7.0/070-breaking-changes.html#functions-and-events
 Visibility (public / external) is not needed for constructors anymore:...
 
+- owner.transfer(msg.value); 에서 다음과 같은 오류 발생
+"send" and "transfer" are only available for objects of type "address payable", not "address".
+
+해결 : address public owner; 라고 정의되었던 것을 address payable public owner; 로 바꿈. payable만 추가.
+https://ethereum.stackexchange.com/questions/63618/address-transfer-not-working
+예전엔 address(uint160(owner)).transfer(msg.value); -> 이렇게 해결했었음.
 
     
