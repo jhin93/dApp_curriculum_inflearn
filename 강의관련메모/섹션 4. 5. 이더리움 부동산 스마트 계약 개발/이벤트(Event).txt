@@ -1,0 +1,182 @@
+
+이벤트 추가.
+
+유저가 매물을 매입하면 매입이 완료됐다는 메세지를 생성해서 사람들에게 알려주는 이벤트.
+
+
+
+0:15 | 이벤트 구조 생성
+
+    생성자 위에 이벤트 생성.
+    event LogBuyRealEstate(
+        
+    );
+    * 참고 : 어떤 이벤트가 생성됐을 때, 그 이벤트도 블록 안에 저장됨. 그래서 이벤트 이름을 Log(기록)를 붙임.
+
+    프론트엔드에서 매입자가 매입을 하면, 완료 메세지로 '어떤 계정에서 몇번 매물을 매입했습니다'라고 보여줌.
+    메시지를 보여주기 위해서는 해당 매입자의 계정 주소와 매물의 아이디가 필요.
+
+    이벤트 안에 2개의 속성을 추가.
+    event LogBuyRealEstate(
+        address _buyer,
+        uint _id
+    );
+    사용할 이벤트 구조 완성.
+
+    이 구조를 어디서 사용하는가?
+    완료 메시지를 보여주는 건 owner 계정에 매입가를 송금한 후에 보여줘야 함.
+    그래서 buyRealEstate 함수 맨 아래쪽에 이벤트를 추가.
+    emit LogBuyRealEstate(msg.sender, _id);
+
+    이벤트에 매입자(msg.sender), 매물의 아이디(_id)를 넘겨서 이벤트를 발생시킬 수 있게 함.
+    
+
+2:28 | 콘솔에서 이벤트를 어떻게 발생시키는 지 확인.
+
+    컨트랙을 수정했으니까 재컴파일, 재배포 해야 됨. 가나슈에 연결된 상태여야 함.
+    migrate --compile-all --reset
+
+    변수 생성.
+    let app = await RealEstate.deployed();
+
+    이제 이벤트를 초기화, 이벤트가 생성됐을 때 그걸 계속 감지할 수 있는 코드를 실행
+    app.LogBuyRealEstate({}, {fromBlock:0, toBlock:"latest"}).watch(function(error, event) {console.log(event);})
+    첫번째 파라미터 : 필터. 모든 LogBuyRealEstate 이벤트를 감지( {} ).
+    두번째 파라미터 : 범위. 0번째 블록('0')부터 최근 생성된 블록까지('latest') 감지하게 함.
+
+    오류발생 : Uncaught TypeError: app.LogBuyRealEstate is not a function
+    해결시도 : 재컴파일, 재배포 이후 app이 재정의가 안된 것 같음. 
+    1. 콘솔 나오고(ctrl + c) 다시 접속. truffle console --network ganache
+    2. 가나슈에 재배포. truffle migrate --compile-all --reset --network ganache
+    3. app 초기화 됨. Uncaught ReferenceError: app is not defined
+    4. 변수 app에 컨트랙 대입. let app = await RealEstate.deployed(); 
+     --------------------------------------------------
+    
+    app.LogBuyRealEstate({}, {fromBlock:0, toBlock:"latest"}).watch(function(error, event) {console.log(event);})
+    실패. 원인 : app.LogBuyRealEstate(...).watch is not a function
+
+    해결시도 : app.LogBuyRealEstate({fromBlock:0, toBlock:"latest"}, function(error, event){console.log(event);})
+             https://www.inflearn.com/questions/16202
+    실패. 원인 : Invalid option: toBlock. Use getPastEvents for specific range.
+
+    해결 : app.getPastEvents('LogBuyRealEstate', {filter: {}, fromBlock: 0, toBlock: 'latest'}, function(error, events){ console.log(events);})
+               결과 : []. 뭐야 이건. 과거에 이벤트 발생한 게 없어서 안나오는 거였음.
+               https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#getpastevents
+
+    성공할 시 - 이벤트를 추가했다는 메시지가 나옴. 버전이 업데이트되면서 안나오는 걸 수도 있음
+
+4:55 | 매물을 매입해서 이벤트가 잘 작동하는 지 확인.
+
+    매입하는 명령어
+    app.buyRealEstate(0, "sejong", 13, {from: accounts[1], value: web3.utils.toWei('1.50', 'ether')}) 
+
+    매입이 성공하면 영수증 발행. 영수증 하단에 log 부분이 있음.
+    예전과 다르게 log 부분이 채워짐
+
+    예전 ) $ truffle(ganache)> app.buyRealEstate(0, "sejong", 13, {from: accounts[1], value: web3.utils.toWei('1.50', 'ether')})
+
+    {
+        tx: '0xa344118a24125749c18e05a3934cabd2d0c47ceb2955a4b875f23bcf87bcefeb',
+        receipt: {
+            transactionHash: '0xa344118a24125749c18e05a3934cabd2d0c47ceb2955a4b875f23bcf87bcefeb',
+            transactionIndex: 0,
+            blockHash: '0xe2b8ae80e49a081db050eb5ede99ae4b9d8863bffcbf433ce21824a6c28fce23',
+            blockNumber: 28,
+            from: '0x2dcca9b61e50d79a90a813fcd6a42c3a3ac52e6f',
+            to: '0xd8efcddd4ec55b13ca75cca6fd6352c48ca2a5ea',
+            gasUsed: 113928,
+            cumulativeGasUsed: 113928,
+            contractAddress: null,
+            logs: [],
+            status: true,
+            logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+            rawLogs: []
+        },
+        logs: []               
+    }
+
+    현재 ) $ truffle(ganache)> app.buyRealEstate(0, "sejong", 13, {from: accounts[1], value: web3.utils.toWei('1.50', 'ether')}) 
+
+    {
+        tx: '0x448cbe220919b289bf791a2cf7fd97944f8fa9c24811b97bdddb402c24962534',
+        receipt: {
+            transactionHash: '0x448cbe220919b289bf791a2cf7fd97944f8fa9c24811b97bdddb402c24962534',
+            transactionIndex: 0,
+            blockHash: '0xe62d20190338fdbbf9bb0a8886ab6b6fac539171c7cc492465af8762c2f41b03',
+            blockNumber: 37,
+            from: '0x2dcca9b61e50d79a90a813fcd6a42c3a3ac52e6f',
+            to: '0x8cbd2c85eaef6030d2a5ce77cd49df0e645306ef',
+            gasUsed: 115282,
+            cumulativeGasUsed: 115282,
+            contractAddress: null,
+            logs: [ [Object] ],
+            status: true,
+            logsBloom: '0x00000000000000000000080000000000000000000000000000011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000',
+            rawLogs: [ [Object] ]
+        },
+        logs: [
+            {
+            logIndex: 0,
+            transactionIndex: 0,
+            transactionHash: '0x448cbe220919b289bf791a2cf7fd97944f8fa9c24811b97bdddb402c24962534',
+            blockHash: '0xe62d20190338fdbbf9bb0a8886ab6b6fac539171c7cc492465af8762c2f41b03',
+            blockNumber: 37,
+            address: '0x8CbD2c85eAEF6030D2A5cE77cd49Df0E645306ef',
+            type: 'mined',
+            id: 'log_23524e75',
+            event: 'LogBuyRealEstate',
+            args: [Result]
+            }
+        ]
+    }
+
+    logs 필드에 예전과 다르게  없던 필드들이 생김.
+    트랜잭션을 통해 발산된 이벤트의 모든 정보들을 담고 있음.
+
+    중요한 점은 이 정보들을 블록에 저장함.
+
+    이 시점에서 
+    app.getPastEvents('LogBuyRealEstate', {filter: {}, fromBlock: 0, toBlock: 'latest'}, function(error, events){ console.log(events);})
+    위 명령어를 다시 입력하면 처음처럼 빈 배열이 아닌 다음과 같은 결과를 출력. 매물 한개를 매입한 이후니까.
+    [
+        {
+            logIndex: 0,
+            transactionIndex: 0,
+            transactionHash: '0x448cbe220919b289bf791a2cf7fd97944f8fa9c24811b97bdddb402c24962534',
+            blockHash: '0xe62d20190338fdbbf9bb0a8886ab6b6fac539171c7cc492465af8762c2f41b03',
+            blockNumber: 37,
+            address: '0x8CbD2c85eAEF6030D2A5cE77cd49Df0E645306ef',
+            type: 'mined',
+            id: 'log_23524e75',
+            returnValues: Result {
+            '0': '0x2DcCa9B61E50D79A90a813fcD6a42c3A3Ac52e6f',
+            '1': '0',
+            _buyer: '0x2DcCa9B61E50D79A90a813fcD6a42c3A3Ac52e6f',
+            _id: '0'
+            },
+            event: 'LogBuyRealEstate',
+            signature: '0x0868a2b77ef5243ab424f87952a349bc823a92fd01d9b45d2fec78b8eafb586b',
+            raw: {
+            data: '0x0000000000000000000000002dcca9b61e50d79a90a813fcd6a42c3a3ac52e6f0000000000000000000000000000000000000000000000000000000000000000',
+            topics: [Array]
+            },
+            args: Result {
+            '0': '0x2DcCa9B61E50D79A90a813fcD6a42c3A3Ac52e6f',
+            '1': [BN],
+            __length__: 2,
+            _buyer: '0x2DcCa9B61E50D79A90a813fcD6a42c3A3Ac52e6f',
+            _id: [BN]
+            }
+        }
+    ]
+
+    위 필드중 args를 보면 우리가 LogBuyRealEstate 이벤트에 정의한 두 필드들(매입자의 계정, 매물 아이디의 정보)를 나타내고 있음.
+
+
+    _정리
+    buyRealEstate 함수를 통해 이벤트를 발생시킬 수 있음.
+    발생된 이벤트의 정보가 블록의 'logs' 부분에 저장이 됨.
+    'logs'의 'args' 부분을 통해서 프론트엔드에서 매입자 계정과 매물 아이디를 포함한 완료 메세지를 보여줄 수 있음.
+
+
+

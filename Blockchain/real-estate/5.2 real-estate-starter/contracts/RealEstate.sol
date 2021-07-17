@@ -12,6 +12,11 @@ contract RealEstate {
     address payable public owner;
     address[10] public buyers;
 
+    event LogBuyRealEstate(
+        address _buyer,
+        uint _id
+    );
+
     constructor() public {
         owner = msg.sender;
     }
@@ -22,5 +27,6 @@ contract RealEstate {
         buyerInfo[_id] = Buyer(msg.sender, _name, _age);
 
         owner.transfer(msg.value);
+        emit LogBuyRealEstate(msg.sender, _id);
     }
 }
