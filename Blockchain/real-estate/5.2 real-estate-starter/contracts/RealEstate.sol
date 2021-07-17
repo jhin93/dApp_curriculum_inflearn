@@ -4,7 +4,7 @@ pragma solidity >=0.4.22 <0.9.0;
 contract RealEstate {
     struct Buyer {
         address buyerAddress;
-        bytes32 name;
+        string name;
         uint age;
     }
     
@@ -16,7 +16,7 @@ contract RealEstate {
         owner = msg.sender;
     }
 
-    function buyRealEstate(uint _id, bytes32 _name, uint _age) public payable {
+    function buyRealEstate(uint _id, string memory _name, uint _age) public payable {
         require(_id >= 0 && _id <= 9);
         buyers[_id] = msg.sender;
         buyerInfo[_id] = Buyer(msg.sender, _name, _age);

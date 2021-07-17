@@ -58,14 +58,22 @@
     let app = await RealEstate.deployed()
 
     방금 만든 buyRealEstate 함수에 데이터 전송.
-    app.buyRealEstate(0, "sejong", 13, {from: accounts[1], value: web3.eth.toWei('1.50', 'ether')})
-    매물 아이디, 이름, 나이,
-    마지막 파라미터는 2가지를 정의 : from - 어느 계정을 통해서 이 함수를 불러오는 건지 정의. 가나슈 두번째 계정을 사용. 
-                              value - 이 함수로 보내는 이더값. 이더값을 보낼 땐 항상 Wei로 변환해서 보내면 됨. 매입가 1.5 ether를 Wei로 바꿔서 보냄.
+    app.buyRealEstate(0, "sejong", 13, {from: accounts[1], value: web3.utils.toWei('1.50', 'ether')})
+    
 
     오류발생 : web3.toWei is not a function
-    해결시도 : https://www.inflearn.com/questions/7319 실패.
-    이유 : reason: 'invalid arrayify value',
+    해결시도 : https://www.inflearn.com/questions/7319  
+    해결 : app.buyRealEstate(0, "sejong", 13, {from: accounts[1], value: web3.utils.toWei('1.50', 'ether')}) + name 인자를 bytes32가 아닌 string으로 바꿈.
+
+    1.매물 아이디 2. 이름 3. 나이
+
+    마지막 파라미터는 2가지를 정의 : from - 어느 계정을 통해서 이 함수를 불러오는 건지 정의. 가나슈 두번째 계정을 사용. 
+                              value - 이 함수로 보내는 이더값. 이더값을 보낼 땐 항상 Wei로 변환해서 보내면 됨. 매입가 1.5 ether를 Wei로 바꿔서 보냄.
+    
+    두번째 계정의 깎인 Balance에 1.5 ehter와 사용한 가스비가 포함되어 있다.
+    첫번째 계정의 늘어난 Balance가 많아짐. owner.transfer(msg.value); 가 잘 작동한 것. 1.5 ether가 첫번째 계정으로 잘 송금된 것.
+    
+    
 
 
 
