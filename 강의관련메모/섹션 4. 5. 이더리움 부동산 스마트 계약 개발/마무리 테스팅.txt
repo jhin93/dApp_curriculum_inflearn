@@ -1,0 +1,110 @@
+
+0:00 | 테스트 마무리
+
+    TestRealEstate 파일 오픈.
+
+    매입자 전용 함수, 이벤트, 읽기전용 함수들까지 테스트케이스 하나에 끝낼 수 있음.
+    원래 '소유자 초기화 테스팅' 처럼 나누는 게 맞지만, 하나에 끝내야 할 때도 있음.
+
+    먼저 배포될 때, 콜백으로 instance를 받음.
+    return RealEstate.deployed().then(function(instance){
+        
+    })
+
+    전역변수 realEstateInstance 에 받아온 instance 대입
+    realEstateInstance = instance;
+
+    가나슈 두번째 계정(accounts[1])으로 매물 아이디 0을 매입.
+    return realEstateInstance.buyRealEstate(0, "sejong", 13, {from: accounts[1], value: web3.toWei('1.50', "ehter")});
+    
+    매입이 성공하면 트랜잭션을 통해서 영수증을 받음.
+    .then(function(receipt){
+
+    })
+
+    콜백으로 받은 영수증으로 assertion을 작성할 수 있음.
+    1. 이벤트가 생성이 됐는지 체크.
+    assert.equal(receipt.logs.length, 1) 예상값에 1 을 입력. 이벤트가 생성이 됐을 거라는 뜻. 뒤에는 에러메세지.
+    assert.equal(receipt.logs.length, 1, "이벤트 하나가 생성되지 않았습니다.")
+
+    2. 이벤트가 우리가 만든 LogBuyRealEstate인지 확인. logs 필드 첫번째 인덱스에 event라는 속성을 리턴받을 수 있음.
+    예상값으로 이벤트 이름 "LogBuyRealEstate" 입력. 에러메세지 - "이벤트가 LogBuyRealEstate가 아닙니다."
+    assert.equal(receipt.logs[0].event, "LogBuyRealEstate", "이벤트가 LogBuyRealEstate가 아닙니다.")
+
+    3. LogBuyRealEstate의 두 속성들을 테스트.
+    3-1. 매입자 계정이 가나슈 두번째 계정인지 확인. args의 _buyer리턴. 예상값에 함수실행하는데 쓰인 가나슈 두번째 계정 입력.
+    assert.equal(receipt.logs[0].args._buyer, accounts[1], "매입자가 가나슈 두번째 계정이 아닙니다.");
+
+    3-2. 매물 아이디도 0번인지 확인. 예상값으로 매물 아이디 0 번.
+    assert.equal(receipt.logs[0].args._id, 0, "매물 아이디가 0이 아닙니다.");
+
+
+5:33 | 읽기 전용 함수 getBuyerInfo 함수 테스팅.
+    매물 아이디 0번을 인자로 넘김.
+    return realEstateInstance.getBuyerInfo(0)
+
+    .then을 통해서 리턴되는 데이터를 받음.
+    .then(function(buyerInfo){
+
+    getBuyerInfo에서 3개의 필드를 리턴. 각각의 필드들을 올바르게 리턴하는 지 테스트. 
+    1. 첫번째는 매입자 계정을 리턴받음(upperCase로).
+    예상값으로 가나슈 두번째 계정.
+    assert.equal(buyerInfo[0].toUpperCase(), accounts[1].toUpperCase(), "매입자 계정이 가나슈 두번째 계정과 일치하지 않습니다.");
+
+    2. 리턴된 매입자의 이름을 체크. "sejong"인지 아닌지 확인.
+    assert.equal(buyerInfo[1], "sejong", "매입자의 이름이 sejong이 아닙니다.");
+    *참고 : hex값(bytes32를 256bit로 변환한 값)을 string으로 다시 바꾸는 api - web3.api.Ascii() ex) web3.api.toAscii(buyerInfo[1])
+           hex값 중 0으로 연속되는 뒷부분을 replace로 없애준다. ex) web3.api.Ascii() ex) web3.api.toAscii(buyerInfo[1]).replace(/\0/g, '')
+
+    3. 매입자의 나이를 테스팅
+
+    assert.equal(buyerInfo[2], 13, "매입자의 나이가 13살이 아닙니다.")
+
+    4. getAllBuyers 함수 테스팅.
+    return realEstateInstance.getAllBuyers();
+    
+    })
+
+    .then을 통해서 리턴되는 데이터를 받음. buyers 배열 첫번째 인덱스에 올바른 계정주소가 들어가있는지 확인하는 테스트
+    .then(function(buyers){
+
+    배열 첫번째 인덱스에 있는 계정을 리턴받음(upperCase로).
+    예상값으로 가나슈 두번째 계정을 입력
+    assert.equal(buyers[0].toUpperCase(), accounts[1].toUpperCase(), "buyers 배열 첫번째 인덱스의 계정이 가나슈 두번째 계정과 일치하지 않습니다.");
+
+11:25 | 실제 테스트
+
+    가나슈 실행한 상태에서 truffle test --network ganache 실행.
+
+    테스트 성공 결과
+
+    입력     ➜  5.2 real-estate-starter git:(master) ✗ truffle test --network ganache
+            Using network 'ganache'.
+
+
+            Compiling your contracts...
+            ===========================
+            > Everything is up to date, there is nothing to compile.
+
+
+
+            Contract: RealEstate
+    성공          ✓ 컨트랙의 소유자 초기화 테스팅 (86ms)
+    성공          ✓ 가나슈 두번째 계정으로 매물 아이디 0번을 매입 후, 이벤트 생성 및 매입자 정보와 buyers 배열 테스팅 (666ms)
+
+
+            2 passing (885ms)
+
+            ➜  5.2 real-estate-starter git:(master) ✗ 
+
+
+
+
+
+
+
+
+
+
+
+
