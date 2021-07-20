@@ -44,6 +44,9 @@ https://medium.com/sjk5766/mocha-%EC%82%AC%EC%9A%A9%EA%B8%B0-2046b1ec1abd
 트랜잭션 로그에 이벤트 데이터를 집어넣기 위해선 'emit'키워드를 사용한다. 
 https://has3ong.tistory.com/393
 
+getJSON
+https://api.jquery.com/jquery.getjson/
+
 ※ 오류해결
 - geth 파라미터 오류해결
     * 'Geth로 프라이빗 노드 구축 II (노드 첫 실행, DAG 파일 생성)' 강의 메모 확인

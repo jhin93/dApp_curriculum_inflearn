@@ -1,0 +1,109 @@
+백엔드라 할 수 있는 컨트랙을 만들었으니, 그걸 사용해서 프론트를 만드는 강의
+
+0:10 | 노드 모듈 인스톨
+
+    package.json 내부의 'lite-server'를 설치해야 함.
+    real-estate 루트에서 'npm install' 실행.
+    그럼 노드 모듈 폴더가 생성이 되면서 안에 lite-server를 포함한 기타 댑 실행에 필요한 모듈들이 설치가 됨.
+    설치가 끝나면 node_module 폴더와 그 내부에 여러 모듈이 설치가 됨.
+
+     스타터 템플릿으로 기본 환경설정은 끝냄.
+
+     2가지 파일만 신경쓰면 됨.
+     app.js
+     index.html
+
+     먼저 index.html
+
+1:12 | index.html
+
+    bootstrap과 필요한 js 파일을 미리 추가해놓음. 가운데 매물 리스트가 중요함.
+    매물의 정보를 보여주기 위한 기본 템플릿을 여기에 만듬.
+
+    'container' div 바깥쪽에 만듬(영상보고 타이핑).
+
+    <div id="template" style="display: none;"> - 안보이게 함.
+      <div class="col-sm-6 col-md-4 col-lg-3"> - 스크린 사이즈 별로 볼 수 있게 설정.
+        <div class="panel panel-success panel-realEstate"> - panel추가. panel은 bootstrap에서 제공하는 css 클래스.
+          <div class="panel-heading"> - 헤딩
+            <h3 class="panel-title">매물</h3> - 타이틀
+          </div>
+          <div class="panel-body"> - 바디
+            <img style="width: 100%;" src=""> - 이미지
+            <br/><br/>
+            <strong>아이디</strong>: <span class="id"></span><br/> 
+            <strong>종류</strong>: <span class="type"></span><br/>
+            <strong>면적(㎡)</strong>: <span class="area"></span><br/>
+            <strong>가격(ETH)</strong>: <span class="price"></span><br/>
+            <button class="btn btn-info btn-buy"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#buyModal">
+                    매입
+            </button> - 매입 버튼 클릭시 매입자 정보를 입력하게 하는 모달 열림.
+            <button class="btn btn-info btn-buyerInfo"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#buyerInfoModal"
+                    style="display: none;">
+                    매입자 정보
+            </button> - 매입을 완료하면 매입자 정보를 볼 수 있게 하는 버튼. 클릭 시 모달. 처음엔 안보이게 설정. 매입이 완료되면 보여지게 변경할 것.
+          </div>
+        </div>
+      </div>
+    </div>
+
+4:05 | 템플릿을 활용한 매물 리스트를 보이게 함. app.js
+
+    app.js - 댑을 움직일 엔진.
+    app.js 맨 아래에 댑 실행, 페이지 로드되면 App 안에 'init' 함수를 실행하도록 함수가 작성되어있음.
+    
+    init 함수에 3가지 로직을 작성해서 초기 세팅 진행.
+
+    1. real-estate.json 파일 내부에 있는 각각의 매물 데이터를 불러옴.
+    2. 받은 데이터를 만든 템플릿에 있는 각각의 필드에 알맞게 삽입.
+    3. 매물 리스트 div에 만든 10개의 템플릿을 보여줌.
+
+    1. real-estate.json 파일의 데이터 불러오기
+    jquery의 'getJSON'함수를 사용. $.getJSON(
+    real-estate.json 파일의 경로를 정해야 함. '../real-estate.json',
+    콜백으로 data를 받음 function(data)
+    변수 2개 선언 
+    - id가 'list' 인 div의 정보를 담는 변수
+    - 템플릿(id="template")의 정보를 담는 변수
+
+    for 문으로 받아온 데이터(json 배열)를 하나하나 읽음.
+
+    template.find('img').attr('src', data[i].picture)
+    template 변수에 find 함수로 img 태그를 찾고, src 속성(attr)의 json 배열 각 인덱스에 있는 picture 필드 값을 갖게 하는 것.
+
+
+    template의 id 필드(.id)를 찾아서 json 파일의 id 필드값을 텍스트로 보이게 함.
+    template.find('.id').text(data[i].id);
+
+    나머지도 3 필드도 동일하게 진행.
+    template.find('.id').text(data[i].id);
+    template.find('.type').text(data[i].type);
+    template.find('.area').text(data[i].area);
+    template.find('.price').text(data[i].price);
+
+    'list' 변수에 완성된 템플릿을 추가.
+    list.append(template.html());
+
+    for문이 아이디가 list인 div에 10개의 완성된 템플릿을 볼 수 있게 함.
+
+    for문을 통해 리턴된 json 배열 == 리턴된 data(function(data)의 data)
+
+    json 배열에 있는 데이터를 하나하나씩 불러와서 템플릿에 있는 각각의 필드를 찾아 해당 Json 정보를 담고 
+    마지막 list 변수에 완성된 템플릿을 추가.
+    총 10개의 템플릿이 추가됨.
+
+10:00 | 실행해서 확인
+
+    터미널에서 'npm run dev' 실행. lite-server를 통해 실행시키는 것.
+    홈페이지 뜨면서 렌더링됨.
+
+    기본템플릿 생성 + json 데이터 불러오기 = 템플릿 완성
+    
+
+
