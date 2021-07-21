@@ -1,0 +1,116 @@
+매물구입 함수에 데이터를 보내는 과정.
+
+프론트엔드에서 매물구입 함수(buyRealEstate)로 아이디, 이름, 나이, 매입가를 전달해야 함.
+
+_만들 것.
+매입 버튼을 누르면 이름과 나이를 입력하는 모달을 따로 띄움.
+모달의 제출 버튼 클릭 시, 이름, 나이, 매물 아이디, 매입가를 매물구입 함수로 넘김
+
+
+1:05 | 모달 작성. 
+
+    index.html에서 모달 작성. 
+    https://bootstrapdocs.com/v3.3.6/docs/javascript/#modals - 여기서 모달 예제 가져옴.
+    첫번째 코드 복사
+
+    <div class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+            <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+*   맨 위 div의 id를 'buyModal'로 입력. '매입' 버튼의 data-target 속성의 값과 매칭시켜야 함.
+    그래야 '매입' 버튼 클릭 시 아래 모달 창 띄워짐
+
+    modal-body에는 이름과 나이 인풋을 만듬.
+    <input type="text" class="form-control" id="name" placeholder="이름" /><br/>
+    <input type="number" class="form-control" id="age" placeholder="나이">
+
+    '제출' 버튼에 onclick 추가.
+    클릭시 app.js 파일 안에 있는 'buyRealEstate' 함수를 호출할 수 있게 함.
+  
+    모달 작동하는 지 확인. npm run dev.
+    모달 뜸. 제출 버튼을 누를 시, 해당 매물의 아이디 및 가격 이름 나이를 보내야 함.
+    이름 나이는 그냥 보낼 수 있는데, 매물의 아이디와 가격은 몇가지 스텝이 더 필요.
+
+4:50 | 매물 아이디, 가격 보내기 위한 추가 작성.
+
+    모달에 hidden 타입으로 매물 아이디와 가격 인풋 필드를 작성.
+    <input type="hidden" id="id" /> id는 매물 아이디.
+    <input type="hidden" id="price" /> price 매입가.
+    이 둘에 값들을 저장할 예정.
+
+    app.js의 맨 아래 function이 페이지 로드시 뭘 실행할 지 정하는 공간.
+    매입버튼 클릭 -> 모달 띄워진 상태면, 해당 템플릿의 매물의 아이디와 가격을 찾아와서 hidden 타입의 인풋에 저장할 것.
+    $('#buyModal').on('show.bs.moodal', function(e) {
+        
+    });
+
+*   해당 템플릿에 id 필드를 찾고 (.find('.id')) 그 id 값을 변수에 저장
+    var id = $(e.relatedTarget).parent().find('.id').text();
+
+*   또 가격 필드를 찾아서 그 값을 wei로 변환.
+    var price = web3.toWei($(e.relatedTarget).parent().find('.price').text() || 0, 'ether');
+
+8:00 | 가져온 템플릿의 필드값(id, price)들을 모달의 hidden 타입 input에 대입.
+
+    $(e.currentTarget).find('#id').val(id);
+    $(e.currentTarget).find('#price').val(price);
+    모달에 있는 아이디 속성이 id인 것과, 아이디 속성이 price인 것을 찾아서 각각의 인풋 필드에 매물 아이디와 매입가를 담음.
+
+    이렇게 모달에서 이름, 나이를 입력하고 제출버튼을 클릭하면, 
+    [id, 가격, 나이, 이름] 을 buyRealEstate 함수에서 받을 수 있게 됨.
+
+9:20 | 값이 잘 넘어오는 지 간단한 테스팅
+
+    제출버튼 클릭 -> buyRealEstate로 들어옴.
+    모달에 있는 4개의 인풋 필드 값들을 불러와서 변수에 저장시키고 콘솔로그로 값들을 확인.
+    아이디 가져오기.
+    var id = $('#id').val();
+
+    나머지도 같은 방식
+    var id = $('#id').val();
+    var name = $('#name').val();
+    var price = $('#price').val();
+    var age = $('#age').val();
+
+    console.log(id);
+    console.log(price);
+    console.log(name);
+    console.log(age);
+
+    이더리움 부동산 페이지에서 콘솔창 열고 매입버튼 클릭.
+
+오류 - toWei undefined
+해결 - 가격 필드를 var price = web3.toWei($(e.relatedTarget).parent().find('.price').text() || 0, 'ether');
+      이거로 고쳐서 해결. utils 빼고, parseFloat 뺌 - parseFloat빼서 밸류값이 스트링으로 유지된 것까진 알겠는데 utils는 왜 빼도 되는거지...
+
+      언제는 web3.utils.toWei('1.50', 'ether')}) 가 맞고 언제는 web3.toWei가 맞고 뭐가 맞는거야..
+
+    어쨌건 매입자 정보(매물 아이디, 매입가, 이름, 나이)는 정상출력
+    0
+    1230000000000000000
+    홍길동
+    30
+
+12:05 | 제출버튼을 누르면 이름과 나이가 리셋되도록 작성.
+
+    $('#name').val('');
+    $('#age').val('');
+
+    정리 : 모달에 매물 아이디와 가격을 직접 전달 
+    -> hidden 타입의 인풋 필드에 저장 
+    -> 매입자 이름, 나이를 모달에서 입력 
+    -> 제출버튼 클릭하면 총 4개의 데이터를 매물구입 함수(buyRealEstate)에서 받을 수 있게 만듬.
