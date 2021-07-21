@@ -1,0 +1,73 @@
+0:00 | web3와 컨트랙의 인스턴스 생성.
+
+    js 폴더 내부에 web3.min.js 파일이 있음.
+    이게 이더리움 블록체인과 소통할 수 있게 해주는 라이브러리.
+    트러플 콘솔처럼 프론트엔드에서도 web3 api를 쓸 것.
+
+    web3.min.js - 스마트 컨트랙과 연결할 수 있게 해주는(프론트엔드인 듯) 중요한 파일.
+
+    web3를 댑에서 쓸 수 있도록 인스턴스화 시키는 작업 필요.
+    
+    그 전에 init 함수 마무리. 이후 initWeb3 시작.
+    return App.initWeb3();
+
+1:05 | initWeb3 함수
+
+    initWeb3 함수에서 if문으로 우리 댑에서 web3 인스턴스가 활성화 되었는 지 확인.
+    if(typeof web3 !== 'undefined'){
+
+    web3가 undefined일 때는 브라우저에 메타마스크 설치가 안돼있을 떄를 말함.
+    메타마스크가 깔려있다면 메타마스크의 web3 인스턴스를 브라우저에 미리 주입. 그래서 web3가 undefined가 아니게 됨.
+
+    주입된 web3 인스턴스가 존재하면 
+    web3Provider 전역변수에 그 공급자를 불러오고 
+    App.web3Provider = web3.currentProvider;
+
+    그 공급자의 정보를 바탕으로 다시 우리 댑에서 쓸 수 있는 web3 오브젝트를 만듬.
+    web3 = new Web3(web3.currentProvider);
+
+    만약 주입된 web3 인스턴스가 존재하지 않는다면,
+    else {
+      App.web3Provider = new web3.providers.HttpProvider('http://localhost:8545');
+    }
+    로컬 공급자의 rpc 서버에 연결해서 공급자의 정보를 가져오고(.HttpProvider) web3.providers 변수에 대입.
+
+    담은 공급자의 정보를 가져와서 그걸 바탕으로 새로운 Web3 오브젝트 생성.
+    web3 = new Web3(App.web3Provider);
+
+    rpc 서버를 제공하는 로컬 공급자가 가나슈가 실행되어 있으면 가나슈가 되는 것.
+
+    이렇게 댑에서 쓸수 있는 web3 환경조성 끝.
+    끝나면서 initContract 함수 불러옴.
+    return App.initContract();
+
+    initWeb3 함수를 통해 댑에서 이더리움 블록체인과 소통할 수 있게 됨.
+    initContract 함수에서 우리가 만든 스마트 컨트랙을 인스턴스화 시킴.
+    그래야 web3가 우리 컨트랙을 어디에서 찾아야 하고, 어떻게 작동하는 지 알 수 있음.
+
+    이 작업을 순탄하게 할 수 있도록 트러플에서 라이브러리를 제공(js 폴더의 truffle-contract.js)
+
+5:20 | initContract 작성
+
+    build 폴더의 RealEstate.json 아티팩트 파일(abi 정보와 컨트랙이 배포된 주소를 가지고 있음 트러플&컨트랙 배포 첫번째 강좌)을 불러옴.
+    jquery getJSON 사용.
+    $.getJSON('RealEstate.json', function(data){
+
+    })
+
+    아티팩 파일의 data를 트러플 컨트랙 라이브러리에서 제공하는 TruffleContract에 넘겨서 컨트랙을 인스턴스화 시킴. 
+    App.contracts.RealEstate = TruffleContract(data);
+
+    web3 공급자의 정보를 갖고 있는 전역변수 'web3Provider' 를 사용해서 컨트랙의 공급자를 설정(setProvider).
+    App.contracts.RealEstate.setProvider(App.web3Provider);
+    
+    여기까지가 컨트랙 인스턴스화 과정 완료. 라이브러리로 간소화.
+    
+
+
+
+
+
+
+
+
