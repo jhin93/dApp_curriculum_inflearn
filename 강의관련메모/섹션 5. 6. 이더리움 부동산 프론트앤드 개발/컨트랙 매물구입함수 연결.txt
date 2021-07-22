@@ -1,0 +1,97 @@
+
+0:10 | 4개의 데이터를 컨트랙의 buyRealEstate 함수에 인자로 넘기기
+
+        App.contracts.RealEstate.deployed().then(function(instance){
+        
+        })
+    App.contracts.RealEstate - initContract 함수에서 컨트랙 인스턴슬화한 정보를 전역변수(contracts)에 저장
+    이 변수(contracts)를 기반으로 컨트랙에 접근하는 코드.
+    콜백에서 우리 컨트랙의 인스턴스를 반환받음.
+
+    컨트랙의 매물구입 함수에 데이터 넘기기 전에 매입자 이름을 인코딩 시켜야 함.
+    name에 한글을 입력할 수도 있는데 utf-8을 이용해야 나중에 안깨짐. 그래서 utf8.js를 추가했다고 함.
+    매입자 이름을 다음처럼 인코딩 시켜야 함. 라이브러리 사용
+        var nameUtf8Encoded = utf8.encode(name);
+
+    4개의 데이터를 컨트랙의 buyRealEstate 함수에 인자로 넘기기. 인스턴스의 buyRealEstate 함수 호출.
+        return instance.buyRealEstate(id, nameUtf8Encoded, age)
+    컨트랙의 buyRealEstate 함수가 'payable'이기에 이더값도 넘겨야 함.
+
+    이더값을 보낼 경우
+        return instance.buyRealEstate(id, nameUtf8Encoded, age, { value: price });
+    이렇게 매입가를 함수로 보냄.
+
+    어느 계정에서 buyRealEstate를 불러오는 지 명시해야 함. from: account
+        return instance.buyRealEstate(id, nameUtf8Encoded, age, {from: account, value: price });
+
+    갑자기 from: account 의 'account'는 어디에서 왔는가?
+    Web3를 통해 노드에 연결된 계정들을 먼저 불러와야 함.
+        web3.eth.getAccounts(function(error, accounts){
+
+    });
+    콜백으로 에러와 계정들을 불러옴.
+
+    에러는 콘솔로 찍음.
+        if (error) {
+            console.log(error);
+        }
+    
+    불러온 계정 중에서 현재 선택된 계정, 메타마스크에서 선택된 계정의 주소를 불러오는 변수를 만듬.
+        var account = accounts[0];
+    0 - 첫번째 계정.
+
+    컨트랙의 buyRealEstate함수에 값들이 잘 넘겨졌다면, 인풋필드는 다시 비우기. 모달창도 닫음.
+        $('#name').val('');
+        $('#age').val('');
+        $('#buyModal').modal('hide');
+
+    캐치문을 통해 에러발생 시 따로 처리.
+        .catch(function(err) {
+            console.log(err.message);
+        })
+    
+
+7:00 | 테스팅
+
+    가나슈 실행.
+    컨트랙 다시 배포.
+    truffle migrate --compile-all --reset --network ganache
+    사이트 다시 띄우기 npm run dev
+    메타마스크에도 로그인 되어있는지 확인
+    
+    오류발생 : 문제가 생겼습니다!
+    해결 : 그냥 다른 네트워크 연결했다가 local8545로 바꾸면 됨.
+
+    네트워크는 가나슈 엔드포인트에 연결. local8545
+    'Account2' 로 매입 시도.
+
+    오류발생 : inpage.js:1 You are accessing the MetaMask window.web3.currentProvider shim. This property is deprecated; use window.ethereum instead. For details, see: https://docs.metamask.io/guide/provider-migration.html#replacing-window-web3
+             app.js:62 invalid address
+             매입자 정보 입력하고 제출버튼 클릭해도 메타마스크 안뜸.
+
+    해결시도 : 메타마스크 우측 상단 점 3개 - 연결된 사이트 누르니까 아까까지 없던 '현재 사이트에 수동으로 연결'이 생김
+
+    제출로 매입시도할 시.
+    'Account 2' 에서 컨트랙으로 트랜잭션을 보내고, 현재 선택한 매물의 가격만큼 에더를 보냄.
+
+    확인 누르면 결제창 닫힘.
+    계정의 balance가 매입가 + 가스비만큼 줄어듬.
+    owner 계정인 'Ganache 1' 의 balance가 송금받아서 늘어남.
+
+    정리 : 
+    1. Account 2에서 매물을 매입하면서 컨트랙의 buyRealEstate함수로 데이터를 넘김
+    2. 함수 내에서 owner 계정에 매물 가격을 송금
+    
+
+
+
+
+
+
+
+
+
+
+
+
+

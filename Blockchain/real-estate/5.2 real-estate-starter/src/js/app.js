@@ -29,7 +29,6 @@ App = {
       App.web3Provider = new web3.providers.HttpProvider('http://localhost:8545');
       web3 = new Web3(App.web3Provider);
     }
-  
     return App.initContract();
   },
 
@@ -46,13 +45,23 @@ App = {
     var price = $('#price').val();
     var age = $('#age').val();
 
-    console.log(id);
-    console.log(price);
-    console.log(name);
-    console.log(age);
+    web3.eth.getAccounts(function(error, accounts){
+      if (error) {
+        console.log(error);
+      }
 
-    $('#name').val('');
-    $('#age').val('');
+      var account = accounts[0];
+      App.contracts.RealEstate.deployed().then(function(instance){
+        var nameUtf8Encoded = utf8.encode(name);
+        return instance.buyRealEstate(id, nameUtf8Encoded, age, {from: account, value: price });
+      }).then(function(){
+        $('#name').val('');
+        $('#age').val('');
+        $('#buyModal').modal('hide');
+      }).catch(function(err) {
+        console.log(err.message);
+      })
+    });
   },
 
   loadRealEstates: function() {
