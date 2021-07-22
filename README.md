@@ -66,6 +66,19 @@ https://alegruz.imweb.me/blog/?idx=244919&bmode=view
 e.currentTarget
 https://velog.io/@edie_ko/JavaScript-event-target%EA%B3%BC-currentTarget%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90
 
+.call() 
+https://velog.io/@johnque/Function.prototype.call
+
+.eq()
+.eq() 메소드는 선택한 요소 중에서 전달받은 인덱스에 해당하는 요소를 선택한다.
+http://www.devkuma.com/books/pages/224
+
+.attr()
+.attr()은 요소(element)의 속성(attribute)의 값을 가져오거나 속성을 추가합니다.
+https://www.codingfactory.net/10208
+
+.substr() 인덱스로 범위 정해서 자르기.
+https://developer.mozilla.org/ko/docs/orphaned/Web/JavaScript/Reference/Global_Objects/String/substr
 
 
 ※ 오류해결

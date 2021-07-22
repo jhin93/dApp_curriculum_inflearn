@@ -1,0 +1,92 @@
+
+0:00 | 매입 완료 시 매입 버튼 비활성화, 이미지 역시 매각 이미지로 바꿈.
+
+    이같은 과정을 loadRealEstates 함수에서 함.
+    먼저 buyRealEstate 끝나면서 함수 시작하도록 설정. 
+        return App.loadRealEstates();
+
+    loadRealEstates함수에서 컨트랙의 getAllBuyers 함수를 불러옴. 리턴된 buyers 배열을 for문으로 돌림.
+    
+    매입할 때, 매물 아이디를 buyers 배열의 인덱스로 사용하고 그 인덱스에 계정 주소를 저장했었음. buyers[_id] = msg.sender;
+    => 만약 어느 계정 인덱스에 계정 주소가 존재한다면, 해당 매물은 팔린 것.
+
+    인스턴스를 통해 getAllBuyers 함수 불러오기.
+        App.contracts.RealEstate.deployed().then(function(instance){
+            return instance.getAllBuyers.call();
+        })
+    then을 통해 buyers를 받음.
+    .then(function(buyers){
+
+    })
+    buyers 길이만큼 for문을 돌림.
+    for(i = 0; i < buyers.length; i ++){
+        
+    }
+    buyers 배열은 10개로 고정된 사이즈.
+    if문을 통해 해당 인덱스의 계정 주소가 존재한다면 
+    if (buyers[i] !== '0x0000000000000000000000000000000000000000')
+    0x 뒤로 0이 40개. 이더리움에서 주소형을 초기화할 때 쓰는 방식. null이 아님. 
+    즉 buyers배열의 어느 인덱스에 주소형이 존재한다는 조건. 매물이 팔렸다는 것.
+
+3:58 | 이미지 교체
+
+    조건문 내에서 시작. 매물이 팔린 곳의 템플릿을 찾아서 그 매물의 이미지 이름만 가져옴
+    var imgType = $('.panel-realEstate').eq(i).find('img').attr('src').substr(7);
+    real-estate.json 파일의 "picture" 필드의 값 중 images/ 부분의 뒷부분만 가져옴(substr(7)).
+
+    그리고 switch문을 통해 '팔렸다'는 이미지로 교체.
+    switch(imgType) {
+    
+    케이스가 apartment.jpg면 해당 템플릿의 이미지 요소를 찾아서 아파트가 팔렸다는 이미지로 교체.
+    $('.panel-realEstate').eq(i).find('img').attr('src', 'images/apartment_sold.jpg')
+    break를 통해서 나감.
+
+    연립주택과 하우스도 동일한 case군 적용.
+    case 'townhouse.jpg':
+        $('.panel-realEstate').eq(i).find('img').attr('src', 'images/townhouse_sold.jpg')
+        break;
+    case 'house.jpg':
+        $('.panel-realEstate').eq(i).find('img').attr('src', 'images/house_sold.jpg')
+        break;
+
+6:50 | 매입버튼 비활성화, 텍스트 매각으로 교체
+
+    해당 템플릿을 찾아서 매입버튼을 찾고, 텍스트를 매각으로 바꿈. 버튼 비활성화까지.
+    $('.panel-realEstate').eq(i).find('btn-buy').text('매각').attr('disabled', true);
+
+    .then 끝나는 곳에 catch문 추가 후 마무리.
+    .catch(function(err) {
+      console.log(err.message);
+    })
+
+8:10 | 테스팅
+
+    계정을 'Account 3'으로 바꾸기.
+    3번째 매물 매입 시도.
+
+    네트워크 환경이 안좋으면 Gas Price가 높게 책정되서 나옴. 강의는 100 -> 10으로 내림. 나는 20GWEI에서 10GWEI로.
+    
+    오류발생 : 매입이 매각으로 변하질 않음. 버튼 비활성화도 안됨.
+    해결 : find('btn-buy') 점 빠져 있었음 tlqjf.
+
+    근데 페이지 새로고침하면 다시 새로 돌아감. 매각된 정보들을 불러와야 하는 것.
+    처음 댑이 실행될 때 실행되는 함수들 
+    - 리스트 불러오는 init 함수
+    - web3와 컨트랙을 초기화하고 인스턴스화 시키는 initWeb3, initContract 함수 실행.
+    
+    이 함수들 중에서 loadRealEstates 함수를 불러오면 해결됨.
+    init 함수 -> initWeb3 -> initContract 순서로 리턴됨.
+    initContract에 loadRealEstates 함수를 불러오면 됨.
+    return App.loadRealEstates();
+
+    이렇게 댑이 처음 실행될 때 loadRealEstates 함수도 실행.
+    f5 눌러도 매각된 건 매각됐다고 나옴.
+
+
+
+
+
+
+
+
+
