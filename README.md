@@ -80,6 +80,11 @@ https://www.codingfactory.net/10208
 .substr() 인덱스로 범위 정해서 자르기.
 https://developer.mozilla.org/ko/docs/orphaned/Web/JavaScript/Reference/Global_Objects/String/substr
 
+인코딩 디코딩
+인코딩 - code화 한다. 무언가를 코드로 바꾼다.
+디코딩 - 코드에서 원래 모습으로 되돌린다.
+https://eine.tistory.com/entry/%EC%9D%B8%EC%BD%94%EB%94%A9%EA%B3%BC-%EC%95%94%ED%98%B8%ED%99%94-%EC%9A%A9%EC%96%B4%EC%A0%95%EB%A6%AC
+
 
 ※ 오류해결
 - geth 파라미터 오류해결

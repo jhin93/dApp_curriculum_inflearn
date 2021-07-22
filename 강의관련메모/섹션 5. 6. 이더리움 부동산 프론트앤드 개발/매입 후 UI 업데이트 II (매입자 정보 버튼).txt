@@ -1,0 +1,101 @@
+
+0:00 | 매입 후 매입자의 정보를 프론트에서 노출
+
+    index.html의 '매입자 정보' - display:none 상태
+    매입이 완료되면 버튼이 보이도록 할 것.
+
+    loadRealEstates 함수에서 작성. 해당 템플릿을 찾고 그 안의 매입자 정보 버튼의 'style' 속성을 삭제.
+    $('.panel-realEstate').eq(i).find('.btn-buyerInfo').removeAttr('style');
+    
+    페이지에서 확인해보니 확인됨. 클릭해도 아직 아무것도 안나옴.
+    클릭하면 모달을 띄워서 해당 매입자의 정보를 볼 수 있도록.
+
+1:35 | index.html에서 매입자 정보 모달 생성
+
+    기존 모달 복사 후, 바로 그 아래쪽에 붙여넣기.
+
+    id 는 buyerInfoModal 로 수정. 매입자 정보 버튼의 data-target과 매칭시킨 것.
+    <div class="modal fade" tabindex="-1" role="dialog" id="buyerInfoModal">
+
+    modal-body는 매입자의 계정주소, 이름, 나이를 보여주는 필드를 추가.
+        <strong>계정주소</strong>: <span id="buyerAddress"></span><br/>
+        <strong>이름</strong>: <span id="buyerName"></span><br/>
+        <strong>나이</strong>: <span id="buyerAge"></span><br/>
+    제출버튼은 삭제.
+
+    app.js의 맨 아래 function에 다음 내용을 작성. 
+    buyerInfoModal이 열려져 있을 때, 매입자 정보를 불러와서 디스플레이.
+
+    기존의 코드 복사
+    $('#buyModal').on('show.bs.modal', function(e) {
+        var id = $(e.relatedTarget).parent().find('.id').text();
+        var price = web3.toWei($(e.relatedTarget).parent().find('.price').text() || 0, 'ether');
+
+        $(e.currentTarget).find('#id').val(id);
+        $(e.currentTarget).find('#price').val(price);
+    });
+
+    buyModal은 buyerInfoModal로 교체. 
+    안의 내용은 id 변수 빼고 다 삭제.
+
+    컨트랙의 아직 안쓴 getBuyerInfo 함수를 사용.
+    매물의 id를 키값으로 받으면 밸류값으로 해당 매입자 정보를 가져옴.
+    매입자 계정, 이름, 나이를 리턴함.
+
+    다음과 같이 작성. 인스턴스에서 getBuyerInfo를 불러오고 매개변수로 id를 넘김.
+    App.contracts.RealEstate.deployed().then(function(instance){
+      return instance.getBuyerInfo.call(id);
+    })
+
+    콜백으로 매입자 정보를 리턴받을 것.
+    .then(function(buyerInfo){
+
+    리턴받은 데이터들을 모달에 있는 각각의 텍스트 필드에 입력할 것.
+    $(e.currentTarget).find('#buyerAddress').text(buyerInfo[0]);
+
+    getBuyerInfo 함수에서 3개를 리턴. 그중 어떤 것을 쓸지 인덱스로 명시하면 됨.
+    buyerInfo의 0번 인덱스는 계정 주소.
+    $(e.currentTarget).find('#buyerAddress').text(buyerInfo[0]);
+
+    두번째는 이름
+    이름은 한글이라서 컨트랙의 buyRealEstate 함수로 보냈을 때 utf8로 인코딩하고 헥스로 변환했음.
+    그걸 깨짐없이 받을 수 있도록 web3에서 제공하는 toUtf8을 사용.
+    $(e.currentTarget).find('#buyerName').text(web3.toUtf8(buyerInfo[1]));
+
+    오류발생 : 한글깨져서 안나옴. web3.toUtf8(buyerInfo[1]) 여기가 문제. 
+    해결 : 공식문서에서 toUtf8은 web3.utils.toUtf8(hex) 이런식으로 hex를 인자로 받는다고 나와있다.
+    https://web3js-kr.readthedocs.io/ko/latest/web3-utils.html
+
+*   해결과정 : 근데 인자로 들어간 buyerInfo[1] 가 hex 형태는 아닐 것 같아서 (getBuyerInfo 함수에서 리턴한 1번 인덱스 - 이름. 아마 인코딩된 스트링아닐까)
+    해당 강의 커뮤니티 질문에 답 올라온 것 중 utf8.decode만 적용했더니 됐다.
+    https://www.inflearn.com/course/blockchain-%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-dapp/lecture/13348?speed=1&mm=close&tab=community&q=10956
+
+
+    세번째는 나이
+    $(e.currentTarget).find('#buyerAge').text(buyerInfo[2]);
+    
+    .then 끝나고 나서 catch 문 작성. 에러는 콘솔에서 확인
+    .catch(function(err){
+      console.log(err.message);
+    })
+    
+    화면에서 확인. 잘 됨.
+    정리
+    1. 매입자 정보 버튼 활성화
+    2. 클릭시 모달이 뜨면서 매입자 정보 확인 출력.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

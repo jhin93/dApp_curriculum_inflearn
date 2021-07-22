@@ -87,6 +87,7 @@ App = {
           }
 
           $('.panel-realEstate').eq(i).find('.btn-buy').text('매각').attr('disabled', true);
+          $('.panel-realEstate').eq(i).find('.btn-buyerInfo').removeAttr('style');
         }
       }
     }).catch(function(err) {
@@ -110,5 +111,18 @@ $(function() {
 
     $(e.currentTarget).find('#id').val(id);
     $(e.currentTarget).find('#price').val(price);
+  });
+
+  $('#buyerInfoModal').on('show.bs.modal', function(e) {
+    var id = $(e.relatedTarget).parent().find('.id').text();
+    App.contracts.RealEstate.deployed().then(function(instance){
+      return instance.getBuyerInfo.call(id);
+    }).then(function(buyerInfo){
+      $(e.currentTarget).find('#buyerAddress').text(buyerInfo[0]);
+      $(e.currentTarget).find('#buyerName').text(utf8.decode(buyerInfo[1]));
+      $(e.currentTarget).find('#buyerAge').text(buyerInfo[2]);
+    }).catch(function(err){
+      console.log(err.message);
+    })
   });
 });
