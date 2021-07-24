@@ -1,0 +1,154 @@
+
+0:10 | 컴파일 체크
+
+    https://remix.ethereum.org/
+
+    만든 컨트랙(RealEstate.sol) 작성내용 전부 복사해서 ballot.sol에 붙여넣기.
+
+    리믹스에서 발생한 오류를 해결하다보니 코드 차이가 좀 있다.
+
+    강의 코드 :
+    constructor() public {
+        owner = msg.sender;
+    }
+
+    리믹스 : 1. public 이 빠짐 2. msg.sender가 payable로 감싸짐
+    constructor() {
+        owner = payable(msg.sender);
+    }
+
+
+        _전체 코드
+
+        // SPDX-License-Identifier: MIT
+        pragma solidity >=0.4.22 <0.9.0;
+
+        contract RealEstate {
+            struct Buyer {
+                address buyerAddress;
+                string name;
+                uint age;
+            }
+            
+            mapping (uint => Buyer) public buyerInfo;
+            address payable public owner;
+            address[10] public buyers;
+
+            event LogBuyRealEstate(
+                address _buyer,
+                uint _id
+            );
+
+            constructor() {
+                owner = payable(msg.sender);
+            }
+
+            function buyRealEstate(uint _id, string memory _name, uint _age) public payable {
+                require(_id >= 0 && _id <= 9);
+                buyers[_id] = msg.sender;
+                buyerInfo[_id] = Buyer(msg.sender, _name, _age);
+
+                owner.transfer(msg.value);
+                emit LogBuyRealEstate(msg.sender, _id);
+            }
+
+            function getBuyerInfo(uint _id) public view returns(address, string memory, uint){
+                Buyer memory buyer = buyerInfo[_id];
+                return (buyer.buyerAddress, buyer.name, buyer.age);
+            }
+
+            function getAllBuyers() public view returns (address[10] memory) {
+                return buyers;
+            }
+        }
+
+
+    'Auto compile' 체크
+    강의에선 컴파일러 버전을 0.4.24로 했지만, 난 페이지 켜진 그대로 0.8.4+commit.c72474f2 사용.
+    컴파일 파란 체크 뜨면 Run 탭으로 이동
+
+0:45 | DEPLOY & RUN TRANSACTIONS
+
+    'ENVIRONMENT' 에서 Injected Web3 옵션 선택.
+
+    메타마스크 켰을 떄 Ropsten 테스트 네트워크에 연결된 상태여야 함.
+    여기에 난 추가로 현재 사이트 수동연결도 했음.
+
+    배포를 해야 하므로 Account 1로 바꿈.
+    계정을 바꿨으므로 사이트도 새로고침.
+
+        오류발생:
+        You are using an `https` connection. 
+        Please switch to `http` if you are using Remix against an `http Web3 provider` or allow Mixed Content in your browser.
+
+1:22 | 배포
+
+    DEPLOY 클릭
+    메타마스크 창 팝업.
+
+    [ Account 1 -> 새 계약 ]
+    새로운 컨트랙을 배포하게 됨.
+
+    배포하고 메타마스크 계정 1 에서 내역 확인.
+    '계약 배포' 누르면 배경 딤처리되고 내역 뜨는데 우측 상단에 화살표(이더스캔에서 보기) 클릭.
+
+    이더스캔 창 뜸.
+    여기가 Ropsten 테스트 넷 전용 이더스캔 사이트. 메인넷처럼 세상의 모든 트랜잭션 정보들을 공개.
+
+    배포완료 - Success
+    To: 0x0f1c1f63fe0f6d94c333f12e3d79998051330116 - 이 주소로 만들어졌다고 함.
+
+    성공적으로 Ropsten 네트워크에 부동산 컨트랙을 배포.
+
+    컨트랙 주소(0x0f1c1f63fe0f6d94c333f12e3d79998051330116) 클릭.
+    컨트랙의 트랜잭션 정보들을 볼 수 있는 링크로 이동.
+
+    상단의 컨트랙 주소 복사(0x0F1C1F63fe0f6D94c333F12E3d79998051330116)
+
+2:50 | VS코드 이동
+
+    아티팩트 파일 중 RealEstate.json 파일 열기
+    맨 밑에 networks 섹션에서 ganache 네트워크 아이디(5777)를 Ropsten 네트워크 아이디인 3으로 교체
+    
+    "networks": {
+    "3": {
+        ...
+    
+    그리고 기존의 address를 방금 Ropsten에 배포한 주소로 바꿔줌.
+    "address": "0x0F1C1F63fe0f6D94c333F12E3d79998051330116",
+    그리고 저장.
+
+    이렇게 세팅해주면 앞으로 모든 트랜잭션이 Ropsten 네트워크에 배포된 주소로 향하게 됨.
+
+3:40 | 테스팅
+
+    터미널에서 real-estate 루트로 감.
+    그리고 npm run dev 실행.
+
+    메타마스크 켜고 매입을 위해 계정을 Account 2로 바꿈.
+    Account 2 현재 잔액 체크(5 ether)
+
+    가격 싼 5번 매물 매입
+    sejong 13
+    실제 공개 네트워크에서 트랜잭션을 보내는 거라 가스비를 평균가로 해서 내면 좀 오래걸릴 수 있음(평균 1분 정도)
+    강의처럼 Gas Price를 15로 높여서 보냄.
+
+    메타마스크 활동내역에서 이더스캔 띄움.
+    가스비를 높이니까 빠르게 처리됨. 채굴자들이 내 트랜잭션을 먼저 선택해서 처리해준 것.
+
+    컨트랙 주소 클릭
+    새로운 트랜잭션 확인 가능.
+
+    트랜잭션이 성공하면서 프론트엔드에도 변화(이미지, 이벤트로 알림 메시지)
+
+    메타마스크 잔액 줄어든 것도 확인 가능.
+
+    Account 1 잔액이 늘어나야 함. owner 계정이니까 매입가를 이쪽으로 송금됨.
+
+7:00 | 다시 이더스캔 사이트로 이동
+
+    첫번째 트랜잭션 해시 클릭
+    에더의 송금과정을 확인 가능.
+    TRANSFER  1.77 Ether From 0x0f1c1f63fe0f6d94c333f12e3d79998051330116 To  0xd788e74bef2c6899fb0a685c955f2067df85b571
+
+    이런 식으로 기록되면 Ropsten 테스트넷이 리셋되거나 망하지 않는 이상 영원히 공개적으로 보존됨
