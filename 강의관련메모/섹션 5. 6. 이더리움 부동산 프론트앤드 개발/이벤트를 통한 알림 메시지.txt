@@ -1,18 +1,82 @@
 
+_매입 완료되면 메시지를 통해 사람들에게 알려준다면?
+이벤트를 통해 모든 접속자들에게 이 정보를 알려줄 수 있음.
+
+컨트랙 buyRealEstate 함수에 이벤트 로그를 생성하는 코드를 넣었었음.
+emit LogBuyRealEstate(msg.sender, _id);
+
+매물을 매입하고 이벤트가 발생하면, 매입자의 계정 주소(address _buyer)와 매물 아이디(uint _id)를 트랜잭션 이벤트 로그에 저장.
+프론트엔드에서 이벤트 로그를 불러오고, 이벤트를 항상 감지하면서, 다른 사용자가 매입을 하게 되면 내 창에서도 메시지가 뜨도록 할 수 있음.
 
 
+1:05 | 매입 시, 어떤 계정에서 몇번째 매물을 매입을 했는지 메시지로 현재 접속중인 유저들에게 알려줄 것.
 
+    index.html의 매물 리스트 위에 div 생성.
+    <div id="events"></div>
+    앞으로 이벤트가 생성되면 여기에 메시지 식으로 부착.
 
+    app.js의 listenToEvents 작성. 먼저 컨트랙의 인스턴스를 받음
+    App.contracts.RealEstate.deployed().then(function(instance){
+    컨트랙의 LogBuyRealEstate 이벤트에 접근해서 .watch 메소드로 계속 감지.
+    첫번째 파라미터 - 필터링 옵션. 여기선 사용안하고 디폴트로 모든 이벤트를 감지
+    두번째 파라미터 - 범위. 0번째 블록(0)에서 최근 블록('latest')까지 로그를 계속 감지하게 함.
+    콜백으로 에러와 이벤트를 받음.
+        instance.LogBuyRealEstate({}, { fromBlock: 0, toBlock: 'latest'}).watch(function(error, event){
 
+    감지하게 했으니 이벤트가 발생되면 새로 만든 div에 알림 메시지를 추가(append).
 
+    콜백에서 받은 evnet 로그에서 argument필드에 접근하고(args) 매입자의 계정을 받고, 동일한 방식으로 매물 아이디를 받아서 문장 안에서 작성 가능.
+    $('#events').append('<p>' + event.args._buyer + ' 계정에서 ' + event.args._id + ' 번 매물을 매입했습니다.' + '</p>')
 
+*    블록 로그에 저장된 값들은 위와 같은 방식으로 불러올 수 있다. 인스턴스 불러오기 - 인스턴스에서 로그 접근 - 필요한 로그만 데이터로 받기
 
+    에러가 있다면 콘솔에 에러 출력.
+    console.log(error);
 
+    마지막에 loadRealEstates 함수 호출해서 변경된 내용을 페이지에 적용.
+    App.loadRealEstates();
 
+    완성된 이벤트를 어디에서 실행시켜야 할까? 
+    댑이 처음 실행되고 컨트랙을 인스턴스화 한 다음에 실행.
+    initContract 함수에서 loadRealEstates 함수를 App.listenToEvents();로 교체
+    App.listenToEvents();
+    어차피 listenToEvents 함수 마지막에 loadRealEstates 실행을 넣어놨기 떄문에 바꿔도 둘다 실행.
 
+    이렇게 initContract에 listenToEvents 함수를 추가함으로써 댑을 실행했을 때, 댑 내에서 계속 이벤트를 감지하도록 만듬.
+    listenToEvents 함수는 댑이 실행될 때 한번만 실행하면 됨. 그 후로는 알아서 작동.
 
+    마지막으로 buyRealEstate 함수에서 loadRealEstates 불러오는 부분 삭제.
+    어차피 listenToEvents 함수에서 loadRealEstates 를 실행하기 때문.
 
+7:15 | 테스팅
 
+    컨트랙 재배포하고 첨부터 시작.
+    truffle migrate --compile-all --reset --network ganache
+    이후 npm run dev.
+
+    메타마스크 로그인.
+    Accounts 4(0x2DEE58Bd5B1CA294E74027219c74973A2E5D1E24)에서 매입. 
+    이순신 33 가스비용 10으로 줄이고 매입.
+
+    메시지 출력 :
+    0x2dee58bd5b1ca294e74027219c74973a2e5d1e24 계정에서 0 번 매물을 매입했습니다.
+
+    위 메시지는 사이트에 접속한 다른 유저들에게도 보임.
+    다른 유저들도 listenToEvents 부동산 컨트랙의 LogBuyRealEstate 이벤트를 감지하기에 가능한 것.
+
+    다른 계정으로도 테스트.
+    Accounts 5(0x394007F549fF41a72EA7b2604b85086a87850258)로 테스팅.
+    매물 아이디 6번 매물 구입.
+
+    결과:
+    0x2dee58bd5b1ca294e74027219c74973a2e5d1e24 계정에서 0 번 매물을 매입했습니다.
+    0x394007f549ff41a72ea7b2604b85086a87850258 계정에서 6 번 매물을 매입했습니다.
+
+    위처럼 매입 메시지 추가.
+    새로 고침해도 메시지 유지.
+    이게 listenToEvents 함수의 범위(0번째부터 latest까지)를 통해서 가져올 수 있는 것.
+
+    이벤트를 통해 매입 후 유저들에게 알림 메시지 보여주기 완료.
 
 
 
