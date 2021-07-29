@@ -31,21 +31,22 @@
     어느 계정에서 buyRealEstate를 불러오는 지 명시해야 함. from: account
         return instance.buyRealEstate(id, nameUtf8Encoded, age, {from: account, value: price });
 
-    갑자기 from: account 의 'account'는 어디에서 왔는가?
-    Web3를 통해 노드에 연결된 계정들을 먼저 불러와야 함.
-        web3.eth.getAccounts(function(error, accounts){
+        갑자기 from: account 의 'account'는 어디에서 왔는가?
+        Web3를 통해 노드에 연결된 계정들을 먼저 불러와야 함.
+            web3.eth.getAccounts(function(error, accounts){
 
-    });
-    콜백으로 에러와 계정들을 불러옴.
+        });
+        콜백으로 에러와 계정들을 불러옴.
 
-    에러는 콘솔로 찍음.
-        if (error) {
-            console.log(error);
-        }
-    
-    불러온 계정 중에서 현재 선택된 계정, 메타마스크에서 선택된 계정의 주소를 불러오는 변수를 만듬.
-        var account = accounts[0];
-    0 - 첫번째 계정.
+        에러는 콘솔로 찍음.
+            if (error) {
+                console.log(error);
+            }
+        
+        불러온 계정 중에서 현재 선택된 계정, 메타마스크에서 선택된 계정의 주소를 불러오는 변수를 만듬.
+            var account = accounts[0];
+            
+        0 - 첫번째 계정 = 선택된 계정이라는데 왜 그런지 갑자기 모르겠다.
 
     컨트랙의 buyRealEstate함수에 값들이 잘 넘겨졌다면, 인풋필드는 다시 비우기. 모달창도 닫음.
         $('#name').val('');
