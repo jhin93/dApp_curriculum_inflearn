@@ -42,8 +42,8 @@ App = {
 
   buyRealEstate: function() {	
     var id = $('#id').val();
-    var name = $('#name').val();
     var price = $('#price').val();
+    var name = $('#name').val();
     var age = $('#age').val();
 
     web3.eth.getAccounts(function(error, accounts){
@@ -85,7 +85,7 @@ App = {
               break;
           }
 
-          $('.panel-realEstate').eq(i).find('.btn-buy').text('매각').attr('disabled', true);
+          $('.panel-realEstate').eq(i).find('.btn-buy').text('거래완료').attr('disabled', true);
           $('.panel-realEstate').eq(i).find('.btn-buyerInfo').removeAttr('style');
         }
       }
