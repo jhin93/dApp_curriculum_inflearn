@@ -43,8 +43,15 @@ App = {
   buyRealEstate: function() {	
     var id = $('#id').val();
     var price = $('#price').val();
-    var name = $('#name').val();
-    var age = $('#age').val();
+
+    var lessor = $('#lessor').val();
+    // var age = $('#age').val();
+    var lessee = $('#lessee').val();
+    var leaseType = $('#leaseType').val();
+
+    var deposit = $('deposit').val();
+
+
 
     web3.eth.getAccounts(function(error, accounts){
       if (error) {
@@ -53,11 +60,16 @@ App = {
 
       var account = accounts[0];
       App.contracts.RealEstate.deployed().then(function(instance){
-        var nameUtf8Encoded = utf8.encode(name);
-        return instance.buyRealEstate(id, nameUtf8Encoded, age, {from: account, value: price });
+        var lessorUtf8Encoded = utf8.encode(lessor);
+        var lesseeUtf8Encoded = utf8.encode(lessee);
+        var leaseTypeUtf8Encoded = utf8.encode(leaseType);
+        return instance.buyRealEstate(id, lessorUtf8Encoded, lesseeUtf8Encoded, leaseTypeUtf8Encoded, deposit, {from: account, value: price });
       }).then(function(){
-        $('#name').val('');
-        $('#age').val('');
+        $('#lessor').val('');
+        // $('#age').val('');
+        $('#lessee').val('');
+        $('#leaseType').val('');
+        $('deposit').val('');
         $('#buyModal').modal('hide');
       }).catch(function(err) {
         console.log(err.message);
@@ -127,8 +139,11 @@ $(function() {
       return instance.getBuyerInfo.call(id);
     }).then(function(buyerInfo){
       $(e.currentTarget).find('#buyerAddress').text(buyerInfo[0]);
-      $(e.currentTarget).find('#buyerName').text(utf8.decode(buyerInfo[1]));
-      $(e.currentTarget).find('#buyerAge').text(buyerInfo[2]);
+      $(e.currentTarget).find('#realEstateLessor').text(utf8.decode(buyerInfo[1]));
+      // $(e.currentTarget).find('#buyerAge').text(buyerInfo[2]);
+      $(e.currentTarget).find('#realEstateLessee').text(utf8.decode(buyerInfo[2]));
+      $(e.currentTarget).find('#realEstateLeaseType').text(utf8.decode(buyerInfo[3]));
+      $(e.currentTarget).find('#realEstateDeposit').text(buyerInfo[4]);
     }).catch(function(err){
       console.log(err.message);
     })

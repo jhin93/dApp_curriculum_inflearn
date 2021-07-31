@@ -74,15 +74,17 @@
           <div class="modal-body">
             <input type="hidden" id="id" />
             <input type="hidden" id="price" />
-            <input type="text" class="form-control" id="name" placeholder="이름" /><br/>
-            <input type="number" class="form-control" id="age" placeholder="나이">
-            <!-- <input type="text" class="form-control" placeholder="임차인" /><br/>
-            <input type="text" class="form-control" placeholder="거래형태" /><br/><br/>
-            <input type="text" class="form-control" placeholder="보증금" /><br/>
-            <input type="text" class="form-control" placeholder="월세" /><br/>
-            <input type="text" class="form-control" placeholder="관리비" /><br/><br/>
-            <input type="text" class="form-control" placeholder="거래일시" /><br/>
-            <input type="text" class="form-control" placeholder="거래만료일" /><br/> -->
+            <input type="text" class="form-control" id="lessor" placeholder="임대인" /><br/>
+            <!-- <input type="number" class="form-control" id="age" placeholder="나이"><br/> -->
+            <input type="text" class="form-control" id="lessee" placeholder="임차인" /><br/>
+            <input type="text" class="form-control" id="leaseType" placeholder="임대차" /><br/>
+            <br/>
+            <input type="number" class="form-control" id="deposit" placeholder="보증금" /><br/>
+            <input type="number" class="form-control" id="monthlyRent" placeholder="월세" /><br/>
+            <input type="number" class="form-control" id="managementExpense" placeholder="관리비" /><br/>
+            <br/>
+            <input type="text" class="form-control" id="transactionDate" placeholder="거래일시" /><br/>
+            <input type="text" class="form-control" id="transactionExpiration" placeholder="거래만료일" /><br/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -101,17 +103,17 @@
           </div>
           <div class="modal-body">
             <strong>계정주소</strong>: <span id="buyerAddress"></span><br/>
-            <strong>이름</strong>: <span id="buyerName"></span><br/>
-            <strong>나이</strong>: <span id="buyerAge"></span><br/>
-            <!-- <strong>임차인</strong>: 김진경<span></span><br/>
+            <strong>임대인</strong>: <span id="realEstateLessor"></span><br/>
+            <!-- <strong>나이</strong>: <span id="buyerAge"></span><br/> -->
+            <strong>임차인</strong>: <span id="realEstateLessee"></span><br/>
+            <strong>임대차</strong>: <span id="realEstateLeaseType"></span><br/>
             <br/>
-            <strong>거래형태</strong>: 월세<span></span><br/>
-            <strong>보증금</strong>: 500만원<span></span><br/>
-            <strong>차임(월세)</strong>: 50만원<span></span><br/>
-            <strong>관리비</strong>: 10만원<span></span><br/>
+            <strong>보증금</strong>: <span id="realEstateDeposit"></span><br/>
+            <strong>월세</strong>: <span id="realEstateMontlyRent"></span><br/>
+            <strong>관리비</strong>: <span id="realEstateManagementExpense"></span><br/>
             <br/>
-            <strong>거래일시</strong>: 2021.06.28<span></span><br/>
-            <strong>거래만료일</strong>: 2022.06.28<span></span><br/> -->
+            <strong>거래일시</strong>: <span id="realEstateTransactionDate"></span><br/>
+            <strong>거래만료일</strong>: <span id="realEstateExpirationDate"></span><br/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
