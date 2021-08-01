@@ -49,9 +49,12 @@ App = {
     var lessee = $('#lessee').val();
     var leaseType = $('#leaseType').val();
 
-    var deposit = $('deposit').val();
+    var deposit = $('#deposit').val();
+    var monthlyRent = $('#monthlyRent').val();
+    var managementExpense = $('#managementExpense').val();
 
-
+    var transactionDate = $('#transactionDate').val();
+    var transactionExpiration = $('#transactionExpiration').val();
 
     web3.eth.getAccounts(function(error, accounts){
       if (error) {
@@ -63,13 +66,23 @@ App = {
         var lessorUtf8Encoded = utf8.encode(lessor);
         var lesseeUtf8Encoded = utf8.encode(lessee);
         var leaseTypeUtf8Encoded = utf8.encode(leaseType);
-        return instance.buyRealEstate(id, lessorUtf8Encoded, lesseeUtf8Encoded, leaseTypeUtf8Encoded, deposit, {from: account, value: price });
+
+        var transactionDateUtf8Encoded = utf8.encode(transactionDate);
+        var transactionExpirationUtf8Encoded = utf8.encode(transactionExpiration);
+        return instance.buyRealEstate(id, lessorUtf8Encoded, lesseeUtf8Encoded, leaseTypeUtf8Encoded, deposit, monthlyRent, managementExpense, transactionDateUtf8Encoded, transactionExpirationUtf8Encoded, {from: account, value: price });
       }).then(function(){
         $('#lessor').val('');
         // $('#age').val('');
         $('#lessee').val('');
         $('#leaseType').val('');
-        $('deposit').val('');
+
+        $('#deposit').val('');
+        $('#monthlyRent').val('');
+        $('#managementExpense').val('');
+
+        $('#transactionDate').val('');
+        $('#transactionExpiration').val('');
+
         $('#buyModal').modal('hide');
       }).catch(function(err) {
         console.log(err.message);
@@ -144,6 +157,10 @@ $(function() {
       $(e.currentTarget).find('#realEstateLessee').text(utf8.decode(buyerInfo[2]));
       $(e.currentTarget).find('#realEstateLeaseType').text(utf8.decode(buyerInfo[3]));
       $(e.currentTarget).find('#realEstateDeposit').text(buyerInfo[4]);
+      $(e.currentTarget).find('#realEstateMontlyRent').text(buyerInfo[5]);
+      $(e.currentTarget).find('#realEstateManagementExpense').text(buyerInfo[6]);
+      $(e.currentTarget).find('#realEstateTransactionDate').text(utf8.decode(buyerInfo[7]));
+      $(e.currentTarget).find('#realEstateExpirationDate').text(utf8.decode(buyerInfo[8]));
     }).catch(function(err){
       console.log(err.message);
     })

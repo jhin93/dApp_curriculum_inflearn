@@ -9,6 +9,11 @@ contract RealEstate {
         string leaseType;
 
         uint deposit;
+        uint monthlyRent;
+        uint managementExpense;
+
+        string transactionDate;
+        string transactionExpiration;
     }
     
     mapping (uint => Buyer) public buyerInfo;
@@ -24,18 +29,18 @@ contract RealEstate {
         owner = msg.sender;
     }
 
-    function buyRealEstate(uint _id, string memory _lessor, string memory _lessee, string memory _leaseType, uint _deposit) public payable {
+    function buyRealEstate(uint _id, string memory _lessor, string memory _lessee, string memory _leaseType, uint _deposit, uint _monthlyRent, uint _managementExpense, string memory _transactionDate, string memory _transactionExpiration) public payable {
         require(_id >= 0 && _id <= 9);
         buyers[_id] = msg.sender;
-        buyerInfo[_id] = Buyer(msg.sender, _lessor, _lessee, _leaseType, _deposit);
+        buyerInfo[_id] = Buyer(msg.sender, _lessor, _lessee, _leaseType, _deposit, _monthlyRent, _managementExpense, _transactionDate, _transactionExpiration);
 
         owner.transfer(msg.value);
         emit LogBuyRealEstate(msg.sender, _id);
     }
 
-    function getBuyerInfo(uint _id) public view returns(address, string memory, string memory, string memory, uint){
+    function getBuyerInfo(uint _id) public view returns(address, string memory, string memory, string memory, uint, uint, uint, string memory, string memory){
         Buyer memory buyer = buyerInfo[_id];
-        return (buyer.buyerAddress, buyer.lessor, buyer.lessee, buyer.leaseType, buyer.deposit);
+        return (buyer.buyerAddress, buyer.lessor, buyer.lessee, buyer.leaseType, buyer.deposit, buyer.monthlyRent, buyer.managementExpense, buyer.transactionDate, buyer.transactionExpiration);
     }
 
     function getAllBuyers() public view returns (address[10] memory) {
