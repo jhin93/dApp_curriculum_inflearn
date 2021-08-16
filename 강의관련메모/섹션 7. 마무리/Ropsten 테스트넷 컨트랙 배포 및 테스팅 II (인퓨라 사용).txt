@@ -18,7 +18,7 @@ _Ropsten 테스트넷 컨트랙 배포 및 테스팅 II (인퓨라 사용).
     첫번째는 'mnemonic'
     두번째는 인퓨라 사이트 주소인데 이게 업데이트됨. 강의와 다름. 
     1. 인퓨라 사이트에서 좌측 두번째 아이콘 누르고 CREATE A PROJECT 
-    2. KEYS - ENDPOINTS 에서 Ropsten 선택하고 https 로 시작하는 주소 선태개해서 붙여넣기.
+    2. KEYS - ENDPOINTS 에서 Ropsten 선택하고 https 로 시작하는 주소 선택해서 붙여넣기.
 
 
         ropsten: {
