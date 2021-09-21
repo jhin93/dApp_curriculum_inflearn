@@ -1,7 +1,6 @@
 # dApp 개발
 
-이더리움 부동산 dApp.
-
+블록체인 이더리움 부동산 댑(dApp) 만들기 - 기본편
 https://www.inflearn.com/course/blockchain-%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-dapp/dashboard
 
 
