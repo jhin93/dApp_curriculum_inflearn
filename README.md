@@ -4,20 +4,20 @@
 https://www.inflearn.com/course/blockchain-%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-dapp/dashboard
 
 
-Geth 란?
-http://wiki.hash.kr/index.php/%EA%B2%8C%EC%8A%A4
+Geth 란?  
+http://wiki.hash.kr/index.php/%EA%B2%8C%EC%8A%A4. 
 
-Geth를 사용하는 이유, 초기화하는 이유
-https://opentutorials.org/course/2869/20676
+Geth를 사용하는 이유, 초기화하는 이유. 
+https://opentutorials.org/course/2869/20676. 
 
-DAG 란? 방향성 비순환 그래프.
-http://wiki.hash.kr/index.php/%EB%B0%A9%ED%96%A5%EC%84%B1_%EB%B9%84%EC%88%9C%ED%99%98_%EA%B7%B8%EB%9E%98%ED%94%84
+DAG 란? 방향성 비순환 그래프.  
+http://wiki.hash.kr/index.php/%EB%B0%A9%ED%96%A5%EC%84%B1_%EB%B9%84%EC%88%9C%ED%99%98_%EA%B7%B8%EB%9E%98%ED%94%84   
 
-에폭(epoch)이란? 블록 50개
-http://wiki.hash.kr/index.php/%EC%97%90%ED%8F%AD
+에폭(epoch)이란? 블록 50개  
+http://wiki.hash.kr/index.php/%EC%97%90%ED%8F%AD   
 
-web3.fromWei(we3.js의 공식문서)
-https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html
+web3.fromWei(we3.js의 공식문서)  
+https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html  
 
 트랜잭션 해시란? 해당 트랜잭션의 고유 ID
 https://brunch.co.kr/@nujabes403/15
