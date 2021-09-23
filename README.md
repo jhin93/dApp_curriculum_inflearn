@@ -19,8 +19,8 @@ http://wiki.hash.kr/index.php/%EC%97%90%ED%8F%AD
 web3.fromWei(we3.js의 공식문서)  
 https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html  
 
-트랜잭션 해시란? 해당 트랜잭션의 고유 ID
-https://brunch.co.kr/@nujabes403/15
+트랜잭션 해시란? 해당 트랜잭션의 고유 ID  
+https://brunch.co.kr/@nujabes403/15  
 
 Dapp과 Solidity 개발 환경 개요(geth는 가나슈가 대체, solc, EVM)
 https://noooop.tistory.com/entry/Solidity-%EA%B0%9C%EB%B0%9C-Dapp%EA%B3%BC-Solidity-%EA%B0%9C%EC%9A%94
