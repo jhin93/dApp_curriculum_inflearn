@@ -22,8 +22,8 @@ https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html
 트랜잭션 해시란? 해당 트랜잭션의 고유 ID  
 https://brunch.co.kr/@nujabes403/15  
 
-Dapp과 Solidity 개발 환경 개요(geth는 가나슈가 대체, solc, EVM)
-https://noooop.tistory.com/entry/Solidity-%EA%B0%9C%EB%B0%9C-Dapp%EA%B3%BC-Solidity-%EA%B0%9C%EC%9A%94
+Dapp과 Solidity 개발 환경 개요(geth는 가나슈가 대체, solc, EVM)  
+https://noooop.tistory.com/entry/Solidity-%EA%B0%9C%EB%B0%9C-Dapp%EA%B3%BC-Solidity-%EA%B0%9C%EC%9A%94  
 
 비동기, promise, .then
 https://joshua1988.github.io/web-development/javascript/promise-for-beginners/#%ED%94%84%EB%A1%9C%EB%AF%B8%EC%8A%A4-%EC%BD%94%EB%93%9C---%EC%89%AC%EC%9A%B4-%EC%98%88%EC%A0%9C
