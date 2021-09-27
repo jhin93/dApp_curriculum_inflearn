@@ -28,8 +28,8 @@ https://noooop.tistory.com/entry/Solidity-%EA%B0%9C%EB%B0%9C-Dapp%EA%B3%BC-Solid
 비동기, promise, .then  
 https://joshua1988.github.io/web-development/javascript/promise-for-beginners/#%ED%94%84%EB%A1%9C%EB%AF%B8%EC%8A%A4-%EC%BD%94%EB%93%9C---%EC%89%AC%EC%9A%B4-%EC%98%88%EC%A0%9C  
 
-상태변수 - 개발자가 설정. 어떤 함수의 속한 변수가 아니라 컨트랙트에 속한 변수의 의미. contract의 최상위단에 선언된 변수. https://steemit.com/kr/@etainclub/solidity-3
-전역변수 - msg 같은 개념. https://solidity-kr.readthedocs.io/ko/latest/introduction-to-smart-contracts.html
+상태변수 - 개발자가 설정. 어떤 함수의 속한 변수가 아니라 컨트랙트에 속한 변수의 의미. contract의 최상위단에 선언된 변수. https://steemit.com/kr/@etainclub/solidity-3  
+전역변수 - msg 같은 개념. https://solidity-kr.readthedocs.io/ko/latest/introduction-to-smart-contracts.html  
 
 테스트란?
 https://ui.toast.com/fe-guide/ko_TEST
