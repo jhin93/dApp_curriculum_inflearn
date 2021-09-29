@@ -34,8 +34,8 @@ https://steemit.com/kr/@etainclub/solidity-3
 전역변수 - msg 같은 개념  
 https://solidity-kr.readthedocs.io/ko/latest/introduction-to-smart-contracts.html  
 
-테스트란?
-https://ui.toast.com/fe-guide/ko_TEST
+테스트란?  
+https://ui.toast.com/fe-guide/ko_TEST  
 
 Mocha란?
 https://heropy.blog/2018/03/16/mocha/
