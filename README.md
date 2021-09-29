@@ -34,11 +34,9 @@ https://steemit.com/kr/@etainclub/solidity-3
 전역변수 - msg 같은 개념  
 https://solidity-kr.readthedocs.io/ko/latest/introduction-to-smart-contracts.html  
 
-테스트란?  
-https://ui.toast.com/fe-guide/ko_TEST  
+테스트란? https://ui.toast.com/fe-guide/ko_TEST  
 
-Mocha란?
-https://heropy.blog/2018/03/16/mocha/
+Mocha란? https://heropy.blog/2018/03/16/mocha/
 
 Chai란? (it문에 대한 약간의 설명)
 https://medium.com/sjk5766/mocha-%EC%82%AC%EC%9A%A9%EA%B8%B0-2046b1ec1abd
