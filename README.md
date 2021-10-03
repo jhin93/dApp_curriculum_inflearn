@@ -47,9 +47,9 @@ https://has3ong.tistory.com/393
 getJSON  
 https://api.jquery.com/jquery.getjson/  
 
-show.bs.modal
-모달이 열릴 때 바로 실행되는 이벤트입니다.
-https://nowonbun.tistory.com/538
+show.bs.modal  
+모달이 열릴 때 바로 실행되는 이벤트입니다  
+https://nowonbun.tistory.com/538  
 
 e.relatedTarget
 event.relatedTarget 속성은 마우스 이동 시 입력되거나 종료되는 요소를 반환합니다
