@@ -59,8 +59,9 @@ parseFloat
 parseFloat()은 매개변수로 주어진 값 분석하고 부동소수점 수를 반환합니다. 기호(+, -), 숫자(0-9), 소수점 또는 지수 이외의 문자를 발견하면, 그 전까지의 결과만 반환하고 문제의 문자와 그 이후는 모두 무시합니다.  
 https://developer.mozilla.org/ko/docs/orphaned/Web/JavaScript/Reference/Global_Objects/parseFloat  
 
-float 타입
-숫자라는 것은 4나 4.0이나 같은 것입니다. 하지만 파이썬에서는 다릅니다. 이 둘은 동시에 연산을 할 수 있기는 하겠으나, 값이 같을지는 몰라도 같은 타입은 아닙니다. 4는 정수고, 4.0은 수소점이 있는 수이기 때문이죠. 저흰 전자를 int라고 부르고 후자를 float이라고 부릅니다.
+float 타입  
+숫자라는 것은 4나 4.0이나 같은 것입니다. 하지만 파이썬에서는 다릅니다. 이 둘은 동시에 연산을 할 수 있기는 하겠으나, 값이 같을지는 몰라도 같은 타입은 아닙니다.  
+4는 정수고, 4.0은 수소점이 있는 수이기 때문이죠. 저흰 전자를 int라고 부르고 후자를 float이라고 부릅니다.  
 https://alegruz.imweb.me/blog/?idx=244919&bmode=view
 
 e.currentTarget
