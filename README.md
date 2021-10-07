@@ -63,8 +63,8 @@ float 타입
 숫자라는 것은 4나 4.0이나 같은 것입니다. 하지만 파이썬에서는 다릅니다. 이 둘은 동시에 연산을 할 수 있기는 하겠으나, 값이 같을지는 몰라도 같은 타입은 아닙니다. 4는 정수고, 4.0은 수소점이 있는 수이기 때문이죠. 저흰 전자를 int라고 부르고 후자를 float이라고 부릅니다.  
 https://alegruz.imweb.me/blog/?idx=244919&bmode=view
 
-e.currentTarget
-https://velog.io/@edie_ko/JavaScript-event-target%EA%B3%BC-currentTarget%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90
+e.currentTarget  
+https://velog.io/@edie_ko/JavaScript-event-target%EA%B3%BC-currentTarget%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90  
 
 .call() 
 https://velog.io/@johnque/Function.prototype.call
