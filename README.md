@@ -66,8 +66,8 @@ https://alegruz.imweb.me/blog/?idx=244919&bmode=view
 e.currentTarget  
 https://velog.io/@edie_ko/JavaScript-event-target%EA%B3%BC-currentTarget%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90  
 
-.call() 
-https://velog.io/@johnque/Function.prototype.call
+.call()  
+https://velog.io/@johnque/Function.prototype.call  
 
 .eq()
 .eq() 메소드는 선택한 요소 중에서 전달받은 인덱스에 해당하는 요소를 선택한다.
