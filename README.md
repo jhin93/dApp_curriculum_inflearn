@@ -85,8 +85,8 @@ https://developer.mozilla.org/ko/docs/orphaned/Web/JavaScript/Reference/Global_O
 디코딩 - 코드에서 원래 모습으로 되돌린다.
 https://eine.tistory.com/entry/%EC%9D%B8%EC%BD%94%EB%94%A9%EA%B3%BC-%EC%95%94%ED%98%B8%ED%99%94-%EC%9A%A9%EC%96%B4%EC%A0%95%EB%A6%AC
 
-이벤트 
-https://nujabes403.medium.com/solidity-event%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-6ed040e12808
+이벤트  
+https://nujabes403.medium.com/solidity-event%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-6ed040e12808  
 
 ※ 오류해결
 - geth 파라미터 오류해결
