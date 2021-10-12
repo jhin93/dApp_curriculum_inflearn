@@ -88,12 +88,12 @@ https://eine.tistory.com/entry/%EC%9D%B8%EC%BD%94%EB%94%A9%EA%B3%BC-%EC%95%94%ED
 이벤트  
 https://nujabes403.medium.com/solidity-event%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-6ed040e12808  
 
-※ 오류해결
-- geth 파라미터 오류해결
-    * 'Geth로 프라이빗 노드 구축 II (노드 첫 실행, DAG 파일 생성)' 강의 메모 확인
-    * --unlock -> --allow-insecure-unlock
-    업데이트됨. --unlock 'value' 대신 --allow-insecure-unlock
-    https://www.inflearn.com/questions/13215 , https://github.com/ethereum/go-ethereum/pull/17037         
+※ 오류해결  
+- geth 파라미터 오류해결  
+    * 'Geth로 프라이빗 노드 구축 II (노드 첫 실행, DAG 파일 생성)' 강의 메모 확인  
+    * --unlock -> --allow-insecure-unlock  
+    업데이트됨. --unlock 'value' 대신 --allow-insecure-unlock  
+    https://www.inflearn.com/questions/13215 , https://github.com/ethereum/go-ethereum/pull/17037  
 
 - 트러플 5.0.0 에서의 web3 사용 
 https://medium.com/rayonprotocol/web3-js-%EB%B2%84%EC%A0%84-1-0-0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-98b427d3d819
