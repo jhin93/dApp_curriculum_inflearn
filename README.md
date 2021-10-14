@@ -98,9 +98,9 @@ https://nujabes403.medium.com/solidity-event%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9
 - 트러플 5.0.0 에서의 web3 사용  
 https://medium.com/rayonprotocol/web3-js-%EB%B2%84%EC%A0%84-1-0-0-%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD-98b427d3d819  
 
-- constructor에 public 표시 안해도 됨.
-https://docs.soliditylang.org/en/v0.7.0/070-breaking-changes.html#functions-and-events
-Visibility (public / external) is not needed for constructors anymore:...
+- constructor에 public 표시 안해도 됨  
+https://docs.soliditylang.org/en/v0.7.0/070-breaking-changes.html#functions-and-events  
+Visibility (public / external) is not needed for constructors anymore:...  
 
 - owner.transfer(msg.value); 에서 다음과 같은 오류 발생
 "send" and "transfer" are only available for objects of type "address payable", not "address".
