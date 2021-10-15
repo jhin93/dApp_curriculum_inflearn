@@ -102,11 +102,11 @@ https://medium.com/rayonprotocol/web3-js-%EB%B2%84%EC%A0%84-1-0-0-%EB%B3%80%EA%B
 https://docs.soliditylang.org/en/v0.7.0/070-breaking-changes.html#functions-and-events  
 Visibility (public / external) is not needed for constructors anymore:...  
 
-- owner.transfer(msg.value); 에서 다음과 같은 오류 발생
-"send" and "transfer" are only available for objects of type "address payable", not "address".
-
-해결 : address public owner; 라고 정의되었던 것을 address payable public owner; 로 바꿈. payable만 추가.
-https://ethereum.stackexchange.com/questions/63618/address-transfer-not-working
-예전엔 address(uint160(owner)).transfer(msg.value); -> 이렇게 해결했었음.
+- owner.transfer(msg.value); 에서 다음과 같은 오류 발생  
+"send" and "transfer" are only available for objects of type "address payable", not "address"  
+  
+해결 : address public owner; 라고 정의되었던 것을 address payable public owner; 로 바꿈. payable만 추가  
+https://ethereum.stackexchange.com/questions/63618/address-transfer-not-working  
+예전엔 address(uint160(owner)).transfer(msg.value); -> 이렇게 해결했었음  
 
     
